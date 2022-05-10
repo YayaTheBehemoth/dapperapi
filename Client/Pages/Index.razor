@@ -1,0 +1,80 @@
+﻿@page "/"
+@using festivalbooking.Shared;
+@inject HttpClient Http
+
+            @if (vagter == null)
+        {
+            <p><em>the end is closer than you think</em></p>
+        }
+  
+       
+        else
+        {
+            <h2>Lille app til at demonstrere hvordan man bygger en controller samt service layer med simpel CRUD funktionalitet VHA. Dapper og C# </h2>
+
+        <p>I disse felter kan man skrive et input, ønsker man at uploade det til databasen trykker man blot på "POST DIS"</p>
+        <p>ønsker man at ændre i en entry, skriver man blot inde i den givne entry's felter og trykker herefter på "EDIT DIS"</p>
+        <input @bind-value="vagt.navn" placeholder="string" />
+        <input @bind-value="vagt.tal" placeholder="double" />            
+        <button class="btn btn-sm btn-primary" @onclick="@(()=>postVagt(@vagt))">POST DIS</button>
+        <p>Liste over entries</p>
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Type</th>
+                        <th>
+                            Edit
+                        </th>
+                        <th>
+                            Delete
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in vagter)
+                    {
+                    <tr>
+                        <td>@item.navn</td>
+                          <input @bind-value="vagt.navn" placeholder="string" />
+                        <td>@item.tal</td>
+                          <input @bind-value="vagt.tal" placeholder="double" />
+                        <td>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@item.id))">DELET DIS</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@item.id))">EDIT DIS</button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+@code{
+private testDTO[] vagter;
+
+private testDTO vagt = new testDTO();
+protected override async Task OnInitializedAsync(){
+    vagter = await Http.GetFromJsonAsync<testDTO[]>("api/Vagt");
+}
+ private async Task DeleteVagt(int id)
+    {
+     
+    
+        await Http.DeleteAsync($"api/Vagt/{id}");
+    await OnInitializedAsync();
+    }
+
+private async Task postVagt(testDTO vagt){
+    await Http.PostAsJsonAsync<testDTO>("api/Vagt", vagt);
+    await OnInitializedAsync();
+}
+private async Task patchVagt(int id){
+          vagt.id = id; 
+    await Http.PutAsJsonAsync<testDTO>($"api/Vagt/{id}", vagt);
+    await OnInitializedAsync();
+}
+}
+
+
+

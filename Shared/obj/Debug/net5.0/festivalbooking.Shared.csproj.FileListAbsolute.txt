@@ -1,0 +1,12 @@
+/Users/placeholder/Desktop/festivalbooking/Shared/bin/Debug/net5.0/festivalbooking.Shared.deps.json
+/Users/placeholder/Desktop/festivalbooking/Shared/bin/Debug/net5.0/festivalbooking.Shared.dll
+/Users/placeholder/Desktop/festivalbooking/Shared/bin/Debug/net5.0/ref/festivalbooking.Shared.dll
+/Users/placeholder/Desktop/festivalbooking/Shared/bin/Debug/net5.0/festivalbooking.Shared.pdb
+/Users/placeholder/Desktop/festivalbooking/Shared/obj/Debug/net5.0/festivalbooking.Shared.csproj.AssemblyReference.cache
+/Users/placeholder/Desktop/festivalbooking/Shared/obj/Debug/net5.0/festivalbooking.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/placeholder/Desktop/festivalbooking/Shared/obj/Debug/net5.0/festivalbooking.Shared.AssemblyInfoInputs.cache
+/Users/placeholder/Desktop/festivalbooking/Shared/obj/Debug/net5.0/festivalbooking.Shared.AssemblyInfo.cs
+/Users/placeholder/Desktop/festivalbooking/Shared/obj/Debug/net5.0/festivalbooking.Shared.csproj.CoreCompileInputs.cache
+/Users/placeholder/Desktop/festivalbooking/Shared/obj/Debug/net5.0/festivalbooking.Shared.dll
+/Users/placeholder/Desktop/festivalbooking/Shared/obj/Debug/net5.0/ref/festivalbooking.Shared.dll
+/Users/placeholder/Desktop/festivalbooking/Shared/obj/Debug/net5.0/festivalbooking.Shared.pdb

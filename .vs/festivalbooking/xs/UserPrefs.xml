@@ -1,0 +1,44 @@
+﻿<Properties StartupConfiguration="{0134DD3A-98D4-4A86-9C56-0A9438828429}|Default">
+  <MonoDevelop.Ide.ItemProperties.festivalbooking.Server PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="Server/services/vagtservice.cs" Line="23" Column="9" />
+      <File FileName="Server/Controllers/vagtController.cs" Line="24" Column="1" />
+      <File FileName="Server/Connecter/connecter.cs" Line="10" Column="1" />
+      <File FileName="Client/Pages/Index.razor" Line="22" Column="38" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="festivalbooking" expanded="True">
+            <Node name="festivalbooking.Client" expanded="True">
+              <Node name="Pages" expanded="True" />
+            </Node>
+            <Node name="festivalbooking.Server" expanded="True">
+              <Node name="Connecter" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="vagtController.cs" selected="True" />
+              </Node>
+              <Node name="services" expanded="True" />
+            </Node>
+            <Node name="festivalbooking.Shared" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/placeholder/Desktop/festivalbooking/Server/Connecter/connecter.cs" relfile="Server/Connecter/connecter.cs" line="10" column="1" />
+      <Breakpoint file="/Users/placeholder/Desktop/festivalbooking/Server/Controllers/vagtController.cs" relfile="Server/Controllers/vagtController.cs" line="23" column="1" />
+      <Breakpoint file="/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor" relfile="Client/Pages/Index.razor" line="55" column="1" />
+      <Breakpoint file="/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor" relfile="Client/Pages/Index.razor" line="54" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
