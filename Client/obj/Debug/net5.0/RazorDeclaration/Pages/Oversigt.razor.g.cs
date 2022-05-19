@@ -83,14 +83,14 @@ using festivalbooking.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 2 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Oversigt.razor"
 using festivalbooking.Shared;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/oversigt")]
+    public partial class Oversigt : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,45 +98,25 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 72 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 69 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Oversigt.razor"
       
 private vagtDTO[] vagter;
 
-private vagt_områderDTO[] områder;
+private vagt_statusDTO[] status;
 
-
-private vagtDTO vagt = new vagtDTO();
 protected override async Task OnInitializedAsync()
 {
-    vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/Vagt");
-    områder = await Http.GetFromJsonAsync<vagt_områderDTO[]>("api/omrader");
-}
- private async Task DeleteVagt(int id)
-    {
-     
+    //vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/Vagt");
+
+    status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
     
-    await Http.DeleteAsync($"api/Vagt/{id}");
-    await OnInitializedAsync();
+}
+   private async Task getVagterByStatus(int id){
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/status/{id}");
+        //await OnInitializedAsync();
+
     }
 
-private async Task postVagt(vagtDTO vagt)
-{
-    await Http.PostAsJsonAsync<vagtDTO>("api/Vagt", vagt);
-    await OnInitializedAsync();
-}
-private async Task patchVagt(int vagt_id){
-          vagt.vagt_id = vagt_id; 
-    await Http.PutAsJsonAsync<vagtDTO>($"api/Vagt/{vagt_id}", vagt);
-    await OnInitializedAsync();
-}
-   private void bindId(vagt_områderDTO område)
-    {
-        vagt.område_id = område.område_id;
-        vagt.område_navn = område.område_navn;
-        //Console.WriteLine($"{vagt.område_id}");
-
-
-    }
 
 #line default
 #line hidden

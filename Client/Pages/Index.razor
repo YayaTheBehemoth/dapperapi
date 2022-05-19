@@ -4,9 +4,12 @@
 
             @if (vagter == null)
         {
-            <p><em>the end is closer than you think</em></p>
+            <p><em>Either data is being fetched or something isnt working, lets hope for the former</em></p>
         }
-  
+             else if (områder == null)
+             {
+                     <p><em>Either data is being fetched or something isnt working, lets hope for the former</em></p>
+             }
        
         else
         {
@@ -14,20 +17,27 @@
 
         <p>I disse felter kan man skrive et input, ønsker man at uploade det til databasen trykker man blot på "POST DIS"</p>
         <p>ønsker man at ændre i en entry, skriver man blot inde i den givne entry's felter og trykker herefter på "EDIT DIS"</p>
-        <input @bind-value="vagt.navn" placeholder="string" />
-        <input @bind-value="vagt.tal" placeholder="double" />            
+        <input @bind-value="vagt.start" placeholder="string" />
+        <input @bind-value="vagt.slut" placeholder="double" />  
+          <select id="områder1" multiple>
+            @foreach (var item2 in områder)
+            {
+             
+                    <option value="@item2.område_id" @onclick="@(()=>bindId(@item2))"> @item2.område_navn</option>
+                    }
+                </select>          
         <button class="btn btn-sm btn-primary" @onclick="@(()=>postVagt(@vagt))">POST DIS</button>
         <p>Liste over entries</p>
             <table class="table table-responsive">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Type</th>
+                        <th>Start tid</th>
+                        <th>Slut tid</th>
                         <th>
-                            Edit
+                            
                         </th>
                         <th>
-                            Delete
+                            område
                         </th>
                     </tr>
                 </thead>
@@ -35,15 +45,24 @@
                     @foreach (var item in vagter)
                     {
                     <tr>
-                        <td>@item.navn</td>
-                          <input @bind-value="vagt.navn" placeholder="string" />
-                        <td>@item.tal</td>
-                          <input @bind-value="vagt.tal" placeholder="double" />
+                        <td>@item.start</td>
+                          <input @bind-value="vagt.start" placeholder="string" />
+                        <td>@item.slut</td>
+                          <input @bind-value="vagt.slut" placeholder="double" />
+                        <td>@item.område_navn</td>
+                           
+        <select id="områder" multiple>
+            @foreach (var item1 in områder)
+            {
+             
+                    <option value="@item1.område_id'" @onclick="@(()=>bindId(@item1))"> @item1.område_navn</option>
+                    }
+                </select>
                         <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@item.id))">DELET DIS</button>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@item.vagt_id))">DELET DIS</button>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@item.id))">EDIT DIS</button>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@item.vagt_id))">EDIT DIS</button>
                         </td>
                     </tr>
                     }
@@ -51,29 +70,43 @@
             </table>
         }
 @code{
-private testDTO[] vagter;
+private vagtDTO[] vagter;
 
-private testDTO vagt = new testDTO();
-protected override async Task OnInitializedAsync(){
-    vagter = await Http.GetFromJsonAsync<testDTO[]>("api/Vagt");
+private vagt_områderDTO[] områder;
+
+
+private vagtDTO vagt = new vagtDTO();
+protected override async Task OnInitializedAsync()
+{
+    vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/Vagt");
+    områder = await Http.GetFromJsonAsync<vagt_områderDTO[]>("api/omrader");
 }
  private async Task DeleteVagt(int id)
     {
      
     
-        await Http.DeleteAsync($"api/Vagt/{id}");
+    await Http.DeleteAsync($"api/Vagt/{id}");
     await OnInitializedAsync();
     }
 
-private async Task postVagt(testDTO vagt){
-    await Http.PostAsJsonAsync<testDTO>("api/Vagt", vagt);
+private async Task postVagt(vagtDTO vagt)
+{
+    await Http.PostAsJsonAsync<vagtDTO>("api/Vagt", vagt);
     await OnInitializedAsync();
 }
-private async Task patchVagt(int id){
-          vagt.id = id; 
-    await Http.PutAsJsonAsync<testDTO>($"api/Vagt/{id}", vagt);
+private async Task patchVagt(int vagt_id){
+          vagt.vagt_id = vagt_id; 
+    await Http.PutAsJsonAsync<vagtDTO>($"api/Vagt/{vagt_id}", vagt);
     await OnInitializedAsync();
 }
+   private void bindId(vagt_områderDTO område)
+    {
+        vagt.område_id = område.område_id;
+        vagt.område_navn = område.område_navn;
+        //Console.WriteLine($"{vagt.område_id}");
+
+
+    }
 }
 
 

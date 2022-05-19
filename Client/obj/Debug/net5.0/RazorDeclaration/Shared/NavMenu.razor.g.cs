@@ -90,7 +90,7 @@ using festivalbooking.Client.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 19 "/Users/placeholder/Desktop/festivalbooking/Client/Shared/NavMenu.razor"
+#line 29 "/Users/placeholder/Desktop/festivalbooking/Client/Shared/NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

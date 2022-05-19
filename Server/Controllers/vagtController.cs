@@ -9,7 +9,7 @@ using festivalbooking.Server.Services;
 
 namespace festivalbooking.Server.Controllers {
     [ApiController]
-    [Route("api/[controller]")]
+ 
 
     public class VagtController : ControllerBase {
         private vagtService _service;
@@ -17,29 +17,55 @@ namespace festivalbooking.Server.Controllers {
         public VagtController(vagtService service){
             _service = service;
         }
-
+        [Route("api/[controller]")]
         [HttpGet]
-        public  List<testDTO> getAllVagt(){
+        public  List<vagtDTO> getAllVagt(){
             //Console.WriteLine("api nået");
           return  _service.getVagter();
 
           }
-          [HttpDelete("{id}")]
+          [Route("api/[controller]/{id}")]
+          [HttpDelete]
           
         public async Task<IActionResult> DeleteVagt(int id)
         {  //Console.WriteLine("api nået" + id);
            await _service.deleteVagt(id);
            return NoContent();
         }
+        [Route("api/[controller]")]
         [HttpPost]
-        public async Task<IActionResult> postVagt(testDTO vagt){
+        public async Task<IActionResult> postVagt(vagtDTO vagt){
               await _service.postVagt(vagt);
             return NoContent();
         }
-        [HttpPut("{id}")]
-        public async Task <IActionResult> putVagt(testDTO test){
+        [Route("api/[controller]/{id}")]
+        [HttpPut]
+        public async Task <IActionResult> putVagt(vagtDTO test){
               await _service.putVagt(test);
               return NoContent();
         }
+        [Route("api/omrader")]
+        [HttpGet]
+           
+        public  List<vagt_områderDTO> getAllVagtOmråder(){
+            //Console.WriteLine("api nået");
+          return  _service.getVagtOmråder();
+
+          }
+          [Route("api/status")]
+          [HttpGet]
+           
+        public  List<vagt_statusDTO> getAllStatus(){
+            //Console.WriteLine("api nået");
+          return  _service.getStatus();
+
+          }
+
+          [Route("api/status/{id}")]
+          [HttpGet]
+          public List<vagtDTO> getVagtByStatus(int id)
+          {
+             return _service.filterByStatus(id);
+          }
     }
 }

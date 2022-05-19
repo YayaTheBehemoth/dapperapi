@@ -1,0 +1,90 @@
+﻿@page "/oversigt"
+@using festivalbooking.Shared;
+@inject HttpClient Http
+
+            @if (status == null)
+        {
+            <p><em>Either data is being fetched or something isnt working, lets hope for the former</em></p>
+        }
+
+          
+        else if(vagter == null)
+        {
+        
+            <h2>Filtrering demo </h2>
+
+       <p>vælg en værdi i menuen, forhåbentlig ser du kun vagter med samme værdi</p>
+         <select id="områder1" multiple>
+            @foreach (var item2 in status)
+            {
+             
+                    <option value="@item2.status_id"@onclick="@(()=>getVagterByStatus(@item2.status_id))"> @item2.status_navn</option>
+            }
+                    </select>
+        <p>Liste over entries</p>
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Start tid</th>
+                        <th>Slut tid</th>
+                        <th>
+                            Område
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                </table>
+        }
+        else {
+                <tbody>
+                
+                  <p>vælg en værdi i menuen, forhåbentlig ser du kun vagter med samme værdi</p>
+         <select id="områder1" multiple>
+            @foreach (var item2 in status)
+            {
+             
+                    <option value="@item2.status_id"@onclick="@(()=>getVagterByStatus(@item2.status_id))"> @item2.status_navn</option>
+                    }
+                    </select>
+                           @foreach (var item in vagter)
+                    {
+                    <tr>
+                        <td>@item.start</td>
+               
+                        <td>@item.slut</td>
+                        
+                        <td>@item.område_navn</td>
+                           
+                        <td>@item.status_navn</td>
+                    </tr>
+                    }
+                        </tbody>
+                    }
+                
+        
+                
+        
+@code{
+private vagtDTO[] vagter;
+
+private vagt_statusDTO[] status;
+
+protected override async Task OnInitializedAsync()
+{
+    //vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/Vagt");
+
+    status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
+    
+}
+   private async Task getVagterByStatus(int id){
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/status/{id}");
+        //await OnInitializedAsync();
+
+    }
+
+}
+
+
+

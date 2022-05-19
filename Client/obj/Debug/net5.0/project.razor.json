@@ -74,6 +74,39 @@
         }
       },
       {
+        "HashCode": -2127767831,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Pages.Oversigt",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Oversigt"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Pages.Oversigt"
+        }
+      },
+      {
+        "HashCode": -1996630149,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Pages.Oversigt",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.Pages.Oversigt"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Pages.Oversigt",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": -1113095097,
         "Kind": "Components.Component",
         "Name": "festivalbooking.Client.Shared.SurveyPrompt",
@@ -12965,6 +12998,11 @@
     {
       "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/App.razor",
       "TargetPath": "App.razor",
+      "FileKind": "component"
+    },
+    {
+      "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Oversigt.razor",
+      "TargetPath": "Pages\\Oversigt.razor",
       "FileKind": "component"
     },
     {

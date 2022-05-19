@@ -21,18 +21,26 @@ namespace festivalbooking.Server.Services{
           connecter = _connecter;
       
        }
-       public List<testDTO> getVagter(){
-           var sql = "SELECT * FROM testtable";
+            public List<vagt_områderDTO> getVagtOmråder(){
+           var sql = "SELECT * FROM vagt_områder";
            using (var connection = connecter.Connect()){
-               var vagtList = connection.Query<testDTO>(sql);
+               var vagtList = connection.Query<vagt_områderDTO>(sql);
                    //Console.WriteLine("service nået");
-               return vagtList.ToList<testDTO>();
+               return vagtList.ToList<vagt_områderDTO>();
+           }
+       }
+       public List<vagtDTO> getVagter(){
+           var sql = "SELECT v.vagt_id, v.start, v.slut, vo.område_navn, vo.område_id,status.status_id,status.status_navn from vagter AS v JOIN vagt_områder AS vo ON v.område_id = vo.område_id JOIN status ON v.status_id = status.status_id";
+           using (var connection = connecter.Connect()){
+               var vagtList = connection.Query<vagtDTO>(sql);
+                   //Console.WriteLine("service nået");
+               return vagtList.ToList<vagtDTO>();
            }
        }
        
        public async Task deleteVagt(int id){
            var parameters = new {ID = id};
-           var sql ="DELETE FROM testtable WHERE id = @ID";
+           var sql ="DELETE FROM vagter WHERE vagt_id = @ID";
            using (var connection = connecter.Connect()){
                await connection.ExecuteAsync(sql, parameters);
                //Console.WriteLine("service nået");   
@@ -40,21 +48,41 @@ namespace festivalbooking.Server.Services{
            }
        }
 
-      public async Task postVagt(testDTO vagt){
-          var parameters = new {NAVN = vagt.navn, TAL = vagt.tal};
-          var sql ="INSERT INTO testtable (navn, tal) VALUES (@NAVN, @TAL)";
+      public async Task postVagt(vagtDTO vagt){
+          var parameters = new {START = vagt.start, SLUT = vagt.slut, OID = vagt.område_id};
+          var sql ="INSERT INTO vagter (start, slut, område_id) VALUES (@START, @SLUT, @OID)";
           using (var connection = connecter.Connect()){
             await connection.ExecuteAsync(sql,parameters);
           }
       }
 
-      public async Task putVagt(testDTO vagt){
-             var parameters = new {NAVN = vagt.navn, TAL = vagt.tal, ID = vagt.id};
+      public async Task putVagt(vagtDTO vagt){
+             var parameters = new {START = vagt.start, SLUT = vagt.slut, OID = vagt.område_id, ID = vagt.vagt_id};
              //Console.WriteLine($"{vagt.navn},{vagt.id},{vagt.tal}");
-             var sql ="UPDATE testtable SET navn = @NAVN, tal = @TAL WHERE id = @ID";
+             var sql ="UPDATE vagter SET start = @START, slut = @SLUT, område_id = @OID WHERE vagt_id = @ID";
               using (var connection = connecter.Connect()){
             await connection.ExecuteAsync(sql,parameters);
           }
+      }
+      public List<vagtDTO> filterByStatus(int id)
+      {
+          var parameters = new {ID = id};
+   var sql = "SELECT v.vagt_id, v.start, v.slut, vo.område_navn, vo.område_id,s.status_id,s.status_navn from vagter AS v JOIN vagt_områder AS vo ON v.område_id = vo.område_id JOIN status AS s ON v.status_id = s.status_id WHERE v.status_id = @ID";
+           using (var connection = connecter.Connect()){
+               var vagtList = connection.Query<vagtDTO>(sql,parameters);
+                   //Console.WriteLine("service nået");
+               return vagtList.ToList<vagtDTO>();
+           }
+      }
+
+      public List<vagt_statusDTO> getStatus()
+      {
+       
+            var sql = "SELECT * from status";
+            using (var connection = connecter.Connect()){
+                var statusList = connection.Query<vagt_statusDTO>(sql);
+                return statusList.ToList<vagt_statusDTO>();
+            }
       }
     }
 

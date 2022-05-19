@@ -1,3 +1,10 @@
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.csproj.AssemblyReference.cache
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.GeneratedMSBuildEditorConfig.editorconfig
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.AssemblyInfoInputs.cache
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.AssemblyInfo.cs
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.csproj.CoreCompileInputs.cache
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.MvcApplicationPartsAssemblyInfo.cache
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.RazorComponent.input.cache
 /Users/placeholder/Desktop/festivalbooking/Client/bin/Debug/net5.0/wwwroot/_framework/blazor.boot.json
 /Users/placeholder/Desktop/festivalbooking/Client/bin/Debug/net5.0/festivalbooking.Client.StaticWebAssets.xml
 /Users/placeholder/Desktop/festivalbooking/Client/bin/Debug/net5.0/festivalbooking.Client.dll
@@ -405,15 +412,9 @@
 /Users/placeholder/Desktop/festivalbooking/Client/bin/Debug/net5.0/wwwroot/_framework/dotnet.5.0.15.js
 /Users/placeholder/Desktop/festivalbooking/Client/bin/Debug/net5.0/wwwroot/_framework/festivalbooking.Shared.dll
 /Users/placeholder/Desktop/festivalbooking/Client/bin/Debug/net5.0/wwwroot/_framework/festivalbooking.Shared.pdb
-/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.csproj.AssemblyReference.cache
-/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.GeneratedMSBuildEditorConfig.editorconfig
-/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.AssemblyInfoInputs.cache
-/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.AssemblyInfo.cs
-/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.csproj.CoreCompileInputs.cache
-/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.MvcApplicationPartsAssemblyInfo.cache
-/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.RazorComponent.input.cache
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Oversigt.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs
@@ -425,6 +426,7 @@
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.RazorCoreGenerate.cache
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/Razor/App.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/Razor/Pages/Index.razor.g.cs
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/Razor/Pages/Oversigt.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/Razor/Shared/SurveyPrompt.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/Razor/_Imports.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/Razor/Shared/MainLayout.razor.g.cs
