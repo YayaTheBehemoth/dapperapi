@@ -1,28 +1,29 @@
 ﻿<Properties StartupConfiguration="{0134DD3A-98D4-4A86-9C56-0A9438828429}|Default">
   <MonoDevelop.Ide.ItemProperties.festivalbooking.Server PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Client/Pages/Oversigt.razor">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Server/services/vagtservice.cs">
     <Files>
-      <File FileName="Server/services/vagtservice.cs" Line="23" Column="9" />
+      <File FileName="Server/services/vagtservice.cs" Line="77" Column="1" />
       <File FileName="Server/Controllers/vagtController.cs" />
       <File FileName="Server/Connecter/connecter.cs" />
       <File FileName="Client/Pages/Index.razor" />
-      <File FileName="Client/Pages/Oversigt.razor" Line="11" Column="13" />
+      <File FileName="Client/Pages/Oversigt.razor" />
+      <File FileName="Client/Pages/Frivillig.razor" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="festivalbooking" expanded="True">
             <Node name="festivalbooking.Client" expanded="True">
-              <Node name="Pages" expanded="True">
-                <Node name="Oversigt.razor" selected="True" />
-              </Node>
+              <Node name="Pages" expanded="True" />
             </Node>
             <Node name="festivalbooking.Server" expanded="True">
               <Node name="Connecter" expanded="True" />
               <Node name="Controllers" expanded="True" />
               <Node name="services" expanded="True" />
             </Node>
-            <Node name="festivalbooking.Shared" expanded="True" />
+            <Node name="festivalbooking.Shared" expanded="True">
+              <Node name="kompetenceBinder.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

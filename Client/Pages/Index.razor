@@ -17,8 +17,8 @@
 
         <p>I disse felter kan man skrive et input, ønsker man at uploade det til databasen trykker man blot på "POST DIS"</p>
         <p>ønsker man at ændre i en entry, skriver man blot inde i den givne entry's felter og trykker herefter på "EDIT DIS"</p>
-        <input @bind-value="vagt.start" placeholder="string" />
-        <input @bind-value="vagt.slut" placeholder="double" />  
+        <input @bind-value="vagt.vagt_start" placeholder="string" />
+        <input @bind-value="vagt.vagt_slut" placeholder="double" />  
           <select id="områder1" multiple>
             @foreach (var item2 in områder)
             {
@@ -42,13 +42,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByområde())">sorter efter område</button>
                     @foreach (var item in vagter)
                     {
                     <tr>
-                        <td>@item.start</td>
-                          <input @bind-value="vagt.start" placeholder="string" />
-                        <td>@item.slut</td>
-                          <input @bind-value="vagt.slut" placeholder="double" />
+                        <td>@item.vagt_start</td>
+                          <input @bind-value="vagt.vagt_start" placeholder="string" />
+                        <td>@item.vagt_slut</td>
+                          <input @bind-value="vagt.vagt_slut" placeholder="double" />
                         <td>@item.område_navn</td>
                            
         <select id="områder" multiple>
@@ -78,9 +79,16 @@ private vagt_områderDTO[] områder;
 private vagtDTO vagt = new vagtDTO();
 protected override async Task OnInitializedAsync()
 {
-    vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/Vagt");
+    vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/vagt");
     områder = await Http.GetFromJsonAsync<vagt_områderDTO[]>("api/omrader");
 }
+ private async Task sortVagterByområde(){
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/omrader/sort");
+        //await OnInitializedAsync();
+
+    }
+
+
  private async Task DeleteVagt(int id)
     {
      

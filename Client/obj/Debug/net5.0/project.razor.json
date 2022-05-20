@@ -41,6 +41,39 @@
         }
       },
       {
+        "HashCode": 764758392,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Pages.Frivillig",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Frivillig"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Pages.Frivillig"
+        }
+      },
+      {
+        "HashCode": -348242104,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Pages.Frivillig",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.Pages.Frivillig"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Pages.Frivillig",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": 2137617648,
         "Kind": "Components.Component",
         "Name": "festivalbooking.Client.Pages.Index",
@@ -12998,6 +13031,11 @@
     {
       "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/App.razor",
       "TargetPath": "App.razor",
+      "FileKind": "component"
+    },
+    {
+      "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Frivillig.razor",
+      "TargetPath": "Pages\\Frivillig.razor",
       "FileKind": "component"
     },
     {

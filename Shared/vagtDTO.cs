@@ -5,8 +5,8 @@ namespace festivalbooking.Shared{
     //model klasse til vagt table
    public class vagtDTO {
        public int vagt_id {get; set;}
-       public DateTime start {get; set;}
-       public DateTime slut {get; set;}
+       public DateTime vagt_start {get; set;}
+       public DateTime vagt_slut {get; set;}
 
        public int område_id {get; set;}
     

@@ -67,5 +67,17 @@ namespace festivalbooking.Server.Controllers {
           {
              return _service.filterByStatus(id);
           }
+          [Route("api/[controller]/frivillig")]
+          [HttpGet]
+          public List<doneFrivilligDTO> getFrivillige()
+          {
+             return _service.getFrivillige();
+          }
+          [Route("api/omrader/sort")]
+          [HttpGet]
+          public List<vagtDTO> getVagterSortOmråde()
+          {
+             return _service.getVagterSortOmråde();
+          }
     }
 }
