@@ -47,9 +47,9 @@ namespace festivalbooking.Server.Controllers {
         [Route("api/omrader")]
         [HttpGet]
            
-        public  List<vagt_områderDTO> getAllVagtOmråder(){
+        public  List<opgaveDTO> getAllVagtOpgaver(){
             //Console.WriteLine("api nået");
-          return  _service.getVagtOmråder();
+          return  _service.getVagtOpgaver();
 
           }
           [Route("api/status")]
@@ -67,6 +67,12 @@ namespace festivalbooking.Server.Controllers {
           {
              return _service.filterByStatus(id);
           }
+         [Route("api/omrade/{id}")]
+          [HttpGet]
+          public List<vagtDTO> getVagtByOpgave(int id)
+          {
+             return _service.filterByOpgave(id);
+          }
           [Route("api/[controller]/frivillig")]
           [HttpGet]
           public List<doneFrivilligDTO> getFrivillige()
@@ -75,9 +81,53 @@ namespace festivalbooking.Server.Controllers {
           }
           [Route("api/omrader/sort")]
           [HttpGet]
-          public List<vagtDTO> getVagterSortOmråde()
+          public List<vagtDTO> getVagterSortOpgave()
           {
-             return _service.getVagterSortOmråde();
+             return _service.getVagterSortOpgave();
           }
+
+          [Route("api/status/sort")]
+          [HttpGet]
+          public List<vagtDTO> getVagterSortStatus()
+          {
+             return _service.getVagterSortStatus();
+          }
+
+          [Route("api/antal/sort")]
+          [HttpGet]
+          public List<vagtDTO> getVagterSortAntal()
+          {
+             return _service.getVagterSortAntal();
+          }
+         [Route("api/las/{id}")]
+         [HttpPut]
+          public async Task<IActionResult> låsVagt(vagtDTO vagt)
+          {
+             await _service.låsVagt(vagt);
+              return NoContent();
+          }
+
+        [Route("api/opgaver")]
+        [HttpPost]
+        public async Task<IActionResult> postOpgave(opgaveDTO opgave){
+              await _service.postOpgave(opgave);
+            return NoContent();
+        }
+
+        [Route("api/opgaver/{id}")]
+        [HttpPut]
+        public async Task <IActionResult> putVagt(opgaveDTO test){
+              await _service.putOpgave(test);
+              return NoContent();
+        }
+        [Route("api/opgaver/{id}")]
+      [HttpDelete]
+          
+        public async Task<IActionResult> DeleteOpgave(int id)
+        {  //Console.WriteLine("api nået" + id);
+           await _service.deleteOpgave(id);
+           return NoContent();
+        }
+         
     }
 }

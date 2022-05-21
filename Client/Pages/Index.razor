@@ -19,14 +19,28 @@
         <p>ønsker man at ændre i en entry, skriver man blot inde i den givne entry's felter og trykker herefter på "EDIT DIS"</p>
         <input @bind-value="vagt.vagt_start" placeholder="string" />
         <input @bind-value="vagt.vagt_slut" placeholder="double" />  
-          <select id="områder1" multiple>
+          <select multiple>
             @foreach (var item2 in områder)
             {
              
-                    <option value="@item2.område_id" @onclick="@(()=>bindId(@item2))"> @item2.område_navn</option>
+                    <option value="@item2.opgave_id" @onclick="@(()=>bindOid(@item2))"> @item2.opgave_navn</option>
                     }
-                </select>          
+                </select> 
+                       
         <button class="btn btn-sm btn-primary" @onclick="@(()=>postVagt(@vagt))">POST DIS</button>
+        <h3>Sortér</h3>
+                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByområde())">sorter efter område</button>
+                  
+                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByAntal())">sorter efter antal personer skrevet på</button>
+        <h3>Filtrér</h3>
+         
+                    <select multiple>
+             @foreach (var item2 in områder)
+            {
+             
+                    <option value="@item2.opgave_id" @onclick="@(()=>getVagterByOmråde(@item2.opgave_id))"> @item2.opgave_navn</option>
+                    }
+                    </select>
         <p>Liste over entries</p>
             <table class="table table-responsive">
                 <thead>
@@ -34,37 +48,60 @@
                         <th>Start tid</th>
                         <th>Slut tid</th>
                         <th>
-                            
+                            område
                         </th>
                         <th>
-                            område
+                            status
+                        </th>
+                        <th>
+                            antal skrevet på
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByområde())">sorter efter område</button>
+
                     @foreach (var item in vagter)
                     {
                     <tr>
                         <td>@item.vagt_start</td>
+                          @if(item.er_last == false) {
                           <input @bind-value="vagt.vagt_start" placeholder="string" />
+                          }
                         <td>@item.vagt_slut</td>
+                          @if(item.er_last == false){
                           <input @bind-value="vagt.vagt_slut" placeholder="double" />
-                        <td>@item.område_navn</td>
-                           
+                          }
+                        <td>@item.opgave_navn</td>
+                        
+            @if(item.er_last == false){               
         <select id="områder" multiple>
             @foreach (var item1 in områder)
             {
              
-                    <option value="@item1.område_id'" @onclick="@(()=>bindId(@item1))"> @item1.område_navn</option>
+                    <option value="@item1.opgave_id'" @onclick="@(()=>bindOid(@item1))"> @item1.opgave_navn</option>
                     }
                 </select>
+            }
+             
+                <td>@item.antal_personer_skrevet_pa</td>
                         <td>
                             <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@item.vagt_id))">DELET DIS</button>
                         </td>
+                        @if(item.er_last == false){
+
+                    
                         <td>
                             <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@item.vagt_id))">EDIT DIS</button>
                         </td>
+                            }
+                        @if (!(item.er_last == true))
+                        {
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås</button>
+                        }
+                        else 
+                        {
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås op</button>
+                        }
                     </tr>
                     }
                 </tbody>
@@ -73,17 +110,32 @@
 @code{
 private vagtDTO[] vagter;
 
-private vagt_områderDTO[] områder;
+private opgaveDTO[] områder;
 
-
+private vagt_statusDTO [] status;
 private vagtDTO vagt = new vagtDTO();
 protected override async Task OnInitializedAsync()
 {
     vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/vagt");
-    områder = await Http.GetFromJsonAsync<vagt_områderDTO[]>("api/omrader");
+    områder = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
+    status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
 }
- private async Task sortVagterByområde(){
+ private async Task sortVagterByområde()
+    {
         vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/omrader/sort");
+        //await OnInitializedAsync();
+
+    }
+
+    private async Task sortVagterByStatus()
+    {
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/status/sort");
+        //await OnInitializedAsync();
+
+    }
+       private async Task sortVagterByAntal()
+    {
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/antal/sort");
         //await OnInitializedAsync();
 
     }
@@ -93,28 +145,49 @@ protected override async Task OnInitializedAsync()
     {
      
     
-    await Http.DeleteAsync($"api/Vagt/{id}");
+    await Http.DeleteAsync($"api/vagt/{id}");
     await OnInitializedAsync();
     }
 
 private async Task postVagt(vagtDTO vagt)
 {
-    await Http.PostAsJsonAsync<vagtDTO>("api/Vagt", vagt);
+    await Http.PostAsJsonAsync<vagtDTO>("api/vagt", vagt);
     await OnInitializedAsync();
 }
-private async Task patchVagt(int vagt_id){
+private async Task patchVagt(int vagt_id)
+{
           vagt.vagt_id = vagt_id; 
-    await Http.PutAsJsonAsync<vagtDTO>($"api/Vagt/{vagt_id}", vagt);
+    await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{vagt_id}", vagt);
     await OnInitializedAsync();
 }
-   private void bindId(vagt_områderDTO område)
+   private void bindOid(opgaveDTO område)
     {
-        vagt.område_id = område.område_id;
-        vagt.område_navn = område.område_navn;
+        vagt.opgave_id = område.opgave_id;
+        vagt.opgave_navn = område.opgave_navn;
         //Console.WriteLine($"{vagt.område_id}");
 
 
     }
+    
+        
+    private async Task låsEllerÅbenVagt(vagtDTO vagt)
+    {
+    await Http.PutAsJsonAsync<vagtDTO>($"api/las/{vagt.vagt_id}", vagt);
+   await OnInitializedAsync();
+    }
+
+       private async Task getVagterByStatus(int id){
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/status/{id}");
+        //await OnInitializedAsync();
+
+    }
+    
+       private async Task getVagterByOmråde(int id){
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/{id}");
+        //await OnInitializedAsync();
+
+    }
+    
 }
 
 

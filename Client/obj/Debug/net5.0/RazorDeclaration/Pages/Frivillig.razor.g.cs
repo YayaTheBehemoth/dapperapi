@@ -104,7 +104,7 @@ using festivalbooking.Shared;
 protected override async Task OnInitializedAsync()
 {
 
-    frivillige = await Http.GetFromJsonAsync<doneFrivilligDTO[]>("api/Vagt/frivillig");
+    frivillige = await Http.GetFromJsonAsync<doneFrivilligDTO[]>("api/vagt/frivillig");
     
 }
 

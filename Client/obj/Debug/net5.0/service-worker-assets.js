@@ -1,7 +1,7 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-A4gErdp6KzQnS0QothPHXUfUBOsnb8sV7U\/PLbMppXI=",
+      "hash": "sha256-QmpVLiiQCUakHYMIVoKhkTO1ssnaVlVv393E+nagM40=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -793,19 +793,19 @@
       "url": "_framework\/dotnet.5.0.15.js"
     },
     {
-      "hash": "sha256-uppax7TJJpZ0q5heV\/oznLti+1ox2Q+ZahJZeXZGGY0=",
+      "hash": "sha256-wJ7\/IA64ih7TSRbE6AP\/oZtuDL\/xscdcaxwv0XxVglw=",
       "url": "_framework\/festivalbooking.Shared.dll"
     },
     {
-      "hash": "sha256-GdWfaNmrufAquC3R9v7DCnI51m6jgczNDpGR1lHUXpY=",
+      "hash": "sha256-\/6zbLT70Bg90btVvnqQUhcYSbjFrqfjqKOfgkCvluD8=",
       "url": "_framework\/festivalbooking.Shared.pdb"
     },
     {
-      "hash": "sha256-Vh7ZD0e7TxWDEQSL+NQicCFBA3DoQOey2r7ocFrQPmE=",
+      "hash": "sha256-QtHNUx6YbHMjFBX\/cKKn0Qs37hETC4cEh8cAfZ5LtU4=",
       "url": "_framework\/festivalbooking.Client.dll"
     },
     {
-      "hash": "sha256-eN7D4Adau87Lp09L1FGWcSsa5L\/v2c9lQu\/Yo47wNlI=",
+      "hash": "sha256-NEbvuVSfEKcOZ3US2kR12ImXfehANG+LtOHsyNeQIxw=",
       "url": "_framework\/festivalbooking.Client.pdb"
     },
     {
@@ -1601,7 +1601,7 @@
       "url": "_framework\/dotnet.5.0.15.js.gz"
     },
     {
-      "hash": "sha256-hSZcFN1cPL7lHQyo3ZGOUsbnr3GFCb1l3NbqduVSpTs=",
+      "hash": "sha256-gvGtrn5CG+N6xyMp3rRZC6wGATsZf3besHMPF6OAQUM=",
       "url": "_framework\/festivalbooking.Shared.dll.gz"
     },
     {
@@ -1677,5 +1677,5 @@
       "url": "festivalbooking.Client.bundle.scp.css"
     }
   ],
-  "version": "eUR6\/fBk"
+  "version": "\/x6kJP5+"
 };

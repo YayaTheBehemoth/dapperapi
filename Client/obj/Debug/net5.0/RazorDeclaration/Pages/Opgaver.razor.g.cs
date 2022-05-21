@@ -83,14 +83,14 @@ using festivalbooking.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Oversigt.razor"
+#line 2 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Opgaver.razor"
 using festivalbooking.Shared;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/oversigt")]
-    public partial class Oversigt : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/opgaver")]
+    public partial class Opgaver : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,25 +98,67 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Oversigt.razor"
+#line 68 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Opgaver.razor"
       
-private vagtDTO[] vagter;
-
-private vagt_statusDTO[] status;
-
+    private bool checkedValue;
+    private bool checkedValue1;
+    private vagt_statusDTO [] status;
+    private opgaveDTO opgave = new opgaveDTO();
+    private opgaveDTO[] områder;
 protected override async Task OnInitializedAsync()
 {
-    //vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/Vagt");
-
-    status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
-    
+   
+    områder = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
+         status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
+ 
 }
-   private async Task getVagterByStatus(int id){
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/status/{id}");
-        //await OnInitializedAsync();
 
+ private async Task DeleteOpgave(int id)
+    {
+     
+    
+    await Http.DeleteAsync($"api/opgaver/{id}");
+    await OnInitializedAsync();
     }
 
+    private async Task postOpgave(opgaveDTO opgave)
+{
+    await Http.PostAsJsonAsync<opgaveDTO>("api/opgaver", opgave);
+    await OnInitializedAsync();
+}
+private async Task patchOpgave(int opgave_id)
+{
+          opgave.opgave_id = opgave_id; 
+    await Http.PutAsJsonAsync<opgaveDTO>($"api/opgaver/{opgave_id}", opgave);
+    await OnInitializedAsync();
+}
+ private void bindSid(vagt_statusDTO status)
+    {
+        opgave.status_id = status.status_id;
+        opgave.status_navn = status.status_navn;
+        //Console.WriteLine($"{vagt.område_id}");
+
+
+    }
+    private bool isChecked(){
+        if(checkedValue == false){
+           return opgave.er_team_opgave = false;
+        }
+        else {
+           return opgave.er_team_opgave = true;
+        }
+    }
+
+     private bool isChecked1(){
+        if(checkedValue1 == false){
+            return opgave.er_team_opgave = true;
+        }
+        else {
+           return opgave.er_team_opgave = false;
+        }
+    }
+
+    
 
 #line default
 #line hidden

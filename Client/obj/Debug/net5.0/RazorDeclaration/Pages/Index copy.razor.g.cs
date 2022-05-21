@@ -98,45 +98,88 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 72 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index copy.razor"
+#line 110 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index copy.razor"
       
 private vagtDTO[] vagter;
 
-private vagt_områderDTO[] områder;
+private opgaveDTO[] områder;
 
-
+private vagt_statusDTO [] status;
 private vagtDTO vagt = new vagtDTO();
 protected override async Task OnInitializedAsync()
 {
-    vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/Vagt");
-    områder = await Http.GetFromJsonAsync<vagt_områderDTO[]>("api/omrader");
+    vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/vagt");
+    områder = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
+    status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
 }
+ private async Task sortVagterByområde()
+    {
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/omrader/sort");
+        //await OnInitializedAsync();
+
+    }
+
+    private async Task sortVagterByStatus()
+    {
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/status/sort");
+        //await OnInitializedAsync();
+
+    }
+       private async Task sortVagterByAntal()
+    {
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/antal/sort");
+        //await OnInitializedAsync();
+
+    }
+
+
  private async Task DeleteVagt(int id)
     {
      
     
-    await Http.DeleteAsync($"api/Vagt/{id}");
+    await Http.DeleteAsync($"api/vagt/{id}");
     await OnInitializedAsync();
     }
 
 private async Task postVagt(vagtDTO vagt)
 {
-    await Http.PostAsJsonAsync<vagtDTO>("api/Vagt", vagt);
+    await Http.PostAsJsonAsync<vagtDTO>("api/vagt", vagt);
     await OnInitializedAsync();
 }
-private async Task patchVagt(int vagt_id){
+private async Task patchVagt(int vagt_id)
+{
           vagt.vagt_id = vagt_id; 
-    await Http.PutAsJsonAsync<vagtDTO>($"api/Vagt/{vagt_id}", vagt);
+    await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{vagt_id}", vagt);
     await OnInitializedAsync();
 }
-   private void bindId(vagt_områderDTO område)
+   private void bindOid(opgaveDTO område)
     {
-        vagt.område_id = område.område_id;
-        vagt.område_navn = område.område_navn;
+        vagt.opgave_id = område.opgave_id;
+        vagt.opgave_navn = område.opgave_navn;
         //Console.WriteLine($"{vagt.område_id}");
 
 
     }
+    
+        
+    private async Task låsEllerÅbenVagt(vagtDTO vagt)
+    {
+    await Http.PutAsJsonAsync<vagtDTO>($"api/las/{vagt.vagt_id}", vagt);
+   await OnInitializedAsync();
+    }
+
+       private async Task getVagterByStatus(int id){
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/status/{id}");
+        //await OnInitializedAsync();
+
+    }
+    
+       private async Task getVagterByOmråde(int id){
+        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/{id}");
+        //await OnInitializedAsync();
+
+    }
+    
 
 #line default
 #line hidden

@@ -83,14 +83,14 @@ using festivalbooking.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 2 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Vagter.razor"
 using festivalbooking.Shared;
 
 #line default
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Vagter : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 110 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 110 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Vagter.razor"
       
 private vagtDTO[] vagter;
 

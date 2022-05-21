@@ -3927,35 +3927,35 @@
         }
       },
       {
-        "HashCode": -1258171790,
+        "HashCode": -29679046,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.App",
+        "Name": "festivalbooking.Client.Pages.Opgaver",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "App"
+            "TagName": "Opgaver"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.App"
+          "Common.TypeName": "festivalbooking.Client.Pages.Opgaver"
         }
       },
       {
-        "HashCode": 678959648,
+        "HashCode": 123212871,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.App",
+        "Name": "festivalbooking.Client.Pages.Opgaver",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "festivalbooking.Client.App"
+            "TagName": "festivalbooking.Client.Pages.Opgaver"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.App",
+          "Common.TypeName": "festivalbooking.Client.Pages.Opgaver",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -4026,35 +4026,35 @@
         }
       },
       {
-        "HashCode": -2127767831,
+        "HashCode": -1258171790,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Pages.Oversigt",
+        "Name": "festivalbooking.Client.App",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "Oversigt"
+            "TagName": "App"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Pages.Oversigt"
+          "Common.TypeName": "festivalbooking.Client.App"
         }
       },
       {
-        "HashCode": -1996630149,
+        "HashCode": 678959648,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Pages.Oversigt",
+        "Name": "festivalbooking.Client.App",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "festivalbooking.Client.Pages.Oversigt"
+            "TagName": "festivalbooking.Client.App"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Pages.Oversigt",
+          "Common.TypeName": "festivalbooking.Client.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

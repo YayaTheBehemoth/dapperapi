@@ -107,35 +107,35 @@
         }
       },
       {
-        "HashCode": -2127767831,
+        "HashCode": -29679046,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Pages.Oversigt",
+        "Name": "festivalbooking.Client.Pages.Opgaver",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "Oversigt"
+            "TagName": "Opgaver"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Pages.Oversigt"
+          "Common.TypeName": "festivalbooking.Client.Pages.Opgaver"
         }
       },
       {
-        "HashCode": -1996630149,
+        "HashCode": 123212871,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Pages.Oversigt",
+        "Name": "festivalbooking.Client.Pages.Opgaver",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "festivalbooking.Client.Pages.Oversigt"
+            "TagName": "festivalbooking.Client.Pages.Opgaver"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Pages.Oversigt",
+          "Common.TypeName": "festivalbooking.Client.Pages.Opgaver",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -13024,6 +13024,11 @@
       "FileKind": "componentImport"
     },
     {
+      "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Opgaver.razor",
+      "TargetPath": "Pages\\Opgaver.razor",
+      "FileKind": "component"
+    },
+    {
       "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor",
       "TargetPath": "Pages\\Index.razor",
       "FileKind": "component"
@@ -13036,11 +13041,6 @@
     {
       "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Frivillig.razor",
       "TargetPath": "Pages\\Frivillig.razor",
-      "FileKind": "component"
-    },
-    {
-      "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Oversigt.razor",
-      "TargetPath": "Pages\\Oversigt.razor",
       "FileKind": "component"
     },
     {

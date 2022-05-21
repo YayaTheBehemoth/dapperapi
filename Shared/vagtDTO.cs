@@ -8,12 +8,12 @@ namespace festivalbooking.Shared{
        public DateTime vagt_start {get; set;}
        public DateTime vagt_slut {get; set;}
 
-       public int område_id {get; set;}
+       public int opgave_id {get; set;}
     
-       public string område_navn {get;set;}
+       public string opgave_navn {get;set;}
 
-       public int status_id {get; set;}
+       public int antal_personer_skrevet_pa {get; set;}
 
-       public string status_navn {get; set;}
+       public bool er_last {get; set;}
    }
 }
