@@ -1,0 +1,137 @@
+@page "/characters"
+
+<h3>Characters</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Id</th>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var character in characters)
+        {
+            <tr>
+                <td></td>
+                <td>@character.Id</td>
+                <td>@character.Name</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(() => EditCharacter(character.Id))">
+                        <i Class="oi oi-pencil"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-primary" @onclick="CreateCharacter">Create New Character</button>
+
+<hr/>
+
+<EditForm Model="character" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <div>
+        <label for="id">Id</label>
+        <InputNumber id="id" @bind-Value="character.Id" class="form-control"></InputNumber>
+    </div>
+    <div>
+        <label for="name">Name</label>
+        <InputText id="name" @bind-Value="character.Name" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="bio">Bio</label>
+        <InputTextArea id="bio" @bind-Value="character.Bio" class="form-control"></InputTextArea>
+    </div>
+    <div>
+        <label for="team">Team</label><br />
+        <InputRadioGroup id="team" @bind-Value="character.TeamId" class="form-control">
+            @foreach (var team in teams)
+            {
+                <InputRadio Value="@team.Id" />
+            <span style="padding-left: 5px;">@team.Name</span>
+            <br />
+            }
+        </InputRadioGroup>
+    </div> <br />
+    <div>
+        <label for="difficulty">Difficulty</label>
+        <InputSelect id ="difficulty" @bind-Value="character.DifficultyId" class="form-control">
+            @foreach (var difficulty in difficulties)
+            {
+                <option value="@difficulty.Id">@difficulty.Title</option>
+            }
+        </InputSelect>
+    </div>
+    <div >
+        <InputCheckbox id="readyToFight" @bind-Value="character.IsReadyToFight" class="form-check-input"></InputCheckbox>
+        <label for="readyToFight" class="form-check-label">Ready to Fight?</label>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">@(isNew ? "Create Character" : "Update Character")</button>
+    @if(!isNew)
+    {
+        <button type="button" class="btn btn-danger" @onclick="DeleteCharacter">Delete Character</button>
+    }
+    <ValidationSummary />
+</EditForm>
+
+<p style="height: 500px"></p>
+@code {
+    static List<Team> teams = new List<Team>
+        {
+            new Team { Id = 1, Name = "Avengers"},
+            new Team { Id = 2, Name = "Justice Leage"},
+        };
+
+    static List<Difficulty> difficulties = new List<Difficulty>
+        {
+            new Difficulty {Id = 1, Title = "Easy"},
+            new Difficulty {Id = 2, Title = "Oh shit"},
+            new Difficulty {Id = 3, Title = "fuck me"},
+        };
+    static List<Character> characters = new List<Character>
+        {
+            new Character
+            {
+                Id = 1,
+                Name = "Peter Borker",
+                Bio = "My fella",
+                TeamId = 1,
+                DifficultyId = 2,
+                IsReadyToFight = true,
+            }
+        };
+
+    Character character = new Character();
+    bool isNew = true;
+
+    private void EditCharacter(int id)
+    {
+        var characterToEdit = characters.Find(c => c.Id == id);
+        if (characterToEdit != null)
+        {
+            character = characterToEdit;
+            isNew = false;
+        }
+    }
+
+    private void HandleSubmit()
+    {
+        if(isNew)
+        {
+            characters.Add(character);
+        }
+    }
+    private void CreateCharacter()
+    {
+        character = new Character();
+        isNew = true;
+    }
+    private void DeleteCharacter()
+    {
+        characters.Remove(character);
+    }
+} 
