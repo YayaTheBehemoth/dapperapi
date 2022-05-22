@@ -21,19 +21,40 @@ namespace festivalbooking.Server.Services{
           connecter = _connecter;
       
        }
-            public List<opgaveDTO> getVagtOpgaver(){
-           var sql = "SELECT o.opgave_id, o.opgave_navn, o.opgave_beskrivelse, o.status_id, s.status_navn, o.er_team_opgave FROM  opgaver AS o JOIN status AS s ON o.status_id = s.status_id";
+            public List<opgaveDTO> getAllOpgaver(){
+                var sql_bind_opgave = "select vagt_id, opgave_id from vagter";
+                var sql_count ="select v.vagt_id, count(fvb.frivillig_id) from frivillig_vagt_bridge as fvb  right join vagter as v on fvb.vagt_id = v.vagt_id group by v.vagt_id";
+                
+           var sql = "SELECT o.er_last,o.opgave_id, o.opgave_navn, o.opgave_beskrivelse, o.status_id, s.status_navn, o.er_team_opgave FROM  opgaver AS o JOIN status AS s ON o.status_id = s.status_id";
            using (var connection = connecter.Connect()){
                var vagtList = connection.Query<opgaveDTO>(sql);
-                   //Console.WriteLine("service nået");
-               return vagtList.ToList<opgaveDTO>();
+               var binderList = connection.Query<opgaveBinder>(sql_bind_opgave); 
+               var countList = connection.Query<vagtCount>(sql_count);   
+               foreach (var binder in binderList)
+               {
+                   foreach (var count in countList)
+                   {
+                       if (count.vagt_id == binder.vagt_id)
+                       {
+                           foreach (var vagt in vagtList)
+                           {
+                               if (vagt.opgave_id == binder.opgave_id)
+                               {
+                                   vagt.antal_personer_skrevet_på = vagt.antal_personer_skrevet_på + count.count;
+                               }
+                           }
+                       }
+                   }
+               }
+              var sortedList = vagtList.OrderBy(x => x.antal_personer_skrevet_på);
+               return sortedList.ToList<opgaveDTO>();
            }
        }
        public List<vagtDTO> getVagter(){
            var sql = "select v.vagt_start, v.vagt_slut, o.opgave_navn,o.opgave_id, count(fvb.frivillig_id) as antal_personer_skrevet_pa, v.vagt_id, v.er_last  from frivillig_vagt_bridge as fvb right join  vagter as v on fvb.vagt_id = v.vagt_id join opgaver as o on v.opgave_id = o.opgave_id group by fvb.vagt_id,v.vagt_id,o.opgave_navn,o.opgave_id ";
            using (var connection = connecter.Connect()){
                var vagtList = connection.Query<vagtDTO>(sql);
-                   //Console.WriteLine("service nået");
+                   
                return vagtList.ToList<vagtDTO>();
            }
        }
@@ -43,7 +64,7 @@ namespace festivalbooking.Server.Services{
            var sql ="DELETE FROM vagter WHERE vagt_id = @ID";
            using (var connection = connecter.Connect()){
                await connection.ExecuteAsync(sql, parameters);
-               //Console.WriteLine("service nået");   
+                  
                
            }
        }
@@ -56,7 +77,7 @@ namespace festivalbooking.Server.Services{
                await connection.ExecuteAsync(sql1, parameters);
                await connection.ExecuteAsync(sql, parameters);
               
-               //Console.WriteLine("service nået");   
+                  
                
            }
        }
@@ -94,14 +115,35 @@ namespace festivalbooking.Server.Services{
             await connection.ExecuteAsync(sql,parameters);
           }
       }
-      public List<vagtDTO> filterByStatus(int id)
+      public List<opgaveDTO> filterByStatus(int id)
       {
           var parameters = new {ID = id};
-   var sql = "SELECT v.vagt_id, v.vagt_start, v.vagt_slut, vo.område_navn, vo.område_id,s.status_id,s.status_navn, v.er_last from vagter AS v JOIN vagt_områder AS vo ON v.område_id = vo.område_id JOIN status AS s ON v.status_id = s.status_id WHERE v.status_id = @ID";
+          var sql_bind_opgave = "select vagt_id, opgave_id from vagter";
+                var sql_count ="select v.vagt_id, count(fvb.frivillig_id) from frivillig_vagt_bridge as fvb  right join vagter as v on fvb.vagt_id = v.vagt_id group by v.vagt_id";
+   var sql = "SELECT o.er_last, o.opgave_id, o.opgave_navn, o.opgave_beskrivelse, o.status_id, s.status_navn, o.er_team_opgave FROM  opgaver AS o JOIN status AS s ON o.status_id = s.status_id WHERE o.status_id = @ID";
            using (var connection = connecter.Connect()){
-               var vagtList = connection.Query<vagtDTO>(sql,parameters);
-                   //Console.WriteLine("service nået");
-               return vagtList.ToList<vagtDTO>();
+               var vagtList = connection.Query<opgaveDTO>(sql,parameters);
+               var binderList = connection.Query<opgaveBinder>(sql_bind_opgave); 
+               var countList = connection.Query<vagtCount>(sql_count);  
+               foreach (var binder in binderList)
+               {
+                   foreach (var count in countList)
+                   {
+                       if (count.vagt_id == binder.vagt_id)
+                       {
+                           foreach (var vagt in vagtList)
+                           {
+                               if (vagt.opgave_id == binder.opgave_id)
+                               {
+                                   vagt.antal_personer_skrevet_på = vagt.antal_personer_skrevet_på + count.count;
+                               }
+                           }
+                       }
+                   }
+               }
+              var sortedList = vagtList.OrderBy(x => x.antal_personer_skrevet_på);
+                   
+               return vagtList.ToList<opgaveDTO>();
            }
       }
 
@@ -111,7 +153,7 @@ namespace festivalbooking.Server.Services{
    var sql = "select v.vagt_start, v.vagt_slut, o.opgave_navn,o.opgave_id, count(fvb.frivillig_id) as antal_personer_skrevet_pa, v.vagt_id, v.er_last  from frivillig_vagt_bridge as fvb right join  vagter as v on fvb.vagt_id = v.vagt_id join opgaver as o on v.opgave_id = o.opgave_id where v.opgave_id = @ID group by fvb.vagt_id,v.vagt_id,o.opgave_navn,o.opgave_id ";
            using (var connection = connecter.Connect()){
                var vagtList = connection.Query<vagtDTO>(sql,parameters);
-                   //Console.WriteLine("service nået");
+                   
                return vagtList.ToList<vagtDTO>();
            }
       }
@@ -174,17 +216,38 @@ namespace festivalbooking.Server.Services{
            var sql = "select v.vagt_start, v.vagt_slut, o.opgave_navn,o.opgave_id, count(fvb.frivillig_id) as antal_personer_skrevet_pa, v.vagt_id, v.er_last  from frivillig_vagt_bridge as fvb right join  vagter as v on fvb.vagt_id = v.vagt_id join opgaver as o on v.opgave_id = o.opgave_id group by fvb.vagt_id,v.vagt_id,o.opgave_navn,o.opgave_id order by v.opgave_id";
            using (var connection = connecter.Connect()){
                var vagtList = connection.Query<vagtDTO>(sql);
-                   //Console.WriteLine("service nået");
+                   
                return vagtList.ToList<vagtDTO>();
            }
        }
 
-         public List<vagtDTO> getVagterSortStatus(){
-           var sql = "SELECT v.vagt_id, v.vagt_start, v.vagt_slut, vo.område_navn, vo.område_id,status.status_id,status.status_navn, count(fvb.frivillig_id) AS antal_personer_skrevet_på, v.er_last from vagter AS v JOIN vagt_områder AS vo ON v.område_id = vo.område_id JOIN status ON v.status_id = status.status_id  LEFT JOIN frivillig_vagt_bridge AS fvb ON v.vagt_id = fvb.vagt_id GROUP BY v.vagt_id, v.vagt_start, v.vagt_slut,v.område_id,v.status_id, vo.område_navn,status.status_navn, vo.område_id,status.status_id  ORDER BY status.status_id";
+         public List<opgaveDTO> getOpgaverSortStatus(){
+             var sql_bind_opgave = "select vagt_id, opgave_id from vagter";
+                var sql_count ="select v.vagt_id, count(fvb.frivillig_id) from frivillig_vagt_bridge as fvb  right join vagter as v on fvb.vagt_id = v.vagt_id group by v.vagt_id";
+           var sql = "SELECT o.er_last, o.opgave_id, o.opgave_navn, o.opgave_beskrivelse, o.status_id, o.er_team_opgave, s.status_navn FROM  opgaver AS o JOIN status AS s ON o.status_id = s.status_id ORDER BY s.status_id";
            using (var connection = connecter.Connect()){
-               var vagtList = connection.Query<vagtDTO>(sql);
-                   //Console.WriteLine("service nået");
-               return vagtList.ToList<vagtDTO>();
+               var vagtList = connection.Query<opgaveDTO>(sql);
+               var binderList = connection.Query<opgaveBinder>(sql_bind_opgave); 
+               var countList = connection.Query<vagtCount>(sql_count);  
+               foreach (var binder in binderList)
+               {
+                   foreach (var count in countList)
+                   {
+                       if (count.vagt_id == binder.vagt_id)
+                       {
+                           foreach (var vagt in vagtList)
+                           {
+                               if (vagt.opgave_id == binder.opgave_id)
+                               {
+                                   vagt.antal_personer_skrevet_på = vagt.antal_personer_skrevet_på + count.count;
+                               }
+                           }
+                       }
+                   }
+               }
+              var sortedList = vagtList.OrderBy(x => x.antal_personer_skrevet_på);
+                   
+               return vagtList.ToList<opgaveDTO>();
            }
        }
 
@@ -192,7 +255,7 @@ namespace festivalbooking.Server.Services{
            var sql = "select v.vagt_start, v.vagt_slut, o.opgave_navn,o.opgave_id, count(fvb.frivillig_id) as antal_personer_skrevet_pa, v.vagt_id, v.er_last  from frivillig_vagt_bridge as fvb right join  vagter as v on fvb.vagt_id = v.vagt_id join opgaver as o on v.opgave_id = o.opgave_id group by fvb.vagt_id,v.vagt_id,o.opgave_navn,o.opgave_id order by antal_personer_skrevet_pa";
            using (var connection = connecter.Connect()){
                var vagtList = connection.Query<vagtDTO>(sql);
-                   //Console.WriteLine("service nået");
+                   
                return vagtList.ToList<vagtDTO>();
            }
        }
@@ -211,6 +274,27 @@ namespace festivalbooking.Server.Services{
               var sql ="UPDATE vagter SET er_last = @LÅS WHERE vagt_id = @ID";
               using (var connection = connecter.Connect()){
             await connection.ExecuteAsync(sql,parameters);
+          }
+      }
+           }
+            public async Task låsOpgave(opgaveDTO opgave){
+           if(opgave.er_last == false){
+             var parameters = new {ID = opgave.opgave_id,LÅS = true};
+               var sql ="UPDATE vagter SET er_last = @LÅS WHERE opgave_id = @ID";
+               var sql1 ="UPDATE opgaver SET er_last = @LÅS WHERE opgave_id = @ID";
+              using (var connection = connecter.Connect()){
+            await connection.ExecuteAsync(sql,parameters);
+            await connection.ExecuteAsync(sql1,parameters);
+          }
+      }
+           
+           else {
+            var parameters = new {ID = opgave.opgave_id,LÅS = false};
+              var sql ="UPDATE vagter SET er_last = @LÅS WHERE opgave_id = @ID";
+              var sql1 ="UPDATE opgaver SET er_last = @LÅS WHERE opgave_id = @ID";
+              using (var connection = connecter.Connect()){
+            await connection.ExecuteAsync(sql,parameters);
+            await connection.ExecuteAsync(sql1,parameters);
           }
       }
            }

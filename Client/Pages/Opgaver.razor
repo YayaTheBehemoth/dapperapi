@@ -2,7 +2,9 @@
 @using festivalbooking.Shared;
 @inject HttpClient Http
 
-            @if (områder == null)
+<h1>Shoutout gill bates</h1>
+
+            @if (opgaver == null)
         {
             <p><em>Either data is being fetched or something isnt working, lets hope for the former</em></p>
         }
@@ -17,6 +19,7 @@
         <th>Status</th>
         <th>Beskrivelse</th>
         <th>Team-Opgave</th>
+        <th>Personer skrevet på</th>
     </thead>
     <input @bind-value="opgave.opgave_navn" placeholder="string" />
      <select multiple>
@@ -25,11 +28,19 @@
                  }
              </select>
              <input @bind-value="opgave.opgave_beskrivelse" placeholder="string" />
-             <input type="checkbox"  @bind="checkedValue">
+             <input type="checkbox" @bind="opgave.er_team_opgave"   >
              <button class="btn btn-sm btn-primary" @onclick="@(()=>postOpgave(@opgave))">POST DIS</button>
+             <h3>Sortér</h3>
+             <button class="btn btn-sm btn-primary" @onclick="@(()=>sortOpgaverByStatus())">sorter efter område</button>
+             <h3>filtrér</h3>
+               <select multiple>
+                 @foreach(var status1 in status){
+                       <option value="@status1.status_id'" @onclick="@(()=>getOpgaverByStatus(@status1.status_id))"> @status1.status_navn</option>
+                 }
+             </select>
     
     <tbody>
-          @foreach (var item in områder){
+          @foreach (var item in opgaver){
         <tr>
           
               <td>@item.opgave_navn</td>
@@ -42,12 +53,13 @@
              </select>
               <td>@item.opgave_beskrivelse</td>
               <input @bind-value="opgave.opgave_beskrivelse" placeholder="string" />
+              <td>@item.antal_personer_skrevet_på</td>
               @if (item.er_team_opgave == false){
                   <td>ikke en team-opgave</td>
-                <input type="checkbox"  @bind="checkedValue1">
+                <input type="checkbox"  @bind="opgave.er_team_opgave">
               }else {
                   <td>team-opgave</td>
-                  <input type="checkbox"  @bind="checkedValue">
+                   <input type="checkbox" @bind="opgave.er_team_opgave">
               }
                 <td>
                             <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteOpgave(@item.opgave_id))">DELET DIS</button>
@@ -55,6 +67,14 @@
                  <td>
                             <button class="btn btn-sm btn-primary" @onclick="@(()=>patchOpgave(@item.opgave_id))">EDIT DIS</button>
                 </td>
+                @if (@item.er_last == false){
+                <td>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenOpgave(@item))">Lås</button>
+                </td>
+                }else {
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenOpgave(@item))">Lås op</button>
+                }
+                 
                  </tr>
           } 
        
@@ -66,18 +86,29 @@
  
         
 @code{
-    private bool checkedValue;
-    private bool checkedValue1;
+    
     private vagt_statusDTO [] status;
     private opgaveDTO opgave = new opgaveDTO();
-    private opgaveDTO[] områder;
+    private opgaveDTO[] opgaver;
 protected override async Task OnInitializedAsync()
 {
    
-    områder = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
+    opgaver = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
          status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
  
 }
+  private async Task getOpgaverByStatus(int id)
+  {
+        opgaver = await Http.GetFromJsonAsync<opgaveDTO[]>($"api/status/{id}");
+        //await OnInitializedAsync();
+
+  }
+   private async Task sortOpgaverByStatus()
+    {
+        opgaver = await Http.GetFromJsonAsync<opgaveDTO[]>("api/status/sort");
+        //await OnInitializedAsync();
+
+    }
 
  private async Task DeleteOpgave(int id)
     {
@@ -98,6 +129,12 @@ private async Task patchOpgave(int opgave_id)
     await Http.PutAsJsonAsync<opgaveDTO>($"api/opgaver/{opgave_id}", opgave);
     await OnInitializedAsync();
 }
+
+    private async Task låsEllerÅbenOpgave(opgaveDTO opgave)
+    {
+    await Http.PutAsJsonAsync<opgaveDTO>($"api/opgaver/las/{opgave.opgave_id}", opgave);
+   await OnInitializedAsync();
+    }
  private void bindSid(vagt_statusDTO status)
     {
         opgave.status_id = status.status_id;
@@ -106,23 +143,7 @@ private async Task patchOpgave(int opgave_id)
 
 
     }
-    private bool isChecked(){
-        if(checkedValue == false){
-           return opgave.er_team_opgave = false;
-        }
-        else {
-           return opgave.er_team_opgave = true;
-        }
-    }
-
-     private bool isChecked1(){
-        if(checkedValue1 == false){
-            return opgave.er_team_opgave = true;
-        }
-        else {
-           return opgave.er_team_opgave = false;
-        }
-    }
+  
 
     
 }

@@ -98,20 +98,31 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 68 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Opgaver.razor"
+#line 88 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Opgaver.razor"
       
-    private bool checkedValue;
-    private bool checkedValue1;
+    
     private vagt_statusDTO [] status;
     private opgaveDTO opgave = new opgaveDTO();
-    private opgaveDTO[] områder;
+    private opgaveDTO[] opgaver;
 protected override async Task OnInitializedAsync()
 {
    
-    områder = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
+    opgaver = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
          status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
  
 }
+  private async Task getOpgaverByStatus(int id)
+  {
+        opgaver = await Http.GetFromJsonAsync<opgaveDTO[]>($"api/status/{id}");
+        //await OnInitializedAsync();
+
+  }
+   private async Task sortOpgaverByStatus()
+    {
+        opgaver = await Http.GetFromJsonAsync<opgaveDTO[]>("api/status/sort");
+        //await OnInitializedAsync();
+
+    }
 
  private async Task DeleteOpgave(int id)
     {
@@ -132,6 +143,12 @@ private async Task patchOpgave(int opgave_id)
     await Http.PutAsJsonAsync<opgaveDTO>($"api/opgaver/{opgave_id}", opgave);
     await OnInitializedAsync();
 }
+
+    private async Task låsEllerÅbenOpgave(opgaveDTO opgave)
+    {
+    await Http.PutAsJsonAsync<opgaveDTO>($"api/opgaver/las/{opgave.opgave_id}", opgave);
+   await OnInitializedAsync();
+    }
  private void bindSid(vagt_statusDTO status)
     {
         opgave.status_id = status.status_id;
@@ -140,23 +157,7 @@ private async Task patchOpgave(int opgave_id)
 
 
     }
-    private bool isChecked(){
-        if(checkedValue == false){
-           return opgave.er_team_opgave = false;
-        }
-        else {
-           return opgave.er_team_opgave = true;
-        }
-    }
-
-     private bool isChecked1(){
-        if(checkedValue1 == false){
-            return opgave.er_team_opgave = true;
-        }
-        else {
-           return opgave.er_team_opgave = false;
-        }
-    }
+  
 
     
 

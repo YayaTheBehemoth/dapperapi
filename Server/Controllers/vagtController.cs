@@ -49,7 +49,7 @@ namespace festivalbooking.Server.Controllers {
            
         public  List<opgaveDTO> getAllVagtOpgaver(){
             //Console.WriteLine("api nået");
-          return  _service.getVagtOpgaver();
+          return  _service.getAllOpgaver();
 
           }
           [Route("api/status")]
@@ -63,7 +63,7 @@ namespace festivalbooking.Server.Controllers {
 
           [Route("api/status/{id}")]
           [HttpGet]
-          public List<vagtDTO> getVagtByStatus(int id)
+          public List<opgaveDTO> getOpgaverByStatus(int id)
           {
              return _service.filterByStatus(id);
           }
@@ -88,9 +88,9 @@ namespace festivalbooking.Server.Controllers {
 
           [Route("api/status/sort")]
           [HttpGet]
-          public List<vagtDTO> getVagterSortStatus()
+          public List<opgaveDTO> getOpgaverSortStatus()
           {
-             return _service.getVagterSortStatus();
+             return _service.getOpgaverSortStatus();
           }
 
           [Route("api/antal/sort")]
@@ -104,6 +104,13 @@ namespace festivalbooking.Server.Controllers {
           public async Task<IActionResult> låsVagt(vagtDTO vagt)
           {
              await _service.låsVagt(vagt);
+              return NoContent();
+          }
+           [Route("api/opgaver/las/{id}")]
+         [HttpPut]
+          public async Task<IActionResult> låsOpgave(opgaveDTO opgave)
+          {
+             await _service.låsOpgave(opgave);
               return NoContent();
           }
 

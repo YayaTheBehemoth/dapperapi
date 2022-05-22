@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Frivillig.razor"
+#line 55 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Frivillig.razor"
       
       private doneFrivilligDTO[] frivillige; 
 protected override async Task OnInitializedAsync()

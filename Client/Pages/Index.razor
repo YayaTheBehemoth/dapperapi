@@ -94,6 +94,10 @@
                             <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@item.vagt_id))">EDIT DIS</button>
                         </td>
                             }
+                            @foreach (var item2 in områder){
+
+                           @if(item2.opgave_id == item.opgave_id) {
+                               @if(item2.er_last == false){
                         @if (!(item.er_last == true))
                         {
                             <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås</button>
@@ -102,6 +106,12 @@
                         {
                             <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås op</button>
                         }
+                               }
+                               else {
+                                   <p>Den tilhørende opgave er låst</p>
+                               }
+                        }
+                         }
                     </tr>
                     }
                 </tbody>
@@ -127,12 +137,7 @@ protected override async Task OnInitializedAsync()
 
     }
 
-    private async Task sortVagterByStatus()
-    {
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/status/sort");
-        //await OnInitializedAsync();
-
-    }
+   
        private async Task sortVagterByAntal()
     {
         vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/antal/sort");
@@ -176,11 +181,7 @@ private async Task patchVagt(int vagt_id)
    await OnInitializedAsync();
     }
 
-       private async Task getVagterByStatus(int id){
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/status/{id}");
-        //await OnInitializedAsync();
-
-    }
+     
     
        private async Task getVagterByOmråde(int id){
         vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/{id}");

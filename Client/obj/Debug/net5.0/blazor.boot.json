@@ -197,13 +197,13 @@
       "mscorlib.dll": "sha256-CbcIR45\/xUFaZJqGIle6bb7v2kWYjp4kOFpKNnCkd4I=",
       "netstandard.dll": "sha256-qE0Q70OyVlHYY\/Y3nwMjfh+zissea9uhfvWMvPWfI7w=",
       "System.Private.CoreLib.dll": "sha256-pdkcl2+OojCfrhxX5eFmKI30wAmhL6s+sCLp7s175k0=",
-      "festivalbooking.Shared.dll": "sha256-wJ7\/IA64ih7TSRbE6AP\/oZtuDL\/xscdcaxwv0XxVglw=",
-      "festivalbooking.Client.dll": "sha256-QtHNUx6YbHMjFBX\/cKKn0Qs37hETC4cEh8cAfZ5LtU4="
+      "festivalbooking.Shared.dll": "sha256-gtb83LWJwFG0fP2LtWxCwv3XTrIrIQfvuaGSXFkx7Ks=",
+      "festivalbooking.Client.dll": "sha256-5+yQ3ECKKw4cfPspA1dHhhLk5t5ucPEYB\/81MJ65HgQ="
     },
     "lazyAssembly": null,
     "pdb": {
-      "festivalbooking.Shared.pdb": "sha256-\/6zbLT70Bg90btVvnqQUhcYSbjFrqfjqKOfgkCvluD8=",
-      "festivalbooking.Client.pdb": "sha256-NEbvuVSfEKcOZ3US2kR12ImXfehANG+LtOHsyNeQIxw="
+      "festivalbooking.Shared.pdb": "sha256-aNGKVd09njKtRa7e\/Ebl6+44IEnFfv7HuVjmKVMNm3E=",
+      "festivalbooking.Client.pdb": "sha256-jtstasVuDjOGOYH24+SOKmuteKQ2O+EJw4UOB+hIVUw="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-ootDKSA6cNAbgJLmPhrHsPVvVqkGEYdRZxucC22LWjw=",

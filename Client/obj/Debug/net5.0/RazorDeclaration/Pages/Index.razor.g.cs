@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 110 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 120 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
       
 private vagtDTO[] vagter;
 
@@ -119,12 +119,7 @@ protected override async Task OnInitializedAsync()
 
     }
 
-    private async Task sortVagterByStatus()
-    {
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/status/sort");
-        //await OnInitializedAsync();
-
-    }
+   
        private async Task sortVagterByAntal()
     {
         vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/antal/sort");
@@ -168,11 +163,7 @@ private async Task patchVagt(int vagt_id)
    await OnInitializedAsync();
     }
 
-       private async Task getVagterByStatus(int id){
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/status/{id}");
-        //await OnInitializedAsync();
-
-    }
+     
     
        private async Task getVagterByOmråde(int id){
         vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/{id}");

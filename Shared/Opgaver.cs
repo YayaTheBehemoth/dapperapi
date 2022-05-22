@@ -14,5 +14,9 @@ namespace festivalbooking.Shared{
        public string status_navn{get ; set;}
 
        public bool er_team_opgave {get; set;}
+
+       public int antal_personer_skrevet_på {get; set;}
+
+       public bool er_last {get; set;}
    }
 }
