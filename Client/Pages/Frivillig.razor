@@ -1,14 +1,71 @@
 ﻿@page "/frivillig"
+
 @using festivalbooking.Shared;
 @inject HttpClient Http
 <h1>Shoutout gill bates</h1>
 
            @if (frivillige == null)
            {
+               @if(kompetencer == null){
+
                <p><em>Either data is being fetched or something isnt working, lets hope for the former</em></p>
+               }
            }
            else
            {
+                  <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Vagter
+            </NavLink>
+            
+            <NavLink class="nav-link" href="/opgaver" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Opgaver
+            </NavLink>
+             <NavLink class="nav-link" href="/test" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Log ud
+            </NavLink>
+            <p>kompetencer</p>
+            @foreach(var kompetence in kompetencer){
+                <p>@kompetence.kompetence_navn</p>
+                <button class="btn btn-sm btn-primary" @onclick="@(()=>sletkompetence(@kompetence.kompetence_id))">slet kompetence</button>
+            }
+            <p>opret kompetence</p>
+                    <input @bind-value="kompetence.kompetence_navn" placeholder="string" />
+                    <button class="btn btn-sm btn-primary" @onclick="@(()=>opretkompetence(@kompetence.kompetence_navn))">slet kompetence</button>
+
+            <p>Opret frivillig</p>
+            <p>navn</p>
+            <input @bind-value="felt1" placeholder="string" />
+            <p> telefon</p>
+            <input @bind-value="felt" placeholder="string" />
+            <p> password</p>
+            <input @bind-value="felt2" placeholder="string" />
+            @if (String.IsNullOrWhiteSpace(felt1)){
+                <p>Husk at fylde felterne ud inden du opretter en ny bruger</p>
+            }
+           @if(felt < (10000000)){
+           <p>husk også telefoner nummer, vær opmærksom på at dette skal være 8 cifre</p>
+           } @if(String.IsNullOrWhiteSpace(felt2)){
+           <p>husk også at give dem et password</p>
+           }
+           else
+           {
+               @if(roller == null){
+           <p>det her burde ikke være muligt?  </p>
+               }
+               else{
+              
+                   
+         <select multiple>
+             @foreach (var rolle in roller)
+            {
+             
+                    <option value="@rolle.id" @onclick="@(()=>bindRID(@rolle))"> @rolle.navn</option>
+                    }
+                    </select>
+                    <button class="btn btn-sm btn-primary" @onclick="@(()=>opret(@felt1, @felt, @felt2))">Opret</button>
+               }
+       
+           }
                <table class="repsonsive">
                <thead>
                     <tr>
@@ -38,9 +95,7 @@
                         <td>
                         @frivillig.frivillig_tlf
                         </td>
-                        <td>
-                        @frivillig.frivillig_email
-                        </td>
+                       
                         <td>
                             @for (int i = 0; i < frivillig.kompetencer.Count();i++){
                                 <ul>@frivillig.kompetencer[i]</ul>
@@ -53,12 +108,52 @@
            }
         
 @code{
+    private string felt1; 
+    private int felt;
+
+    private string felt2;
       private doneFrivilligDTO[] frivillige; 
+    private roletest[] roller;
+    private kompetenceDTO[] kompetencer;
+    private kompetenceDTO kompetence = new kompetenceDTO();
+
+    private frivilligDTO user = new frivilligDTO();
 protected override async Task OnInitializedAsync()
 {
 
     frivillige = await Http.GetFromJsonAsync<doneFrivilligDTO[]>("api/vagt/frivillig");
+        roller = await Http.GetFromJsonAsync<roletest[]>("api/roles");
+             kompetencer = await Http.GetFromJsonAsync<kompetenceDTO[]>("api/kompetence");
+            
     
+}
+    private async Task opret(string navn, int tlf, string pw )
+{   
+    frivilligDTO user1 = new frivilligDTO();
+    user1.frivillig_navn = navn;
+    user1.frivillig_tlf = tlf;
+    user1.pw = pw;
+    user1.role_id = user.role_id;
+
+
+    await Http.PostAsJsonAsync<frivilligDTO>($"api/user/opret/{navn}", user1);
+    await OnInitializedAsync();
+}
+private void bindRID(roletest role){
+     user.role_id = role.id;
+}
+private async Task sletkompetence(int id){
+    await Http.DeleteAsync($"api/slet/kompetence/{id}");
+    await OnInitializedAsync();
+
+}
+    private async Task opretkompetence(string navn)
+{   
+ 
+kompetence.kompetence_navn = navn; 
+
+    await Http.PostAsJsonAsync<kompetenceDTO>($"api/kompetence/opret/{navn}", kompetence);
+    await OnInitializedAsync();
 }
 }
 

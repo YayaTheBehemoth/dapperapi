@@ -1,0 +1,194 @@
+﻿@page "/test"
+@inject frivilligDTO user
+@inject HttpClient Http
+@inherits MainLayout1
+
+@if(opgaver ==  null){
+  @if(kompetencer == null){
+  <p>det er enten det her eller en null pointer :DDDDD</p>
+  }
+}else{
+@if(user.role_id == null){
+<p>no</p>
+
+<input @bind-value="felt1" placeholder="string" />
+<input @bind-value="felt" placeholder="string" />
+<button class="btn btn-sm btn-primary" @onclick="@(()=>login(@felt, @felt1))">Log in</button>
+} else
+@if(user.role_id == 4) {
+  <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Vagter
+            </NavLink>
+             <NavLink class="nav-link" href="/frivillig" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Frivillige
+            </NavLink>
+            <NavLink class="nav-link" href="/opgaver" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Opgaver
+            </NavLink>
+<h1>Velkommen</h1>
+<h2>Dine nuværende oplysninger:</h2>
+<p>Telefon: @user.frivillig_navn</p>
+<p>Telefon: @user.frivillig_tlf</p>
+<h3>Opdater dine oplysninger</h3>
+<p>Opdater navn</p>
+   <input @bind-value="user.frivillig_navn" placeholder="string" />
+   
+            <button class="btn btn-sm btn-primary" @onclick="@(()=>updatenavn(@user.frivillig_id))">opdater</button>
+   <p>Opdater telefon-nummer</p>
+   <p>(Bemærk!! skal være mindst 8 cifre)</p>
+   <input @bind-value="user.frivillig_tlf" placeholder="string" />
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>updatetlf(@user.frivillig_id))">Opdater</button>
+   
+       
+            <button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
+}else 
+if (user.role_id == 3){
+<h1>Velkommen</h1>
+<h2>kompetencer:</h2>
+<select multiple>
+@foreach(var kompetence in kompetencer){
+      <option value="@kompetence.kompetence_id" @onclick="@(()=>kompetencebind(@user.frivillig_id ,@kompetence.kompetence_id))" > @kompetence.kompetence_navn</option>  
+}
+</select>
+<h2>dine kompetencer:</h2>
+@if(mine_kompetencer == null){
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>getmykompetencer(@user.frivillig_id))">se min kompetencer</button>
+} else {
+  @foreach(var kompetence1 in mine_kompetencer){
+    <p>@kompetence1.kompetence_navn</p>
+    <button class="btn btn-sm btn-primary" @onclick="@(()=>deleteKompetence(@user.frivillig_id, @kompetence1.kompetence_id))"> fjern kompetence</button>
+  }
+}
+<h2>Dine nuværende oplysninger:</h2>
+<p>Telefon: @user.frivillig_navn</p>
+<p>Telefon: @user.frivillig_tlf</p>
+<h3>Opdater dine oplysninger</h3>
+  <p>Opdater navn</p>
+   <input @bind-value="user.frivillig_navn" placeholder="string" />
+   
+            <button class="btn btn-sm btn-primary" @onclick="@(()=>updatenavn(@user.frivillig_id))">opdater</button>
+   <p>Opdater telefon-nummer</p>
+   <p>(Bemærk!! skal være mindst 8 cifre)</p>
+   <input @bind-value="user.frivillig_tlf" placeholder="string" />
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>updatetlf(@user.frivillig_id))">Opdater</button>
+<h3>Mine Vagter:</h3>
+<button class="btn btn-sm btn-primary" @onclick="@(()=>getvagterbymyid(@user.frivillig_id))">Mine vagter</button>
+@if(vagt ==  null){
+  <p>det er enten det her eller en null pointer :DDDDD</p>
+}
+else{
+@foreach (var vagter in vagt){
+<p>start</p> <p>@vagter.vagt_start</p> <p>slut</p><p>@vagter.vagt_slut</p>
+}
+}
+
+<h3>Tilgængelige vagter:</h3>
+
+         <select multiple>
+             @foreach (var item2 in opgaver)
+            {
+             
+                    <option value="@item2.opgave_id" @onclick="@(()=>getvagterbyOpgave(@item2.opgave_id, @user.frivillig_id))"> @item2.opgave_navn</option>
+                    }
+                    </select>
+                    @if(vagt2 == null){
+                      <p>vælg en opgave i menuen og tilmeld dig en af de ledige vagter!</p>
+                    }else{
+                    @foreach (var vagter1 in vagt2){
+<p>start</p> <p>@vagter1.vagt_start</p> <p>slut</p><p>@vagter1.vagt_slut</p> <p><button class="btn btn-sm btn-primary" @onclick="@(()=>tilmeldVagt(@user.frivillig_id, @vagter1.vagt_id))">Tilmeld vagt</button></p>
+
+}
+}
+<button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
+}
+
+
+}
+
+
+
+
+
+
+@code{
+
+
+vagtDTO[] vagt;
+vagtDTO[] vagt2;
+opgaveDTO[] opgaver;
+
+kompetenceDTO[] kompetencer;
+
+kompetenceDTO[] mine_kompetencer;
+
+private string felt;
+private string felt1;
+
+protected override async Task OnInitializedAsync()
+{
+  opgaver = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader/frivillig");
+   kompetencer = await Http.GetFromJsonAsync<kompetenceDTO[]>("api/kompetence");
+
+
+}
+            private async Task<frivilligDTO> login (string password, string username){
+                 
+             return  user = await Http.GetFromJsonAsync<frivilligDTO>($"api/login/{password}/{username}");
+            }
+            private frivilligDTO LogOut(frivilligDTO user){
+              felt = null;
+             felt1 = null;
+              
+              user.role_id = null; 
+              user.frivillig_navn = null; 
+             
+              return user;
+            }
+
+            private async Task updatetlf(int id){
+             
+                  await Http.PutAsJsonAsync<frivilligDTO>($"api/user/tlf/{id}", user);
+                  
+            }
+                 private async Task updatenavn(int id){
+            
+                  await Http.PutAsJsonAsync<frivilligDTO>($"api/user/navn/{id}",user);
+                   
+            }
+
+                private async Task<vagtDTO[]> getvagterbymyid (int id){
+            
+                return vagt =  await Http.GetFromJsonAsync<vagtDTO[]>($"api/user/vagter/{id}");
+                   
+            }
+            private async Task<vagtDTO[]> getvagterbyOpgave (int id, int uid){
+         
+                return vagt2 =  await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/frivillig/{id}/{uid}");
+                   
+            }
+                private async Task<kompetenceDTO[]> getmykompetencer(int id){
+         
+                return mine_kompetencer =  await Http.GetFromJsonAsync<kompetenceDTO[]>($"api/kompetence/{id}");
+                   
+            }
+    private async Task tilmeldVagt(int fid, int? vid)
+{
+ tilmelding tilmelding = new tilmelding();
+ tilmelding.frivillig_id = fid;
+ tilmelding.vagt_id = vid;
+
+    await Http.PostAsJsonAsync<tilmelding>($"api/user/tilmelding/{tilmelding.frivillig_id}", tilmelding);
+    //await OnInitializedAsync();
+}
+private async Task kompetencebind(int uid, int kid){
+kompetenceBinder tempbinder = new kompetenceBinder();
+tempbinder.frivillig_id = uid;
+tempbinder.kompetence_id = kid;
+  await Http.PostAsJsonAsync($"api/kompetence/add/{uid}", tempbinder);
+  await OnInitializedAsync();
+
+}
+private async Task deleteKompetence(int uid,int kid){
+  await Http.DeleteAsync($"api/remove/kompetence/{uid}/{kid}");
+}
+}

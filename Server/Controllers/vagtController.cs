@@ -17,6 +17,45 @@ namespace festivalbooking.Server.Controllers {
         public VagtController(vagtService service){
             _service = service;
         }
+        [Route("api/user/vagter/{id}")]
+        [HttpGet]
+        public  List<vagtDTO> getvagterbyfrivilligid(int id){
+            //Console.WriteLine("api nået");
+          return  _service.getVagterbyfrivilligid(id);
+
+          }
+            [Route("api/roles")]
+        [HttpGet]
+        public  List<roletest> getroles(){
+            //Console.WriteLine("api nået");
+          return  _service.getroles();
+
+          }
+        
+           [Route("api/user/tlf/{id}")]
+          [HttpPut]
+          
+        public async Task<IActionResult> updatetlf(frivilligDTO user)
+        {  //Console.WriteLine("api nået" + id);
+           await _service.updatetlf(user);
+           return NoContent();
+        }
+           [Route("api/user/navn/{id}")]
+          [HttpPut]
+          
+        public async Task<IActionResult> updatenavn(frivilligDTO user)
+        {  //Console.WriteLine("api nået" + id);
+           await _service.updateNavn(user);
+           return NoContent();
+        }
+
+        [Route("api/login/{password}/{username}")]
+        [HttpGet]
+        public  frivilligDTO login(string password, string username){
+            //Console.WriteLine("api nået");
+          return  _service.getvagtbyid(password, username);
+
+          }
         [Route("api/[controller]")]
         [HttpGet]
         public  List<vagtDTO> getAllVagt(){
@@ -52,6 +91,14 @@ namespace festivalbooking.Server.Controllers {
           return  _service.getAllOpgaver();
 
           }
+            [Route("api/omrader/frivillig")]
+        [HttpGet]
+           
+        public  List<opgaveDTO> getAllulåstOpgaver(){
+            //Console.WriteLine("api nået");
+          return  _service.getOpgaverUlåst();
+
+          }
           [Route("api/status")]
           [HttpGet]
            
@@ -72,6 +119,12 @@ namespace festivalbooking.Server.Controllers {
           public List<vagtDTO> getVagtByOpgave(int id)
           {
              return _service.filterByOpgave(id);
+          }
+             [Route("api/omrade/frivillig/{id}/{uid}")]
+          [HttpGet]
+          public List<vagtDTO> getVagtByOpgaveUlåst(int id, int uid)
+          {
+             return _service.filterByUlåstOpgave(id, uid);
           }
           [Route("api/[controller]/frivillig")]
           [HttpGet]
@@ -134,6 +187,58 @@ namespace festivalbooking.Server.Controllers {
         {  //Console.WriteLine("api nået" + id);
            await _service.deleteOpgave(id);
            return NoContent();
+        }
+
+        [Route("api/test/{id}")]
+        [HttpGet]
+        public frivilligDTO getfrivilligbyid(int id){
+           return _service.getfrivilligbyid(id);
+        }
+        [Route("api/kompetence")]
+        [HttpGet]
+        public List<kompetenceDTO> getAllkompetencer(){
+           return _service.getkompetencer();
+        }
+        [Route("api/kompetence/{id}")]
+        [HttpGet]
+        public List<kompetenceDTO> getAllmykompetencer(int id){
+           return _service.getmykompetencer(id);
+        }
+        [Route("api/user/tilmelding/{id}")]
+        [HttpPost]
+        public async Task<IActionResult> tilmeld(tilmelding tilmelding){
+              await _service.tilmelding(tilmelding);
+            return NoContent();
+        }
+          [Route("api/kompetence/add/{uid}")]
+        [HttpPost]
+        public async Task<IActionResult> addmykompetence(kompetenceBinder binder){
+              await _service.addmykompetencer(binder.frivillig_id, binder.kompetence_id);
+            return NoContent();
+        }
+         [Route("api/remove/kompetence/{uid}/{kid}")]
+        [HttpDelete]
+        public async Task<IActionResult> removemykompetence(int uid, int kid){
+              await _service.removemykompetencer(uid,kid);
+            return NoContent();
+        }
+          [Route("api/slet/kompetence/{id}")]
+        [HttpDelete]
+        public async Task<IActionResult> removefromkompetence(int id){
+              await _service.removefromkompetencer(id);
+            return NoContent();
+        }
+         [Route("api/user/opret/{navn}")]
+        [HttpPost]
+        public async Task<IActionResult> opret(frivilligDTO user){
+              await _service.opret(user);
+            return NoContent();
+        }
+          [Route("api/kompetence/opret/{navn}")]
+        [HttpPost]
+        public async Task<IActionResult> opret(kompetenceDTO kompetence){
+              await _service.addtokompetencer(kompetence);
+            return NoContent();
         }
          
     }

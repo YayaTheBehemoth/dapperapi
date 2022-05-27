@@ -140,6 +140,198 @@
         }
       },
       {
+        "HashCode": -347246258,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Pages.Test",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Test"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Body",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Body",
+              "Components.ChildContent": "True"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Pages.Test"
+        }
+      },
+      {
+        "HashCode": 278766190,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Pages.Test",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.Pages.Test"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Body",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Body",
+              "Components.ChildContent": "True"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Pages.Test",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1487182005,
+        "Kind": "Components.ChildContent",
+        "Name": "festivalbooking.Client.Pages.Test.Body",
+        "AssemblyName": "festivalbooking.Client",
+        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Body",
+            "ParentTag": "Test"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "festivalbooking.Client.Pages.Test.Body",
+          "Components.IsSpecialKind": "Components.ChildContent"
+        }
+      },
+      {
+        "HashCode": 90825468,
+        "Kind": "Components.ChildContent",
+        "Name": "festivalbooking.Client.Pages.Test.Body",
+        "AssemblyName": "festivalbooking.Client",
+        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Body",
+            "ParentTag": "festivalbooking.Client.Pages.Test"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "festivalbooking.Client.Pages.Test.Body",
+          "Components.IsSpecialKind": "Components.ChildContent",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -256301136,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.MainLayout1",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "MainLayout1"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Body",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Body",
+              "Components.ChildContent": "True"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1"
+        }
+      },
+      {
+        "HashCode": -1503649741,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.MainLayout1",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.Shared.MainLayout1"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Body",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Body",
+              "Components.ChildContent": "True"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 228134824,
+        "Kind": "Components.ChildContent",
+        "Name": "festivalbooking.Client.Shared.MainLayout1.Body",
+        "AssemblyName": "festivalbooking.Client",
+        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Body",
+            "ParentTag": "MainLayout1"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1.Body",
+          "Components.IsSpecialKind": "Components.ChildContent"
+        }
+      },
+      {
+        "HashCode": 1455582185,
+        "Kind": "Components.ChildContent",
+        "Name": "festivalbooking.Client.Shared.MainLayout1.Body",
+        "AssemblyName": "festivalbooking.Client",
+        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Body",
+            "ParentTag": "festivalbooking.Client.Shared.MainLayout1"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1.Body",
+          "Components.IsSpecialKind": "Components.ChildContent",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": -1113095097,
         "Kind": "Components.Component",
         "Name": "festivalbooking.Client.Shared.SurveyPrompt",
@@ -13039,8 +13231,18 @@
       "FileKind": "component"
     },
     {
+      "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Test.razor",
+      "TargetPath": "Pages\\Test.razor",
+      "FileKind": "component"
+    },
+    {
       "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Frivillig.razor",
       "TargetPath": "Pages\\Frivillig.razor",
+      "FileKind": "component"
+    },
+    {
+      "FilePath": "/Users/placeholder/Desktop/festivalbooking/Client/Shared/MainLayout1.razor",
+      "TargetPath": "Shared\\MainLayout1.razor",
       "FileKind": "component"
     },
     {

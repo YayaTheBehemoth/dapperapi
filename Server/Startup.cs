@@ -7,7 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using festivalbooking.Server.Connecter;
 using festivalbooking.Server.Services;
+using festivalbooking.Shared;
 using System.Linq;
+using System;
 
 namespace festivalbooking.Server
 {
@@ -24,6 +26,8 @@ namespace festivalbooking.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+           
+            services.AddSingleton<frivilligDTO>();
             services.AddSingleton<vagtService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -44,8 +48,7 @@ namespace festivalbooking.Server
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseAuthentication();
-            app.UseAuthorization();
+          
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();

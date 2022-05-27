@@ -30,7 +30,7 @@ namespace festivalbooking.Server.Services{
                var vagtList = connection.Query<opgaveDTO>(sql);
                var binderList = connection.Query<opgaveBinder>(sql_bind_opgave); 
                var countList = connection.Query<vagtCount>(sql_count);   
-               foreach (var binder in binderList)
+               foreach (var binder in binderList) 
                {
                    foreach (var count in countList)
                    {
@@ -48,6 +48,24 @@ namespace festivalbooking.Server.Services{
                }
               var sortedList = vagtList.OrderBy(x => x.antal_personer_skrevet_på);
                return sortedList.ToList<opgaveDTO>();
+           }
+       }
+       public async Task updateNavn(frivilligDTO user){
+           var parameters = new {NAVN = user.frivillig_navn, ID = user.frivillig_id};
+           var sql="update frivillig set frivillig_navn = @NAVN where frivillig_id = @ID";
+           using (var connection = connecter.Connect()){
+               await connection.ExecuteAsync(sql, parameters);
+                  
+               
+           }
+       }
+       public async Task updatetlf(frivilligDTO user){
+           var parameters = new {TLF = user.frivillig_tlf, ID = user.frivillig_id};
+           var sql="update frivillig set frivillig_tlf = @TLF where frivillig_id = @ID";
+           using (var connection = connecter.Connect()){
+               await connection.ExecuteAsync(sql, parameters);
+                  
+               
            }
        }
        public List<vagtDTO> getVagter(){
@@ -81,6 +99,13 @@ namespace festivalbooking.Server.Services{
                
            }
        }
+        public async Task tilmelding(tilmelding tilmelding){
+          var parameters = new {FID = tilmelding.frivillig_id, VID = tilmelding.vagt_id };
+          var sql ="INSERT INTO frivillig_vagt_bridge (frivillig_id, vagt_id) VALUES (@FID, @VID)";
+          using (var connection = connecter.Connect()){
+            await connection.ExecuteAsync(sql,parameters);
+          }
+      }
 
       public async Task postVagt(vagtDTO vagt){
           var parameters = new {START = vagt.vagt_start, SLUT = vagt.vagt_slut, OID = vagt.opgave_id, LÅST = false};
@@ -97,6 +122,14 @@ namespace festivalbooking.Server.Services{
             await connection.ExecuteAsync(sql,parameters);
           }
       }
+       public async Task opret(frivilligDTO user){
+        
+          var parameters = new {NAVN = user.frivillig_navn, TLF = user.frivillig_tlf, PW_hash = user.pw,RID = user.role_id};
+          var sql ="INSERT INTO frivillig (frivillig_navn, frivillig_tlf, pw_hash, role_id ) VALUES (@NAVN, @TLF, crypt(@PW_hash, gen_salt('bf')),@RID)";
+          using (var connection = connecter.Connect()){
+            await connection.ExecuteAsync(sql,parameters);
+          }
+      }
 
       public async Task putVagt(vagtDTO vagt){
              var parameters = new {START = vagt.vagt_start, SLUT = vagt.vagt_slut, OID = vagt.opgave_id, ID = vagt.vagt_id, ON = vagt.opgave_navn};
@@ -105,6 +138,22 @@ namespace festivalbooking.Server.Services{
               using (var connection = connecter.Connect()){
             await connection.ExecuteAsync(sql,parameters);
           }
+      }
+      public frivilligDTO getvagtbyid(string password, string username){
+         var parameters =new {PASSWORD = password, USERNAME = username};
+             //Console.WriteLine($"{vagt.navn},{vagt.id},{vagt.tal}");
+             var sql ="select crypt(@PASSWORD,pw_hash)=pw_hash,frivillig_navn,frivillig_id,role_id,frivillig_tlf from frivillig where frivillig_navn = @USERNAME";
+              using (var connection = connecter.Connect()){
+            return connection.QueryFirst<frivilligDTO>(sql,parameters);
+          } 
+      }
+      public frivilligDTO getfrivilligbyid(int id){
+         var parameters =new {ID = id};
+             
+             var sql ="select frivillig_navn,frivillig_tlf, role_id from frivillig where frivillig_id = @ID";
+              using (var connection = connecter.Connect()){
+            return connection.QueryFirst<frivilligDTO>(sql,parameters);
+          } 
       }
 
         public async Task putOpgave(opgaveDTO opgave){
@@ -158,6 +207,20 @@ namespace festivalbooking.Server.Services{
            }
       }
 
+           public List<vagtDTO> filterByUlåstOpgave(int id, int uid)
+      {
+          //Console.WriteLine($"{uid}");
+          var parameters = new {ID = id, UID = uid};
+          List<vagtDTO> templist = new List<vagtDTO>();
+        var sql = "select v.vagt_id,v.vagt_start, v.vagt_slut, v.opgave_id, o.opgave_navn,v.er_last from vagter as v left join frivillig_vagt_bridge as fvb on fvb.vagt_id = v.vagt_id join opgaver as o on v.opgave_id = o.opgave_id where v.opgave_id = @ID and fvb.frivillig_id not in (@UID) and v.er_last = false ";
+           using (var connection = connecter.Connect()){
+               var vagtList = connection.Query<vagtDTO>(sql,parameters);
+              
+             return vagtList.ToList<vagtDTO>();
+           }
+          
+      }
+
       public List<vagt_statusDTO> getStatus()
       {
        
@@ -183,7 +246,7 @@ namespace festivalbooking.Server.Services{
                     doneFrivilligDTO tempFrivillig = new doneFrivilligDTO();
                     tempFrivillig.frivillig_id = item.frivillig_id;
                     tempFrivillig.frivillig_navn = item.frivillig_navn;
-                    tempFrivillig.frivillig_email = item.frivillig_email;
+                    
                     tempFrivillig.frivillig_tlf = item.frivillig_tlf;
                     tempFrivillig.kompetencer =  new List<string>();
                     tempList.Add(tempFrivillig);
@@ -260,6 +323,16 @@ namespace festivalbooking.Server.Services{
            }
        }
 
+
+         public List<roletest> getroles(){
+           var sql = "select * from roles";
+           using (var connection = connecter.Connect()){
+               var vagtList = connection.Query<roletest>(sql);
+                   
+               return vagtList.ToList<roletest>();
+           }
+       }
+
        public async Task låsVagt(vagtDTO vagt){
            if(vagt.er_last == false){
              var parameters = new {ID = vagt.vagt_id,LÅS = true};
@@ -298,7 +371,103 @@ namespace festivalbooking.Server.Services{
           }
       }
            }
+
+            public List<vagtDTO> getVagterbyfrivilligid(int id){
+                var parameters = new{ID = id};
+           var sql = "select * from vagter as v join frivillig_vagt_bridge as fvb on v.vagt_id = fvb.vagt_id join frivillig as f on fvb.frivillig_id = f.frivillig_id where f.frivillig_id = @ID";
+           using (var connection = connecter.Connect()){
+               var vagtList = connection.Query<vagtDTO>(sql,parameters);
+                   
+               return vagtList.ToList<vagtDTO>();
+           }
+       }
              //Console.WriteLine($"{vagt.navn},{vagt.id},{vagt.tal}");
+         public List<opgaveDTO> getOpgaverUlåst(){
+             var sql_bind_opgave = "select vagt_id, opgave_id from vagter";
+                var sql_count ="select v.vagt_id, count(fvb.frivillig_id) from frivillig_vagt_bridge as fvb  right join vagter as v on fvb.vagt_id = v.vagt_id group by v.vagt_id";
+           var sql = "SELECT o.er_last, o.opgave_id, o.opgave_navn, o.opgave_beskrivelse, o.status_id, o.er_team_opgave, s.status_navn FROM  opgaver AS o JOIN status AS s ON o.status_id = s.status_id WHERE er_last IS false ";
+           using (var connection = connecter.Connect()){
+               var vagtList = connection.Query<opgaveDTO>(sql);
+               var binderList = connection.Query<opgaveBinder>(sql_bind_opgave); 
+               var countList = connection.Query<vagtCount>(sql_count);  
+               foreach (var binder in binderList)
+               {
+                   foreach (var count in countList)
+                   {
+                       if (count.vagt_id == binder.vagt_id)
+                       {
+                           foreach (var vagt in vagtList)
+                           {
+                               if (vagt.opgave_id == binder.opgave_id)
+                               {
+                                   vagt.antal_personer_skrevet_på = vagt.antal_personer_skrevet_på + count.count;
+                               }
+                           }
+                       }
+                   }
+               }
+              var sortedList = vagtList.OrderBy(x => x.antal_personer_skrevet_på);
+                   
+               return vagtList.ToList<opgaveDTO>();
+           }
+       } 
+       public List<kompetenceDTO> getmykompetencer(int id){
+           var parameters = new{ID = id};
+           var sql = "select k.kompetence_id, k.kompetence_navn from kompetence as k join frivillig_kompetence_bridge as fkb on k.kompetence_id = fkb.kompetence_id where fkb.frivillig_id = @ID";
+           using (var connection = connecter.Connect()){
+               var vagtList = connection.Query<kompetenceDTO>(sql,parameters);
+                   
+               return vagtList.ToList<kompetenceDTO>();
+           }
+       }
+       public List<kompetenceDTO> getkompetencer(){
+           
+           var sql = "select * from kompetence";
+           using (var connection = connecter.Connect()){
+               var vagtList = connection.Query<kompetenceDTO>(sql);
+                   
+               return vagtList.ToList<kompetenceDTO>();
+           }
+       }  
+         public async Task addmykompetencer(int uid, int kid){
+           var parameters = new {UID = uid, KID = kid};
+           var sql = "insert into frivillig_kompetence_bridge (frivillig_id, kompetence_id) VALUES (@UID, @KID)";
+           using (var connection = connecter.Connect()){
+              await connection.ExecuteAsync(sql, parameters);
+                   
+           }
+       }
+        public async Task removemykompetencer(int uid, int kid){
+      
+           var parameters = new {UID = uid, KID = kid};
+           var sql = "delete from frivillig_kompetence_bridge where frivillig_id = @UID and kompetence_id = @KID";
+           using (var connection = connecter.Connect()){
+              await connection.ExecuteAsync(sql, parameters);
+                   
+           }
+       }
+        public async Task removefromkompetencer(int id){
+          
+           var parameters = new {ID = id};
+           var sql = "delete from kompetence where kompetence_id = @ID";
+            var sql1 = "delete from frivillig_kompetence_bridge where kompetence_id = @ID";
+           using (var connection = connecter.Connect()){
+               await connection.ExecuteAsync(sql1, parameters);  
+              await connection.ExecuteAsync(sql, parameters);
+                
+           }
+       }
+          public async Task addtokompetencer(kompetenceDTO kompetence){
+          
+           var parameters = new {NAVN = kompetence.kompetence_navn};
+           
+            var sql = "insert into kompetence (kompetence_navn)values(@NAVN)";
+           using (var connection = connecter.Connect()){
+              await connection.ExecuteAsync(sql, parameters);
+             
+           }
+       }
+       }   
       }
-    }
+    
 

@@ -82,6 +82,13 @@ using festivalbooking.Client.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "/Users/placeholder/Desktop/festivalbooking/Client/Shared/MainLayout.razor"
+using festivalbooking.Shared;
+
+#line default
+#line hidden
+#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998

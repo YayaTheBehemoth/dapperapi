@@ -83,7 +83,7 @@ using festivalbooking.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Frivillig.razor"
+#line 3 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Frivillig.razor"
 using festivalbooking.Shared;
 
 #line default
@@ -98,14 +98,54 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Frivillig.razor"
+#line 110 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Frivillig.razor"
       
+    private string felt1; 
+    private int felt;
+
+    private string felt2;
       private doneFrivilligDTO[] frivillige; 
+    private roletest[] roller;
+    private kompetenceDTO[] kompetencer;
+    private kompetenceDTO kompetence = new kompetenceDTO();
+
+    private frivilligDTO user = new frivilligDTO();
 protected override async Task OnInitializedAsync()
 {
 
     frivillige = await Http.GetFromJsonAsync<doneFrivilligDTO[]>("api/vagt/frivillig");
+        roller = await Http.GetFromJsonAsync<roletest[]>("api/roles");
+             kompetencer = await Http.GetFromJsonAsync<kompetenceDTO[]>("api/kompetence");
+            
     
+}
+    private async Task opret(string navn, int tlf, string pw )
+{   
+    frivilligDTO user1 = new frivilligDTO();
+    user1.frivillig_navn = navn;
+    user1.frivillig_tlf = tlf;
+    user1.pw = pw;
+    user1.role_id = user.role_id;
+
+
+    await Http.PostAsJsonAsync<frivilligDTO>($"api/user/opret/{navn}", user1);
+    await OnInitializedAsync();
+}
+private void bindRID(roletest role){
+     user.role_id = role.id;
+}
+private async Task sletkompetence(int id){
+    await Http.DeleteAsync($"api/slet/kompetence/{id}");
+    await OnInitializedAsync();
+
+}
+    private async Task opretkompetence(string navn)
+{   
+ 
+kompetence.kompetence_navn = navn; 
+
+    await Http.PostAsJsonAsync<kompetenceDTO>($"api/kompetence/opret/{navn}", kompetence);
+    await OnInitializedAsync();
 }
 
 #line default

@@ -3,7 +3,7 @@ using Dapper;
 using Npgsql; 
 namespace festivalbooking.Shared{
     //model klasse til vagt table
-   public class vagtDTO {
+   public class tilmeldtvagt{
        public int? vagt_id {get; set;}
        public DateTime vagt_start {get; set;}
        public DateTime vagt_slut {get; set;}
@@ -15,5 +15,7 @@ namespace festivalbooking.Shared{
        public int antal_personer_skrevet_pa {get; set;}
 
        public bool er_last {get; set;}
+
+       public int frivillig_id {get; set;}
    }
 }

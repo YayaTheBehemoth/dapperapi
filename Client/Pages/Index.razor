@@ -1,4 +1,5 @@
 ﻿@page "/"
+
 @using festivalbooking.Shared;
 @inject HttpClient Http
 
@@ -13,6 +14,16 @@
        
         else
         {
+                
+             <NavLink class="nav-link" href="/frivillig" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Frivillige
+            </NavLink>
+            <NavLink class="nav-link" href="/opgaver" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Opgaver
+            </NavLink>
+             <NavLink class="nav-link" href="/test" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Log ud
+            </NavLink>
             <h2>Lille app til at demonstrere hvordan man bygger en controller samt service layer med simpel CRUD funktionalitet VHA. Dapper og C# </h2>
 
         <p>I disse felter kan man skrive et input, ønsker man at uploade det til databasen trykker man blot på "POST DIS"</p>
@@ -146,7 +157,7 @@ protected override async Task OnInitializedAsync()
     }
 
 
- private async Task DeleteVagt(int id)
+ private async Task DeleteVagt(int? id)
     {
      
     
@@ -159,7 +170,7 @@ private async Task postVagt(vagtDTO vagt)
     await Http.PostAsJsonAsync<vagtDTO>("api/vagt", vagt);
     await OnInitializedAsync();
 }
-private async Task patchVagt(int vagt_id)
+private async Task patchVagt(int? vagt_id)
 {
           vagt.vagt_id = vagt_id; 
     await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{vagt_id}", vagt);

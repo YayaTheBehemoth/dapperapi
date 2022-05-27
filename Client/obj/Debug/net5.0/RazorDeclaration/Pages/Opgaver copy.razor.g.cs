@@ -83,14 +83,14 @@ using festivalbooking.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 5 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Opgaver copy.razor"
 using festivalbooking.Shared;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/opgaver")]
+    public partial class Opgaver_copy : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,84 +98,75 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 131 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 92 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Opgaver copy.razor"
       
-private vagtDTO[] vagter;
-
-private opgaveDTO[] områder;
-
-private vagt_statusDTO [] status;
-private vagtDTO vagt = new vagtDTO();
+  
+    
+    private vagt_statusDTO [] status;
+    private opgaveDTO opgave = new opgaveDTO();
+    private opgaveDTO[] opgaver;
 protected override async Task OnInitializedAsync()
 {
-    vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/vagt");
-    områder = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
-    status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
-}
- private async Task sortVagterByområde()
-    {
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/omrader/sort");
-        //await OnInitializedAsync();
-
-    }
-
    
-       private async Task sortVagterByAntal()
+    opgaver = await Http1.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
+         status = await Http1.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
+   
+ 
+}
+  private async Task getOpgaverByStatus(int id)
+  {
+        opgaver = await Http1.GetFromJsonAsync<opgaveDTO[]>($"api/status/{id}");
+        //await OnInitializedAsync();
+
+  }
+   private async Task sortOpgaverByStatus()
     {
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/antal/sort");
+        opgaver = await Http1.GetFromJsonAsync<opgaveDTO[]>("api/status/sort");
         //await OnInitializedAsync();
 
     }
 
-
- private async Task DeleteVagt(int? id)
+ private async Task DeleteOpgave(int id)
     {
      
     
-    await Http.DeleteAsync($"api/vagt/{id}");
+    await Http1.DeleteAsync($"api/opgaver/{id}");
     await OnInitializedAsync();
     }
 
-private async Task postVagt(vagtDTO vagt)
+    private async Task postOpgave(opgaveDTO opgave)
 {
-    await Http.PostAsJsonAsync<vagtDTO>("api/vagt", vagt);
+    await Http1.PostAsJsonAsync<opgaveDTO>("api/opgaver", opgave);
     await OnInitializedAsync();
 }
-private async Task patchVagt(int? vagt_id)
+private async Task patchOpgave(int opgave_id)
 {
-          vagt.vagt_id = vagt_id; 
-    await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{vagt_id}", vagt);
+          opgave.opgave_id = opgave_id; 
+    await Http1.PutAsJsonAsync<opgaveDTO>($"api/opgaver/{opgave_id}", opgave);
     await OnInitializedAsync();
 }
-   private void bindOid(opgaveDTO område)
+
+    private async Task låsEllerÅbenOpgave(opgaveDTO opgave)
     {
-        vagt.opgave_id = område.opgave_id;
-        vagt.opgave_navn = område.opgave_navn;
+    await Http1.PutAsJsonAsync<opgaveDTO>($"api/opgaver/las/{opgave.opgave_id}", opgave);
+   await OnInitializedAsync();
+    }
+ private void bindSid(vagt_statusDTO status)
+    {
+        opgave.status_id = status.status_id;
+        opgave.status_navn = status.status_navn;
         //Console.WriteLine($"{vagt.område_id}");
 
 
     }
-    
-        
-    private async Task låsEllerÅbenVagt(vagtDTO vagt)
-    {
-    await Http.PutAsJsonAsync<vagtDTO>($"api/las/{vagt.vagt_id}", vagt);
-   await OnInitializedAsync();
-    }
+  
 
-     
-    
-       private async Task getVagterByOmråde(int id){
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/{id}");
-        //await OnInitializedAsync();
-
-    }
     
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http1 { get; set; }
     }
 }
 #pragma warning restore 1591

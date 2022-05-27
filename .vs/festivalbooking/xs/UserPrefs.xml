@@ -2,11 +2,10 @@
   <MonoDevelop.Ide.ItemProperties.festivalbooking.Server PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Server/services/vagtservice.cs">
     <Files>
-      <File FileName="Server/services/vagtservice.cs" Line="77" Column="1" />
+      <File FileName="Server/services/vagtservice.cs" Line="87" Column="92" />
       <File FileName="Server/Controllers/vagtController.cs" />
       <File FileName="Server/Connecter/connecter.cs" />
       <File FileName="Client/Pages/Index.razor" />
-      <File FileName="Client/Pages/Oversigt.razor" />
       <File FileName="Client/Pages/Frivillig.razor" />
     </Files>
     <Pads>
@@ -19,11 +18,11 @@
             <Node name="festivalbooking.Server" expanded="True">
               <Node name="Connecter" expanded="True" />
               <Node name="Controllers" expanded="True" />
-              <Node name="services" expanded="True" />
+              <Node name="services" expanded="True">
+                <Node name="vagtservice.cs" selected="True" />
+              </Node>
             </Node>
-            <Node name="festivalbooking.Shared" expanded="True">
-              <Node name="kompetenceBinder.cs" selected="True" />
-            </Node>
+            <Node name="festivalbooking.Shared" expanded="True" />
           </Node>
         </State>
       </Pad>
