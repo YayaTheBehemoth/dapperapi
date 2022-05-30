@@ -10,6 +10,8 @@ namespace festivalbooking.Shared{
 
         public string pw {get; set;}
 
+        public bool pwCheck {get; set;}
+
         public int? role_id {get; set;}
         
        

@@ -2,7 +2,7 @@
 
 @using festivalbooking.Shared;
 @inject HttpClient Http
-<h1>Shoutout gill bates</h1>
+
 
            @if (frivillige == null)
            {
@@ -13,32 +13,42 @@
            }
            else
            {
-                  <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                  <NavLink class="nav-link" href="/vagt" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Vagter
             </NavLink>
             
             <NavLink class="nav-link" href="/opgaver" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Opgaver
             </NavLink>
-             <NavLink class="nav-link" href="/test" Match="NavLinkMatch.All">
+             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Log ud
             </NavLink>
-            <p>kompetencer</p>
+            <h2>kompetencer</h2>
+            <table class="table table-responsive">
+            
             @foreach(var kompetence in kompetencer){
-                <p>@kompetence.kompetence_navn</p>
+                <tr>
+                <td>@kompetence.kompetence_navn</td>
+                <td>
                 <button class="btn btn-sm btn-primary" @onclick="@(()=>sletkompetence(@kompetence.kompetence_id))">slet kompetence</button>
+                </td>
+                </tr>
             }
-            <p>opret kompetence</p>
-                    <input @bind-value="kompetence.kompetence_navn" placeholder="string" />
-                    <button class="btn btn-sm btn-primary" @onclick="@(()=>opretkompetence(@kompetence.kompetence_navn))">slet kompetence</button>
+            </table>
+            <h2>opret kompetence</h2>
+                    <input @bind-value="kompetence.kompetence_navn" placeholder="string" /><br>
+                    <button class="btn btn-sm btn-primary" @onclick="@(()=>opretkompetence(@kompetence.kompetence_navn))">Opret kompetence</button>
 
-            <p>Opret frivillig</p>
-            <p>navn</p>
-            <input @bind-value="felt1" placeholder="string" />
-            <p> telefon</p>
-            <input @bind-value="felt" placeholder="string" />
-            <p> password</p>
-            <input @bind-value="felt2" placeholder="string" />
+            <h2>Opret frivillig</h2>
+            
+            <input @bind-value="felt1" placeholder="Navn" />
+            <label>navn</label><br>
+           
+            <input @bind-value="felt" placeholder="tlf" />
+             <label> telefon</label><br>
+            
+            <input @bind-value="felt2" placeholder="password" />
+            <label> password</label><br>
             @if (String.IsNullOrWhiteSpace(felt1)){
                 <p>Husk at fylde felterne ud inden du opretter en ny bruger</p>
             }
@@ -66,6 +76,7 @@
                }
        
            }
+              <h2>Frivillig oversigt</h2>
                <table class="repsonsive">
                <thead>
                     <tr>
@@ -75,11 +86,9 @@
                     <th>
                        Telefon Nummer 
                     </th>
+                   
                     <th>
-                        Email
-                    </th>
-                    <th>
-                        Kompetencer
+                       
                     </th>
                     </tr>
                 </thead>
@@ -89,6 +98,7 @@
               
                 <tbody>
                     <tr>
+                        
                         <td>
                         @frivillig.frivillig_navn
                         </td>
@@ -97,6 +107,7 @@
                         </td>
                        
                         <td>
+                            <label><strong>kompetencer</strong></label>
                             @for (int i = 0; i < frivillig.kompetencer.Count();i++){
                                 <ul>@frivillig.kompetencer[i]</ul>
                             }

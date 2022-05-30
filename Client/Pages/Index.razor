@@ -1,235 +1,267 @@
 ﻿@page "/"
-
-@using festivalbooking.Shared;
+@inject frivilligDTO user
 @inject HttpClient Http
+@inherits MainLayout1
 
-            @if (vagter == null)
-        {
-            <p><em>Either data is being fetched or something isnt working, lets hope for the former</em></p>
-        }
-             else if (områder == null)
-             {
-                     <p><em>Either data is being fetched or something isnt working, lets hope for the former</em></p>
-             }
-       
-        else
-        {
-                
+@if(opgaver ==  null){
+  @if(kompetencer == null){
+  <p>det er enten det her eller en null pointer :DDDDD</p>
+  }
+}else{
+@if(user.role_id == null){
+
+<h1>Velkommen til vagtbooking.exe :D</h1>
+<input @bind-value="felt1" placeholder="string" />
+<label>Navn</label><br>
+<input @bind-value="felt" placeholder="string" />
+<label>Password</label><br>
+<button class="btn btn-sm btn-primary" @onclick="@(()=>login(@felt, @felt1))">Log in</button><br>
+<img src="https://pbs.twimg.com/media/E_dmJB6WEAE3BOD.jpg">
+} else
+@if(user.role_id == 4) {
+  <NavLink class="nav-link" href="/vagt" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Vagter
+            </NavLink>
              <NavLink class="nav-link" href="/frivillig" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Frivillige
             </NavLink>
             <NavLink class="nav-link" href="/opgaver" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Opgaver
             </NavLink>
-             <NavLink class="nav-link" href="/test" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Log ud
-            </NavLink>
-            <h2>Lille app til at demonstrere hvordan man bygger en controller samt service layer med simpel CRUD funktionalitet VHA. Dapper og C# </h2>
+<h1>Velkommen</h1>
+<h2>Dine nuværende oplysninger:</h2>
+<p>Telefon: @user.frivillig_navn</p>
+<p>Telefon: @user.frivillig_tlf</p>
+<h3>Opdater dine oplysninger</h3>
+@if(isUpdate == true){
+<p>Opdater navn</p>
+   <input @bind-value="user.frivillig_navn" placeholder="string" />
+   
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>updatenavn(@user.frivillig_id))">opdater</button>
+   <p>Opdater telefon-nummer</p>
+   <p>(Bemærk!! skal være mindst 8 cifre)</p>
+   <input @bind-value="user.frivillig_tlf" placeholder="string" />
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>updatetlf(@user.frivillig_id))">Opdater</button>
+<p>Opdater password</p>
+   <input @bind-value="user.pw" placeholder="string" />
+    <button class="btn btn-sm btn-primary" @onclick="@(()=>updatepw(@user.frivillig_id))">Opdater</button>
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleUpdate())">Fold sammen</button><br>
+}else {
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleUpdate())">Fold ud</button><br>
+}
+       
+           <button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
+}else 
+if (user.role_id == 3){
+<h1>Velkommen</h1>
+<h2>kompetencer:</h2>
+<select multiple>
+@foreach(var kompetence in kompetencer){
+      <option value="@kompetence.kompetence_id" @onclick="@(()=>kompetencebind(@user.frivillig_id ,@kompetence.kompetence_id))" > @kompetence.kompetence_navn</option>  
+}
+</select>
+<h2>dine kompetencer:</h2>
+@if(mine_kompetencer == null){
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>getmykompetencer(@user.frivillig_id))">se mine kompetencer</button>
+} else {
+  <table>
+  @foreach(var kompetence1 in mine_kompetencer){
+    <tr>
+    <td>@kompetence1.kompetence_navn</td>
+    <td>
+    <button class="btn btn-sm btn-primary" @onclick="@(()=>deleteKompetence(@user.frivillig_id, @kompetence1.kompetence_id))"> fjern kompetence</button>
+    </td>
+    </tr>
+  }
+  </table>
+}
+<h2>Dine nuværende oplysninger:</h2>
+<p>Telefon: @user.frivillig_navn</p>
+<p>Telefon: @user.frivillig_tlf</p>
+<h3>Opdater dine oplysninger</h3>
+@if(isUpdate == true){
+  <p>Opdater navn</p>
+   <input @bind-value="user.frivillig_navn" placeholder="string" />
+   
+            <button class="btn btn-sm btn-primary" @onclick="@(()=>updatenavn(@user.frivillig_id))">opdater</button>
+   <p>Opdater telefon-nummer</p>
+   <p>(Bemærk!! skal være mindst 8 cifre)</p>
+   <input @bind-value="user.frivillig_tlf" placeholder="string" />
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>updatetlf(@user.frivillig_id))">Opdater</button><br>
+  <p>Opdater password</p><br>
+   <input @bind-value="user.pw" placeholder="string" />
+    <button class="btn btn-sm btn-primary" @onclick="@(()=>updatepw(@user.frivillig_id))">Opdater</button><br>
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleUpdate())">Fold sammen</button><br>
+}else{
+<button class="btn btn-sm btn-primary" @onclick="@(()=>toggleUpdate())">Fold ud</button><br>
+}
 
-        <p>I disse felter kan man skrive et input, ønsker man at uploade det til databasen trykker man blot på "POST DIS"</p>
-        <p>ønsker man at ændre i en entry, skriver man blot inde i den givne entry's felter og trykker herefter på "EDIT DIS"</p>
-        <input @bind-value="vagt.vagt_start" placeholder="string" />
-        <input @bind-value="vagt.vagt_slut" placeholder="double" />  
-          <select multiple>
-            @foreach (var item2 in områder)
+<h3>Mine Vagter:</h3>
+<button class="btn btn-sm btn-primary" @onclick="@(()=>getvagterbymyid(@user.frivillig_id))">Mine vagter</button>
+@if(vagt ==  null){
+  <p>det er enten det her eller en null pointer :DDDDD</p>
+}
+else{
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>Slut</th>
+        <th>Opgave</th>
+      </tr>
+    </thead>
+    <tbody>
+@foreach (var vagter in vagt){
+  <tr>
+<td>@vagter.vagt_start</td> 
+<td>@vagter.vagt_slut</td>
+<td>@vagter.opgave_navn</td>
+</tr>
+}
+</tbody>
+</table>
+}
+
+<h3>Tilgængelige vagter:</h3>
+
+         <select multiple>
+             @foreach (var item2 in opgaver)
             {
              
-                    <option value="@item2.opgave_id" @onclick="@(()=>bindOid(@item2))"> @item2.opgave_navn</option>
-                    }
-                </select> 
-                       
-        <button class="btn btn-sm btn-primary" @onclick="@(()=>postVagt(@vagt))">POST DIS</button>
-        <h3>Sortér</h3>
-                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByområde())">sorter efter område</button>
-                  
-                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByAntal())">sorter efter antal personer skrevet på</button>
-        <h3>Filtrér</h3>
-         
-                    <select multiple>
-             @foreach (var item2 in områder)
-            {
-             
-                    <option value="@item2.opgave_id" @onclick="@(()=>getVagterByOmråde(@item2.opgave_id))"> @item2.opgave_navn</option>
+                    <option value="@item2.opgave_id" @onclick="@(()=>getvagterbyOpgave(@item2.opgave_id, @user.frivillig_id))"> @item2.opgave_navn</option>
                     }
                     </select>
-        <p>Liste over entries</p>
-            <table class="table table-responsive">
-                <thead>
-                    <tr>
-                        <th>Start tid</th>
-                        <th>Slut tid</th>
-                        <th>
-                           Opgave
-                        </th>
-                   
-                        <th>
-                            antal skrevet på
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
+                    @if(vagt2 == null){
+                      <p>vælg en opgave i menuen og tilmeld dig en af de ledige vagter!</p>
+                    }else{
+                      <table class="table table-responsive">
+                        <thead>
+                          <tr>
+                            <th>Start</th>
+                            <th>Slut</th>
+                            <th>Opgave</th>
+                          </tr>
+                        </thead>
+                     <tbody>
+                    @foreach (var vagter1 in vagt2){
+                      <tr>
+                     <td>@vagter1.vagt_start</td>
+                      <td>@vagter1.vagt_slut</td>
+                        <td>@vagter1.opgave_navn</td>
+                      <td>
+                      <button class="btn btn-sm btn-primary" @onclick="@(()=>tilmeldVagt(@user.frivillig_id, @vagter1.vagt_id))">Tilmeld vagt</button>
+                      </td> 
+                      </tr>
 
-                    @foreach (var item in vagter)
-                    {
-                    <tr>
-                        <td>@item.vagt_start</td>
-                     
-                        <td>@item.vagt_slut</td>
-                         
-                        <td>@item.opgave_navn</td>
-                        
-        
-             
-                <td>@item.antal_personer_skrevet_pa</td>
-                        <td>
-                            
-                        </td>
-                        @if(item.er_last == false){
+}
+</tbody>
+ </table>
+}
+<button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
+}
 
-                    
-                        <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleEdit(@item.vagt_id))">EDIT DIS</button>
-                        </td>
-                            }
-                            @foreach (var item2 in områder){
 
-                           @if(item2.opgave_id == item.opgave_id) {
-                               @if(item2.er_last == false){
-                        @if (!(item.er_last == true))
-                        {
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås</button>
-                        }
-                        else 
-                        {
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås op</button>
-                        }
-                               }
-                               else {
-                                   <p>Den tilhørende opgave er låst</p>
-                               }
-                        }
-                         }
-                    </tr>
-                    }
-                </tbody>
-            </table>
-           
-            @if (isEdit == true){
-                     <label>Vagt Start</label><br>
-                     <input @bind-value="vagt.vagt_start" placeholder="start tid" /><br>
-                     <label>Vagt Slut</label><br>
-                      <input @bind-value="vagt.vagt_slut" placeholder="slut tid" /><br>
-                      <label>Vagt opgave</label><br>
-            <select id="områder" multiple>
-            @foreach (var item1 in områder)
-            {
-             
-                    <option value="@item1.opgave_id'" @onclick="@(()=>bindOid(@item1))"> @item1.opgave_navn</option>
-                    }
-                </select><br>
-                <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@vagt.vagt_id))">DELET DIS</button><br>
-                @if(vagt.vagt_start == default |vagt.vagt_slut == default){
-                        <p>Husk at angive start og/eller slut tidspunkt</p>
-                }else if (vagt.opgave_id == 0){
-                        <p>Husk at angive en opgave</p>
-                }
-                else{
-                  <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@vagt))">bekræft opdatering</button>  
-                }
-                
-                
-            }
-            }
+}
 
-        
+
+
+
+
+
 @code{
-    private bool isEdit = false; 
-private vagtDTO[] vagter;
 
-private opgaveDTO[] områder;
 
-private vagt_statusDTO [] status;
-private vagtDTO vagt = new vagtDTO();
+vagtDTO[] vagt;
+vagtDTO[] vagt2;
+opgaveDTO[] opgaver;
+
+kompetenceDTO[] kompetencer;
+
+kompetenceDTO[] mine_kompetencer;
+
+private string felt;
+private string felt1;
+
+private bool isUpdate = false;
+
+
 protected override async Task OnInitializedAsync()
 {
-    vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/vagt");
-    områder = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
-    status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
+  opgaver = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader/frivillig");
+   kompetencer = await Http.GetFromJsonAsync<kompetenceDTO[]>("api/kompetence");
+
+
 }
- private async Task sortVagterByområde()
-    {
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/omrader/sort");
-        //await OnInitializedAsync();
+            private async Task<frivilligDTO> login (string password, string username){
+                 
+             return  user = await Http.GetFromJsonAsync<frivilligDTO>($"api/login/{password}/{username}");
+            }
+            private frivilligDTO LogOut(frivilligDTO user){
+              felt = "";
+              felt1 = "";
+              user.role_id = null;
+              user.frivillig_navn ="";
+              user.pw = "";
+              user.frivillig_tlf = 0;
+             
+              return user;
+            }
 
-    }
+            private async Task updatetlf(int id){
+             
+                  await Http.PutAsJsonAsync<frivilligDTO>($"api/user/tlf/{id}", user);
+                  
+            }
+                 private async Task updatenavn(int id){
+            
+                  await Http.PutAsJsonAsync<frivilligDTO>($"api/user/navn/{id}",user);
+                   
+            }
+             private async Task updatepw(int id){
+            
+                  await Http.PutAsJsonAsync<frivilligDTO>($"api/user/pw/{id}",user);
+                   
+            }
 
-   
-       private async Task sortVagterByAntal()
-    {
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/antal/sort");
-        //await OnInitializedAsync();
-
-    }
-
-
- private async Task DeleteVagt(int? id)
-    {
-      isEdit = false;
-     
-    await Http.DeleteAsync($"api/vagt/{id}");
-    await OnInitializedAsync();
-    }
-
-private async Task postVagt(vagtDTO vagt)
+                private async Task<vagtDTO[]> getvagterbymyid (int id){
+            
+                return vagt =  await Http.GetFromJsonAsync<vagtDTO[]>($"api/user/vagter/{id}");
+                   
+            }
+            private async Task<vagtDTO[]> getvagterbyOpgave (int id, int uid){
+         
+                return vagt2 =  await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/frivillig/{id}/{uid}");
+                   
+            }
+                private async Task<kompetenceDTO[]> getmykompetencer(int id){
+         
+                return mine_kompetencer =  await Http.GetFromJsonAsync<kompetenceDTO[]>($"api/kompetence/{id}");
+                   
+            }
+    private async Task tilmeldVagt(int fid, int? vid)
 {
-    await Http.PostAsJsonAsync<vagtDTO>("api/vagt", vagt);
-    await OnInitializedAsync();
+ tilmelding tilmelding = new tilmelding();
+ tilmelding.frivillig_id = fid;
+ tilmelding.vagt_id = vid;
+
+    await Http.PostAsJsonAsync<tilmelding>($"api/user/tilmelding/{tilmelding.frivillig_id}", tilmelding);
+    //await OnInitializedAsync();
 }
-private async Task patchVagt(vagtDTO paraVagt)
-{
-  
-           
-        isEdit = false;
-    await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{paraVagt.vagt_id}", paraVagt);
-    await OnInitializedAsync();
+private async Task kompetencebind(int uid, int kid){
+kompetenceBinder tempbinder = new kompetenceBinder();
+tempbinder.frivillig_id = uid;
+tempbinder.kompetence_id = kid;
+  await Http.PostAsJsonAsync($"api/kompetence/add/{uid}", tempbinder);
+  await OnInitializedAsync();
+
 }
-   private void bindOid(opgaveDTO område)
-    {
-        vagt.opgave_id = område.opgave_id;
-        vagt.opgave_navn = område.opgave_navn;
-        //Console.WriteLine($"{vagt.område_id}");
-
-
-    }
-    
-        
-    private async Task låsEllerÅbenVagt(vagtDTO vagt)
-    {
-    await Http.PutAsJsonAsync<vagtDTO>($"api/las/{vagt.vagt_id}", vagt);
-   await OnInitializedAsync();
-    }
-
-     
-    
-       private async Task getVagterByOmråde(int id){
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/{id}");
-        //await OnInitializedAsync();
-
-    }
-
-    private bool toggleEdit (int? id){
-        if (isEdit == true){
-            vagt.vagt_id = null;
-            vagt.vagt_start = default;
-            vagt.vagt_slut = default;
-            vagt.opgave_id = 0;
-return isEdit = false;
-        }
-        vagt.vagt_id = id;
-        return isEdit = true; 
-    }
-    
+private async Task deleteKompetence(int uid,int kid){
+  await Http.DeleteAsync($"api/remove/kompetence/{uid}/{kid}");
 }
-
-
-
+private bool toggleUpdate(){
+  if (isUpdate == true){
+     return isUpdate = false;
+  }
+ return isUpdate = true;
+}
+}

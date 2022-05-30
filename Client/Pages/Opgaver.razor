@@ -4,7 +4,7 @@
 @using festivalbooking.Shared;
 
 
-<h1>Shoutout gill bates</h1>
+
 
 
             @if (opgaver == null)
@@ -15,34 +15,35 @@
        
         else
         {
-         <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+         <NavLink class="nav-link" href="/vagt" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Vagter
             </NavLink>
              <NavLink class="nav-link" href="/frivillig" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Frivillige
             </NavLink>
             
-             <NavLink class="nav-link" href="/test" Match="NavLinkMatch.All">
+             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Log ud
             </NavLink>      
-           
- <table class="table table-responsive"> 
-    <thead>
-        <th>Opgave Navn</th>
-        <th>Status</th>
-        <th>Beskrivelse</th>
-        <th>Team-Opgave</th>
-        <th>Personer skrevet på</th>
-    </thead>
-    <input @bind-value="opgave.opgave_navn" placeholder="string" />
+    <h3>Opret opgave</h3>
+    
+    <input @bind-value="opgave.opgave_navn" placeholder="string"/>
+    <label>Opgave navn</label><br>
+    
      <select multiple>
                  @foreach(var status in status){
                        <option value="@status.status_id'" @onclick="@(()=>bindSid(@status))"> @status.status_navn</option>
                  }
              </select>
-             <input @bind-value="opgave.opgave_beskrivelse" placeholder="string" />
-             <input type="checkbox" @bind="opgave.er_team_opgave"   >
-             <button class="btn btn-sm btn-primary" @onclick="@(()=>postOpgave(@opgave))">POST DIS</button>
+             <label>status</label><br>
+             
+             <input @bind-value="opgave.opgave_beskrivelse" placeholder="string"/>
+             <label>Beskrivelse</label><br>
+             
+             <input type="checkbox" @bind="opgave.er_team_opgave">
+             <label>Teamvagt?</label><br>
+             <button class="btn btn-sm btn-primary" @onclick="@(()=>postOpgave(@opgave))">Opret</button>
+             <h3>Opgave oversigt</h3>
              <h3>Sortér</h3>
              <button class="btn btn-sm btn-primary" @onclick="@(()=>sortOpgaverByStatus())">sorter efter område</button>
              <h3>filtrér</h3>
@@ -51,38 +52,43 @@
                        <option value="@status1.status_id'" @onclick="@(()=>getOpgaverByStatus(@status1.status_id))"> @status1.status_navn</option>
                  }
              </select>
-    
+              
+ <table class="table table-responsive"> 
+    <thead>
+        <th>Opgave Navn</th>
+        <th>Status</th>
+        <th>Beskrivelse</th>
+        <th>Team-Opgave</th>
+        <th>Personer skrevet på</th>
+    </thead>
     <tbody>
           @foreach (var item in opgaver){
         <tr>
           
               <td>@item.opgave_navn</td>
-               <input @bind-value="opgave.opgave_navn" placeholder="string" />
+              
               <td> @item.status_navn</td>
-             <select multiple>
-                 @foreach(var item1 in status){
-                       <option value="@item1.status_id'" @onclick="@(()=>bindSid(@item1))"> @item1.status_navn</option>
-                 }
-             </select>
+        
               <td>@item.opgave_beskrivelse</td>
-              <input @bind-value="opgave.opgave_beskrivelse" placeholder="string" />
+             
               <td>@item.antal_personer_skrevet_på</td>
               @if (item.er_team_opgave == false){
                   <td>ikke en team-opgave</td>
-                <input type="checkbox"  @bind="opgave.er_team_opgave">
+                
               }else {
                   <td>team-opgave</td>
-                   <input type="checkbox" @bind="opgave.er_team_opgave">
+                   
               }
                 <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteOpgave(@item.opgave_id))">DELET DIS</button>
+                           
                 </td>
                  <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>patchOpgave(@item.opgave_id))">EDIT DIS</button>
+                          
                 </td>
                 @if (@item.er_last == false){
                 <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenOpgave(@item))">Lås</button>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenOpgave(@item))">Lås</button><br>
+                              <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleEdit(@item.opgave_id))">EDIT DIS</button>
                 </td>
                 }else {
                             <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenOpgave(@item))">Lås op</button>
@@ -94,6 +100,23 @@
         
     </tbody>
  </table>
+        @if(isEdit == true){
+           <p>id</p> <p>@opgave.opgave_id</p>
+            <label>Opgave navn</label><br>
+             <input @bind-value="opgave.opgave_navn" placeholder="string" /><br>
+            <label>Opgave beskrivelse</label><br>
+             <input @bind-value="opgave.opgave_beskrivelse" placeholder="string" /><br>
+            <label>Opgave status</label><br>
+                 <select multiple>
+                 @foreach(var item1 in status){
+                       <option value="@item1.status_id'" @onclick="@(()=>bindSid(@item1))"> @item1.status_navn</option>
+                 }
+             </select><br>
+            <label>Team opgave</label><br>
+            <input type="checkbox" @bind="opgave.er_team_opgave"><br>
+             <button class="btn btn-sm btn-primary" @onclick="@(()=>patchOpgave(@opgave.opgave_id))">EDIT DIS</button><br>
+             <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteOpgave(@opgave.opgave_id))">DELET DIS</button>
+        }
         }      
          
  
@@ -104,6 +127,7 @@
     private vagt_statusDTO [] status;
     private opgaveDTO opgave = new opgaveDTO();
     private opgaveDTO[] opgaver;
+     private bool isEdit = false; 
 protected override async Task OnInitializedAsync()
 {
    
@@ -140,7 +164,7 @@ protected override async Task OnInitializedAsync()
 }
 private async Task patchOpgave(int opgave_id)
 {
-          opgave.opgave_id = opgave_id; 
+         
     await Http1.PutAsJsonAsync<opgaveDTO>($"api/opgaver/{opgave_id}", opgave);
     await OnInitializedAsync();
 }
@@ -159,7 +183,14 @@ private async Task patchOpgave(int opgave_id)
 
     }
   
-
+  private bool toggleEdit (int id){
+        if (isEdit == true){
+           opgave.opgave_id = 0;
+return isEdit = false;
+        }
+        opgave.opgave_id = id;
+        return isEdit = true; 
+    }
     
 }
 

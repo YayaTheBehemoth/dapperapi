@@ -48,6 +48,14 @@ namespace festivalbooking.Server.Controllers {
            await _service.updateNavn(user);
            return NoContent();
         }
+           [Route("api/user/pw/{id}")]
+          [HttpPut]
+          
+        public async Task<IActionResult> updatepw(frivilligDTO user)
+        {  //Console.WriteLine("api nået" + id);
+           await _service.updatepw(user);
+           return NoContent();
+        }
 
         [Route("api/login/{password}/{username}")]
         [HttpGet]

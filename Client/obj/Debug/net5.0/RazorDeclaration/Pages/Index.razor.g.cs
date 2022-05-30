@@ -83,14 +83,14 @@ using festivalbooking.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 11 "/Users/placeholder/Desktop/festivalbooking/Client/_Imports.razor"
 using festivalbooking.Shared;
 
 #line default
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Index : MainLayout1
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,99 +98,109 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 145 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 171 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
       
-    private bool isEdit = false; 
-private vagtDTO[] vagter;
 
-private opgaveDTO[] områder;
 
-private vagt_statusDTO [] status;
-private vagtDTO vagt = new vagtDTO();
+vagtDTO[] vagt;
+vagtDTO[] vagt2;
+opgaveDTO[] opgaver;
+
+kompetenceDTO[] kompetencer;
+
+kompetenceDTO[] mine_kompetencer;
+
+private string felt;
+private string felt1;
+
+private bool isUpdate = false;
+
+
 protected override async Task OnInitializedAsync()
 {
-    vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/vagt");
-    områder = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader");
-    status = await Http.GetFromJsonAsync<vagt_statusDTO[]>("api/status");
+  opgaver = await Http.GetFromJsonAsync<opgaveDTO[]>("api/omrader/frivillig");
+   kompetencer = await Http.GetFromJsonAsync<kompetenceDTO[]>("api/kompetence");
+
+
 }
- private async Task sortVagterByområde()
-    {
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/omrader/sort");
-        //await OnInitializedAsync();
+            private async Task<frivilligDTO> login (string password, string username){
+                 
+             return  user = await Http.GetFromJsonAsync<frivilligDTO>($"api/login/{password}/{username}");
+            }
+            private frivilligDTO LogOut(frivilligDTO user){
+              felt = "";
+              felt1 = "";
+              user.role_id = null;
+              user.frivillig_navn ="";
+              user.pw = "";
+              user.frivillig_tlf = 0;
+             
+              return user;
+            }
 
-    }
+            private async Task updatetlf(int id){
+             
+                  await Http.PutAsJsonAsync<frivilligDTO>($"api/user/tlf/{id}", user);
+                  
+            }
+                 private async Task updatenavn(int id){
+            
+                  await Http.PutAsJsonAsync<frivilligDTO>($"api/user/navn/{id}",user);
+                   
+            }
+             private async Task updatepw(int id){
+            
+                  await Http.PutAsJsonAsync<frivilligDTO>($"api/user/pw/{id}",user);
+                   
+            }
 
-   
-       private async Task sortVagterByAntal()
-    {
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>("api/antal/sort");
-        //await OnInitializedAsync();
-
-    }
-
-
- private async Task DeleteVagt(int? id)
-    {
-      isEdit = false;
-     
-    await Http.DeleteAsync($"api/vagt/{id}");
-    await OnInitializedAsync();
-    }
-
-private async Task postVagt(vagtDTO vagt)
+                private async Task<vagtDTO[]> getvagterbymyid (int id){
+            
+                return vagt =  await Http.GetFromJsonAsync<vagtDTO[]>($"api/user/vagter/{id}");
+                   
+            }
+            private async Task<vagtDTO[]> getvagterbyOpgave (int id, int uid){
+         
+                return vagt2 =  await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/frivillig/{id}/{uid}");
+                   
+            }
+                private async Task<kompetenceDTO[]> getmykompetencer(int id){
+         
+                return mine_kompetencer =  await Http.GetFromJsonAsync<kompetenceDTO[]>($"api/kompetence/{id}");
+                   
+            }
+    private async Task tilmeldVagt(int fid, int? vid)
 {
-    await Http.PostAsJsonAsync<vagtDTO>("api/vagt", vagt);
-    await OnInitializedAsync();
+ tilmelding tilmelding = new tilmelding();
+ tilmelding.frivillig_id = fid;
+ tilmelding.vagt_id = vid;
+
+    await Http.PostAsJsonAsync<tilmelding>($"api/user/tilmelding/{tilmelding.frivillig_id}", tilmelding);
+    //await OnInitializedAsync();
 }
-private async Task patchVagt(vagtDTO paraVagt)
-{
-  
-           
-        isEdit = false;
-    await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{paraVagt.vagt_id}", paraVagt);
-    await OnInitializedAsync();
+private async Task kompetencebind(int uid, int kid){
+kompetenceBinder tempbinder = new kompetenceBinder();
+tempbinder.frivillig_id = uid;
+tempbinder.kompetence_id = kid;
+  await Http.PostAsJsonAsync($"api/kompetence/add/{uid}", tempbinder);
+  await OnInitializedAsync();
+
 }
-   private void bindOid(opgaveDTO område)
-    {
-        vagt.opgave_id = område.opgave_id;
-        vagt.opgave_navn = område.opgave_navn;
-        //Console.WriteLine($"{vagt.område_id}");
-
-
-    }
-    
-        
-    private async Task låsEllerÅbenVagt(vagtDTO vagt)
-    {
-    await Http.PutAsJsonAsync<vagtDTO>($"api/las/{vagt.vagt_id}", vagt);
-   await OnInitializedAsync();
-    }
-
-     
-    
-       private async Task getVagterByOmråde(int id){
-        vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/{id}");
-        //await OnInitializedAsync();
-
-    }
-
-    private bool toggleEdit (int? id){
-        if (isEdit == true){
-            vagt.vagt_id = null;
-            vagt.vagt_start = default;
-            vagt.vagt_slut = default;
-            vagt.opgave_id = 0;
-return isEdit = false;
-        }
-        vagt.vagt_id = id;
-        return isEdit = true; 
-    }
-    
+private async Task deleteKompetence(int uid,int kid){
+  await Http.DeleteAsync($"api/remove/kompetence/{uid}/{kid}");
+}
+private bool toggleUpdate(){
+  if (isUpdate == true){
+     return isUpdate = false;
+  }
+ return isUpdate = true;
+}
 
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private frivilligDTO user { get; set; }
     }
 }
 #pragma warning restore 1591

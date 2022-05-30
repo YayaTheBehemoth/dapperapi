@@ -644,7 +644,7 @@
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/festivalbooking.Client.pdb
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/serviceworkers/wwwroot/service-worker.js
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/service-worker-assets.js
-/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Test.razor.g.cs
-/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/Razor/Pages/Test.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout1.razor.g.cs
 /Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/Razor/Shared/MainLayout1.razor.g.cs
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/RazorDeclaration/Pages/Vagt.razor.g.cs
+/Users/placeholder/Desktop/festivalbooking/Client/obj/Debug/net5.0/Razor/Pages/Vagt.razor.g.cs

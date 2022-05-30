@@ -59,6 +59,15 @@ namespace festivalbooking.Server.Services{
                
            }
        }
+        public async Task updatepw(frivilligDTO user){
+           var parameters = new {PW = user.pw, ID = user.frivillig_id};
+           var sql="update frivillig set pw_hash = crypt(@PW, gen_salt('bf')) where frivillig_id = @ID";
+           using (var connection = connecter.Connect()){
+               await connection.ExecuteAsync(sql, parameters);
+                  
+               
+           }
+       }
        public async Task updatetlf(frivilligDTO user){
            var parameters = new {TLF = user.frivillig_tlf, ID = user.frivillig_id};
            var sql="update frivillig set frivillig_tlf = @TLF where frivillig_id = @ID";
@@ -142,9 +151,18 @@ namespace festivalbooking.Server.Services{
       public frivilligDTO getvagtbyid(string password, string username){
          var parameters =new {PASSWORD = password, USERNAME = username};
              //Console.WriteLine($"{vagt.navn},{vagt.id},{vagt.tal}");
-             var sql ="select crypt(@PASSWORD,pw_hash)=pw_hash,frivillig_navn,frivillig_id,role_id,frivillig_tlf from frivillig where frivillig_navn = @USERNAME";
+             var sql ="select crypt(@PASSWORD,pw_hash)=pw_hash as pwCheck,frivillig_navn,frivillig_id,role_id,frivillig_tlf from frivillig where frivillig_navn = @USERNAME";
               using (var connection = connecter.Connect()){
-            return connection.QueryFirst<frivilligDTO>(sql,parameters);
+                  
+            var check = connection.QueryFirst<frivilligDTO>(sql,parameters);
+            if (check.pwCheck == false){
+              
+             throw new NpgsqlException();
+            }
+            else{
+             
+                return  connection.QueryFirst<frivilligDTO>(sql,parameters);
+            }
           } 
       }
       public frivilligDTO getfrivilligbyid(int id){
@@ -374,7 +392,7 @@ namespace festivalbooking.Server.Services{
 
             public List<vagtDTO> getVagterbyfrivilligid(int id){
                 var parameters = new{ID = id};
-           var sql = "select * from vagter as v join frivillig_vagt_bridge as fvb on v.vagt_id = fvb.vagt_id join frivillig as f on fvb.frivillig_id = f.frivillig_id where f.frivillig_id = @ID";
+           var sql = "select v.vagt_start,v.vagt_slut,o.opgave_navn from vagter as v join frivillig_vagt_bridge as fvb on v.vagt_id = fvb.vagt_id join frivillig as f on fvb.frivillig_id = f.frivillig_id join opgaver as o on v.opgave_id = o.opgave_id where f.frivillig_id = @ID";
            using (var connection = connecter.Connect()){
                var vagtList = connection.Query<vagtDTO>(sql,parameters);
                    

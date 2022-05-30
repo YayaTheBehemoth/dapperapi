@@ -98,13 +98,14 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 101 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Opgaver.razor"
+#line 124 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Opgaver.razor"
       
   
     
     private vagt_statusDTO [] status;
     private opgaveDTO opgave = new opgaveDTO();
     private opgaveDTO[] opgaver;
+     private bool isEdit = false; 
 protected override async Task OnInitializedAsync()
 {
    
@@ -141,7 +142,7 @@ protected override async Task OnInitializedAsync()
 }
 private async Task patchOpgave(int opgave_id)
 {
-          opgave.opgave_id = opgave_id; 
+         
     await Http1.PutAsJsonAsync<opgaveDTO>($"api/opgaver/{opgave_id}", opgave);
     await OnInitializedAsync();
 }
@@ -160,7 +161,14 @@ private async Task patchOpgave(int opgave_id)
 
     }
   
-
+  private bool toggleEdit (int id){
+        if (isEdit == true){
+           opgave.opgave_id = 0;
+return isEdit = false;
+        }
+        opgave.opgave_id = id;
+        return isEdit = true; 
+    }
     
 
 #line default
