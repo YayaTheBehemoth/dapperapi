@@ -59,11 +59,9 @@
                         <th>Start tid</th>
                         <th>Slut tid</th>
                         <th>
-                            område
+                           Opgave
                         </th>
-                        <th>
-                            status
-                        </th>
+                   
                         <th>
                             antal skrevet på
                         </th>
@@ -75,34 +73,22 @@
                     {
                     <tr>
                         <td>@item.vagt_start</td>
-                          @if(item.er_last == false) {
-                          <input @bind-value="vagt.vagt_start" placeholder="string" />
-                          }
+                     
                         <td>@item.vagt_slut</td>
-                          @if(item.er_last == false){
-                          <input @bind-value="vagt.vagt_slut" placeholder="double" />
-                          }
+                         
                         <td>@item.opgave_navn</td>
                         
-            @if(item.er_last == false){               
-        <select id="områder" multiple>
-            @foreach (var item1 in områder)
-            {
-             
-                    <option value="@item1.opgave_id'" @onclick="@(()=>bindOid(@item1))"> @item1.opgave_navn</option>
-                    }
-                </select>
-            }
+        
              
                 <td>@item.antal_personer_skrevet_pa</td>
                         <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@item.vagt_id))">DELET DIS</button>
+                            
                         </td>
                         @if(item.er_last == false){
 
                     
                         <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@item.vagt_id))">EDIT DIS</button>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleEdit(@item.vagt_id))">EDIT DIS</button>
                         </td>
                             }
                             @foreach (var item2 in områder){
@@ -127,8 +113,37 @@
                     }
                 </tbody>
             </table>
-        }
+           
+            @if (isEdit == true){
+                     <label>Vagt Start</label><br>
+                     <input @bind-value="vagt.vagt_start" placeholder="start tid" /><br>
+                     <label>Vagt Slut</label><br>
+                      <input @bind-value="vagt.vagt_slut" placeholder="slut tid" /><br>
+                      <label>Vagt opgave</label><br>
+            <select id="områder" multiple>
+            @foreach (var item1 in områder)
+            {
+             
+                    <option value="@item1.opgave_id'" @onclick="@(()=>bindOid(@item1))"> @item1.opgave_navn</option>
+                    }
+                </select><br>
+                <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@vagt.vagt_id))">DELET DIS</button><br>
+                @if(vagt.vagt_start == default |vagt.vagt_slut == default){
+                        <p>Husk at angive start og/eller slut tidspunkt</p>
+                }else if (vagt.opgave_id == 0){
+                        <p>Husk at angive en opgave</p>
+                }
+                else{
+                  <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@vagt))">bekræft opdatering</button>  
+                }
+                
+                
+            }
+            }
+
+        
 @code{
+    private bool isEdit = false; 
 private vagtDTO[] vagter;
 
 private opgaveDTO[] områder;
@@ -159,8 +174,8 @@ protected override async Task OnInitializedAsync()
 
  private async Task DeleteVagt(int? id)
     {
+      isEdit = false;
      
-    
     await Http.DeleteAsync($"api/vagt/{id}");
     await OnInitializedAsync();
     }
@@ -170,10 +185,12 @@ private async Task postVagt(vagtDTO vagt)
     await Http.PostAsJsonAsync<vagtDTO>("api/vagt", vagt);
     await OnInitializedAsync();
 }
-private async Task patchVagt(int? vagt_id)
+private async Task patchVagt(vagtDTO paraVagt)
 {
-          vagt.vagt_id = vagt_id; 
-    await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{vagt_id}", vagt);
+  
+           
+        isEdit = false;
+    await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{paraVagt.vagt_id}", paraVagt);
     await OnInitializedAsync();
 }
    private void bindOid(opgaveDTO område)
@@ -198,6 +215,18 @@ private async Task patchVagt(int? vagt_id)
         vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/{id}");
         //await OnInitializedAsync();
 
+    }
+
+    private bool toggleEdit (int? id){
+        if (isEdit == true){
+            vagt.vagt_id = null;
+            vagt.vagt_start = default;
+            vagt.vagt_slut = default;
+            vagt.opgave_id = 0;
+return isEdit = false;
+        }
+        vagt.vagt_id = id;
+        return isEdit = true; 
     }
     
 }

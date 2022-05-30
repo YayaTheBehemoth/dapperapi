@@ -98,8 +98,9 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 131 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
+#line 145 "/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor"
       
+    private bool isEdit = false; 
 private vagtDTO[] vagter;
 
 private opgaveDTO[] områder;
@@ -130,8 +131,8 @@ protected override async Task OnInitializedAsync()
 
  private async Task DeleteVagt(int? id)
     {
+      isEdit = false;
      
-    
     await Http.DeleteAsync($"api/vagt/{id}");
     await OnInitializedAsync();
     }
@@ -141,10 +142,12 @@ private async Task postVagt(vagtDTO vagt)
     await Http.PostAsJsonAsync<vagtDTO>("api/vagt", vagt);
     await OnInitializedAsync();
 }
-private async Task patchVagt(int? vagt_id)
+private async Task patchVagt(vagtDTO paraVagt)
 {
-          vagt.vagt_id = vagt_id; 
-    await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{vagt_id}", vagt);
+  
+           
+        isEdit = false;
+    await Http.PutAsJsonAsync<vagtDTO>($"api/vagt/{paraVagt.vagt_id}", paraVagt);
     await OnInitializedAsync();
 }
    private void bindOid(opgaveDTO område)
@@ -169,6 +172,18 @@ private async Task patchVagt(int? vagt_id)
         vagter = await Http.GetFromJsonAsync<vagtDTO[]>($"api/omrade/{id}");
         //await OnInitializedAsync();
 
+    }
+
+    private bool toggleEdit (int? id){
+        if (isEdit == true){
+            vagt.vagt_id = null;
+            vagt.vagt_start = default;
+            vagt.vagt_slut = default;
+            vagt.opgave_id = 0;
+return isEdit = false;
+        }
+        vagt.vagt_id = id;
+        return isEdit = true; 
     }
     
 

@@ -134,7 +134,7 @@ protected override async Task OnInitializedAsync()
     user1.frivillig_tlf = tlf;
     user1.pw = pw;
     user1.role_id = user.role_id;
-
+    
 
     await Http.PostAsJsonAsync<frivilligDTO>($"api/user/opret/{navn}", user1);
     await OnInitializedAsync();

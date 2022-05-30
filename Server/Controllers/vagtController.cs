@@ -159,7 +159,7 @@ namespace festivalbooking.Server.Controllers {
              await _service.låsVagt(vagt);
               return NoContent();
           }
-           [Route("api/opgaver/las/{id}")]
+         [Route("api/opgaver/las/{id}")]
          [HttpPut]
           public async Task<IActionResult> låsOpgave(opgaveDTO opgave)
           {

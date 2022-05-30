@@ -3927,39 +3927,6 @@
         }
       },
       {
-        "HashCode": -1258171790,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.App",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.App"
-        }
-      },
-      {
-        "HashCode": 678959648,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.App",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "festivalbooking.Client.App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.App",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 764758392,
         "Kind": "Components.Component",
         "Name": "festivalbooking.Client.Pages.Frivillig",
@@ -4151,6 +4118,39 @@
           "Runtime.Name": "Components.None",
           "Common.TypeName": "festivalbooking.Client.Pages.Test.Body",
           "Components.IsSpecialKind": "Components.ChildContent",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1258171790,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.App",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.App"
+        }
+      },
+      {
+        "HashCode": 678959648,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.App",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
