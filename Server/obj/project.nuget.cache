@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kIHXSgiER/eWGg/0mIDGCYiOril2sj3i/afeUFXuqU2JsM1kzv0lnqKMW40MhnpmOxO2rFxE9pg8oU7vJwWabA==",
+  "dgSpecHash": "YLS/vdDJgQtCS8Oc4mhDhh4ebtmmAzBFVGpFUwQOb0YsuyS1nuMRP94++b2GyiHuPHZlkU8FOFqPS3jTRBHgug==",
   "success": true,
-  "projectFilePath": "/Users/placeholder/Desktop/festivalbooking/Server/festivalbooking.Server.csproj",
+  "projectFilePath": "/Users/placeholder/Desktop/dapperapi/Server/festivalbooking.Server.csproj",
   "expectedPackageFiles": [
     "/Users/placeholder/.nuget/packages/dapper/2.0.123/dapper.2.0.123.nupkg.sha512",
     "/Users/placeholder/.nuget/packages/microsoft.aspnetcore.authorization/5.0.15/microsoft.aspnetcore.authorization.5.0.15.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TmNv/jb7e4p/w47sa9PrWquu/tlyhiEYQQvs7ZJ9VbKVUIvcOFa7Sy9UQ0aQjf3KHvsORGhlC0FnIrtxr/zGJA==",
+  "dgSpecHash": "bNZCo6xpKvY091l+huM4xWnUqkb5IkZwLke+QdCXdbpei6WLcgtyGSRDssFqCw3dEghD4R5TdB1znag8iRILcQ==",
   "success": true,
-  "projectFilePath": "/Users/placeholder/Desktop/festivalbooking/Shared/festivalbooking.Shared.csproj",
+  "projectFilePath": "/Users/placeholder/Desktop/dapperapi/Shared/festivalbooking.Shared.csproj",
   "expectedPackageFiles": [
     "/Users/placeholder/.nuget/packages/dapper/2.0.123/dapper.2.0.123.nupkg.sha512",
     "/Users/placeholder/.nuget/packages/npgsql/6.0.4/npgsql.6.0.4.nupkg.sha512",

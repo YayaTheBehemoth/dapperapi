@@ -1318,11 +1318,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/placeholder/Desktop/festivalbooking/Client/festivalbooking.Client.csproj",
+      "projectUniqueName": "/Users/placeholder/Desktop/dapperapi/Client/festivalbooking.Client.csproj",
       "projectName": "festivalbooking.Client",
-      "projectPath": "/Users/placeholder/Desktop/festivalbooking/Client/festivalbooking.Client.csproj",
+      "projectPath": "/Users/placeholder/Desktop/dapperapi/Client/festivalbooking.Client.csproj",
       "packagesPath": "/Users/placeholder/.nuget/packages/",
-      "outputPath": "/Users/placeholder/Desktop/festivalbooking/Client/obj/",
+      "outputPath": "/Users/placeholder/Desktop/dapperapi/Client/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/placeholder/.nuget/NuGet/NuGet.Config"
@@ -1337,8 +1337,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "/Users/placeholder/Desktop/festivalbooking/Shared/festivalbooking.Shared.csproj": {
-              "projectPath": "/Users/placeholder/Desktop/festivalbooking/Shared/festivalbooking.Shared.csproj"
+            "/Users/placeholder/Desktop/dapperapi/Shared/festivalbooking.Shared.csproj": {
+              "projectPath": "/Users/placeholder/Desktop/dapperapi/Shared/festivalbooking.Shared.csproj"
             }
           }
         }

@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/placeholder/Desktop/festivalbooking/Server/festivalbooking.Server.csproj",
+  "FilePath": "/Users/placeholder/Desktop/dapperapi/Server/festivalbooking.Server.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -3927,313 +3927,68 @@
         }
       },
       {
-        "HashCode": -1258171790,
+        "HashCode": -29679046,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.App",
+        "Name": "festivalbooking.Client.Pages.Opgaver",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "App"
+            "TagName": "Opgaver"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.App"
+          "Common.TypeName": "festivalbooking.Client.Pages.Opgaver"
         }
       },
       {
-        "HashCode": 678959648,
+        "HashCode": 123212871,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.App",
+        "Name": "festivalbooking.Client.Pages.Opgaver",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "festivalbooking.Client.App"
+            "TagName": "festivalbooking.Client.Pages.Opgaver"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.App",
+          "Common.TypeName": "festivalbooking.Client.Pages.Opgaver",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
       {
-        "HashCode": -256301136,
+        "HashCode": 1623295050,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Shared.MainLayout1",
+        "Name": "festivalbooking.Client.Pages.Vagt",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "MainLayout1"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Body",
-            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
-            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
-            "Metadata": {
-              "Common.PropertyName": "Body",
-              "Components.ChildContent": "True"
-            }
+            "TagName": "Vagt"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1"
+          "Common.TypeName": "festivalbooking.Client.Pages.Vagt"
         }
       },
       {
-        "HashCode": -1503649741,
+        "HashCode": 1907813871,
         "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Shared.MainLayout1",
+        "Name": "festivalbooking.Client.Pages.Vagt",
         "AssemblyName": "festivalbooking.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "festivalbooking.Client.Shared.MainLayout1"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Body",
-            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
-            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
-            "Metadata": {
-              "Common.PropertyName": "Body",
-              "Components.ChildContent": "True"
-            }
+            "TagName": "festivalbooking.Client.Pages.Vagt"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 228134824,
-        "Kind": "Components.ChildContent",
-        "Name": "festivalbooking.Client.Shared.MainLayout1.Body",
-        "AssemblyName": "festivalbooking.Client",
-        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Body",
-            "ParentTag": "MainLayout1"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.None",
-          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1.Body",
-          "Components.IsSpecialKind": "Components.ChildContent"
-        }
-      },
-      {
-        "HashCode": 1455582185,
-        "Kind": "Components.ChildContent",
-        "Name": "festivalbooking.Client.Shared.MainLayout1.Body",
-        "AssemblyName": "festivalbooking.Client",
-        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Body",
-            "ParentTag": "festivalbooking.Client.Shared.MainLayout1"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.None",
-          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1.Body",
-          "Components.IsSpecialKind": "Components.ChildContent",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -1113095097,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Shared.SurveyPrompt",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "SurveyPrompt"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Title",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Title"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Shared.SurveyPrompt"
-        }
-      },
-      {
-        "HashCode": -1514879316,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Shared.SurveyPrompt",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "festivalbooking.Client.Shared.SurveyPrompt"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Title",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "Title"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Shared.SurveyPrompt",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 1889063861,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Shared.MainLayout",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "MainLayout"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Body",
-            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
-            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
-            "Metadata": {
-              "Common.PropertyName": "Body",
-              "Components.ChildContent": "True"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout"
-        }
-      },
-      {
-        "HashCode": 912387190,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Shared.MainLayout",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "festivalbooking.Client.Shared.MainLayout"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Body",
-            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
-            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
-            "Metadata": {
-              "Common.PropertyName": "Body",
-              "Components.ChildContent": "True"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 1793014629,
-        "Kind": "Components.ChildContent",
-        "Name": "festivalbooking.Client.Shared.MainLayout.Body",
-        "AssemblyName": "festivalbooking.Client",
-        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Body",
-            "ParentTag": "MainLayout"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.None",
-          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout.Body",
-          "Components.IsSpecialKind": "Components.ChildContent"
-        }
-      },
-      {
-        "HashCode": 1486435520,
-        "Kind": "Components.ChildContent",
-        "Name": "festivalbooking.Client.Shared.MainLayout.Body",
-        "AssemblyName": "festivalbooking.Client",
-        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Body",
-            "ParentTag": "festivalbooking.Client.Shared.MainLayout"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.None",
-          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout.Body",
-          "Components.IsSpecialKind": "Components.ChildContent",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -799744755,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Shared.NavMenu",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "NavMenu"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Shared.NavMenu"
-        }
-      },
-      {
-        "HashCode": 1438073587,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Shared.NavMenu",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "festivalbooking.Client.Shared.NavMenu"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Shared.NavMenu",
+          "Common.TypeName": "festivalbooking.Client.Pages.Vagt",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -4334,72 +4089,6 @@
         }
       },
       {
-        "HashCode": 1623295050,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Pages.Vagt",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Vagt"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Pages.Vagt"
-        }
-      },
-      {
-        "HashCode": 1907813871,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Pages.Vagt",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "festivalbooking.Client.Pages.Vagt"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Pages.Vagt",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -29679046,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Pages.Opgaver",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Opgaver"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Pages.Opgaver"
-        }
-      },
-      {
-        "HashCode": 123212871,
-        "Kind": "Components.Component",
-        "Name": "festivalbooking.Client.Pages.Opgaver",
-        "AssemblyName": "festivalbooking.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "festivalbooking.Client.Pages.Opgaver"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "festivalbooking.Client.Pages.Opgaver",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 764758392,
         "Kind": "Components.Component",
         "Name": "festivalbooking.Client.Pages.Frivillig",
@@ -4429,6 +4118,317 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "festivalbooking.Client.Pages.Frivillig",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 1889063861,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.MainLayout",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "MainLayout"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Body",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Body",
+              "Components.ChildContent": "True"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout"
+        }
+      },
+      {
+        "HashCode": 912387190,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.MainLayout",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.Shared.MainLayout"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Body",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Body",
+              "Components.ChildContent": "True"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 1793014629,
+        "Kind": "Components.ChildContent",
+        "Name": "festivalbooking.Client.Shared.MainLayout.Body",
+        "AssemblyName": "festivalbooking.Client",
+        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Body",
+            "ParentTag": "MainLayout"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout.Body",
+          "Components.IsSpecialKind": "Components.ChildContent"
+        }
+      },
+      {
+        "HashCode": 1486435520,
+        "Kind": "Components.ChildContent",
+        "Name": "festivalbooking.Client.Shared.MainLayout.Body",
+        "AssemblyName": "festivalbooking.Client",
+        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Body",
+            "ParentTag": "festivalbooking.Client.Shared.MainLayout"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout.Body",
+          "Components.IsSpecialKind": "Components.ChildContent",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1113095097,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.SurveyPrompt",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "SurveyPrompt"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Title",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Title"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.SurveyPrompt"
+        }
+      },
+      {
+        "HashCode": -1514879316,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.SurveyPrompt",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.Shared.SurveyPrompt"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Title",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Title"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.SurveyPrompt",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -256301136,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.MainLayout1",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "MainLayout1"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Body",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Body",
+              "Components.ChildContent": "True"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1"
+        }
+      },
+      {
+        "HashCode": -1503649741,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.MainLayout1",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.Shared.MainLayout1"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Body",
+            "TypeName": "Microsoft.AspNetCore.Components.RenderFragment",
+            "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "Body",
+              "Components.ChildContent": "True"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 228134824,
+        "Kind": "Components.ChildContent",
+        "Name": "festivalbooking.Client.Shared.MainLayout1.Body",
+        "AssemblyName": "festivalbooking.Client",
+        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Body",
+            "ParentTag": "MainLayout1"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1.Body",
+          "Components.IsSpecialKind": "Components.ChildContent"
+        }
+      },
+      {
+        "HashCode": 1455582185,
+        "Kind": "Components.ChildContent",
+        "Name": "festivalbooking.Client.Shared.MainLayout1.Body",
+        "AssemblyName": "festivalbooking.Client",
+        "Documentation": "\n            <summary>\n            Gets the content to be rendered inside the layout.\n            </summary>\n        ",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Body",
+            "ParentTag": "festivalbooking.Client.Shared.MainLayout1"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.None",
+          "Common.TypeName": "festivalbooking.Client.Shared.MainLayout1.Body",
+          "Components.IsSpecialKind": "Components.ChildContent",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -799744755,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.NavMenu",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "NavMenu"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.NavMenu"
+        }
+      },
+      {
+        "HashCode": 1438073587,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.Shared.NavMenu",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.Shared.NavMenu"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.Shared.NavMenu",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1258171790,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.App",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.App"
+        }
+      },
+      {
+        "HashCode": 678959648,
+        "Kind": "Components.Component",
+        "Name": "festivalbooking.Client.App",
+        "AssemblyName": "festivalbooking.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "festivalbooking.Client.App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "festivalbooking.Client.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -16143,7 +16143,7 @@
   "RootNamespace": "festivalbooking.Server",
   "Documents": [
     {
-      "FilePath": "/Users/placeholder/Desktop/festivalbooking/Server/Pages/Error.cshtml",
+      "FilePath": "/Users/placeholder/Desktop/dapperapi/Server/Pages/Error.cshtml",
       "TargetPath": "Pages\\Error.cshtml",
       "FileKind": "mvc"
     }
