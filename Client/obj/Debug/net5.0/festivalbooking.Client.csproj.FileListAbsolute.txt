@@ -1935,7 +1935,6 @@ C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\build-gz\zvOMc
 C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\build-gz\WEXY9trd.gz
 C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\build-gz\0Dv6n9AM.gz
 C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\build-gz\mjo0U6xz.gz
-C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
 C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\scopedcss\bundle\festivalbooking.Client.styles.css
 C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\scopedcss\projectbundle\festivalbooking.Client.bundle.scp.css
@@ -1948,3 +1947,4 @@ C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\ref\festivalbo
 C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\festivalbooking.Client.pdb
 C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\serviceworkers\wwwroot\service-worker.js
 C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\service-worker-assets.js
+C:\Users\oelle\Documents\GitHub\dapperapi\Client\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css

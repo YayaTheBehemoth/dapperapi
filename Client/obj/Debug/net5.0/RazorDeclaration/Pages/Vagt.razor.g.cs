@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 149 "C:\Users\oelle\Documents\GitHub\dapperapi\Client\Pages\Vagt.razor"
+#line 161 "C:\Users\oelle\Documents\GitHub\dapperapi\Client\Pages\Vagt.razor"
       
     private bool isEdit = false; 
 private vagtDTO[] vagter;

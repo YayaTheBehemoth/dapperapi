@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 174 "C:\Users\oelle\Documents\GitHub\dapperapi\Client\Pages\Index.razor"
+#line 180 "C:\Users\oelle\Documents\GitHub\dapperapi\Client\Pages\Index.razor"
       
 
 

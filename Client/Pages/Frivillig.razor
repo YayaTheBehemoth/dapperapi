@@ -13,7 +13,8 @@
            }
            else
            {
-                  <NavLink class="nav-link" href="/vagt" Match="NavLinkMatch.All">
+            <div class="div-nevlink">   
+            <NavLink class="nav-link" href="/vagt" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Vagter
             </NavLink>
             
@@ -23,39 +24,44 @@
              <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Log ud
             </NavLink>
-            <h2>kompetencer</h2>
+            </div>
+            <div class="div-layout">
+            <h2>Kompetencer</h2>
             <table class="table table-responsive">
             
             @foreach(var kompetence in kompetencer){
                 <tr>
                 <td>@kompetence.kompetence_navn</td>
                 <td>
-                <button class="btn btn-sm btn-primary" @onclick="@(()=>sletkompetence(@kompetence.kompetence_id))">slet kompetence</button>
+                <button class="btn btn-sm btn-primary" @onclick="@(()=>sletkompetence(@kompetence.kompetence_id))">Slet Kompetence</button>
                 </td>
                 </tr>
             }
             </table>
-            <h2>opret kompetence</h2>
+
+            <h2>Opret kompetence</h2>
                     <input @bind-value="kompetence.kompetence_navn" placeholder="string" /><br>
-                    <button class="btn btn-sm btn-primary" @onclick="@(()=>opretkompetence(@kompetence.kompetence_navn))">Opret kompetence</button>
+                    <p></p>
+                    <button class="btn btn-sm btn-primary" @onclick="@(()=>opretkompetence(@kompetence.kompetence_navn))">Opret Kompetence</button>
+            </div>
+            <p></p>
+            <div class="div-layout">
 
             <h2>Opret frivillig</h2>
             
             <input @bind-value="felt1" placeholder="Navn" />
-            <label>navn</label><br>
-           
-            <input @bind-value="felt" placeholder="tlf" />
-             <label> telefon</label><br>
-            
-            <input @bind-value="felt2" placeholder="password" />
-            <label> password</label><br>
+            <p></p>
+            <input @bind-value="felt" placeholder="tæf" />
+            <p></p>
+            <input @bind-value="felt2" placeholder="Password" />
+
             @if (String.IsNullOrWhiteSpace(felt1)){
                 <p>Husk at fylde felterne ud inden du opretter en ny bruger</p>
             }
            @if(felt < (10000000)){
-           <p>husk også telefoner nummer, vær opmærksom på at dette skal være 8 cifre</p>
+           <p>Husk også telefoner nummer, vær opmærksom på at dette skal være 8 cifre</p>
            } @if(String.IsNullOrWhiteSpace(felt2)){
-           <p>husk også at give dem et password</p>
+           <p>Husk også at give dem et password</p>
            }
            else
            {
@@ -80,22 +86,14 @@
                <table class="repsonsive">
                <thead>
                     <tr>
-                    <th>
-                       Navn
-                    </th>
-                    <th>
-                       Telefon Nummer 
-                    </th>
-                   
-                    <th>
-                       
-                    </th>
+                    <th>Navn</th>
+                    <th>Telefon Nummer</th>
+                    <th>Kompetencer</th>
                     </tr>
                 </thead>
          
             @foreach (var frivillig in frivillige)
             {
-              
                 <tbody>
                     <tr>
                         
@@ -105,9 +103,7 @@
                         <td>
                         @frivillig.frivillig_tlf
                         </td>
-                       
                         <td>
-                            <label><strong>kompetencer</strong></label>
                             @for (int i = 0; i < frivillig.kompetencer.Count();i++){
                                 <ul>@frivillig.kompetencer[i]</ul>
                             }
@@ -116,6 +112,8 @@
                 </tbody>
             }
                   </table>
+                  </div>
+                  <p></p>
            }
         
 @code{

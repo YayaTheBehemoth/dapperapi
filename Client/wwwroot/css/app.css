@@ -13,6 +13,7 @@ html, body::before{
     right: 0px;
     bottom: 0px;
     left: 0px;
+    padding: 50px;
 }
 
 a, .btn-link {
@@ -62,10 +63,30 @@ a, .btn-link {
 
 .div-login
 {
- text-align: center;
- border: 5px solid red;
- border: 1px solid black;
- margin: 10px 650px 10px 650px;
- background-color: lightblue;
- position: relative;
+    top: 170px;
+    text-align: center;
+    border: 3px solid black;
+    margin: 0px 700px 10px 700px;
+    border-radius: 50px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    padding: 50px;
+}
+.div-layout
+{
+background-color: #fff;
+padding: 50px;
+border: 3px solid black;
+border-radius: 50px;
+margin-right: 50px;
+margin-left: 150px;
+margin-bottom: 10px;
+
+}
+.div-nevlink{
+    border: 3px solid rgb(0, 0, 0); 
+    position: fixed;
+    border-radius: 20px;
+    text-align: left;
+    background-color: #fff;  
 }
