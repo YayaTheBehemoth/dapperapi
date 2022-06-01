@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 121 "/Users/placeholder/Desktop/dapperapi/Client/Pages/Frivillig.razor"
+#line 124 "/Users/placeholder/Desktop/dapperapi/Client/Pages/Frivillig.razor"
       
     private string felt1; 
     private int felt;
@@ -146,6 +146,10 @@ kompetence.kompetence_navn = navn;
 
     await Http.PostAsJsonAsync<kompetenceDTO>($"api/kompetence/opret/{navn}", kompetence);
     await OnInitializedAsync();
+}
+private async Task deleteFrivillig(int id){
+  await Http.DeleteAsync($"api/remove/frivillig/{id}");
+  await OnInitializedAsync();
 }
 
 #line default

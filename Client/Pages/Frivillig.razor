@@ -112,6 +112,9 @@
                                 <ul>@frivillig.kompetencer[i]</ul>
                             }
                         </td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" @onclick="@(()=>deleteFrivillig(@frivillig.frivillig_id))">Slet</button>
+                            </td>
                     </tr>
                 </tbody>
             }
@@ -165,6 +168,10 @@ kompetence.kompetence_navn = navn;
 
     await Http.PostAsJsonAsync<kompetenceDTO>($"api/kompetence/opret/{navn}", kompetence);
     await OnInitializedAsync();
+}
+private async Task deleteFrivillig(int id){
+  await Http.DeleteAsync($"api/remove/frivillig/{id}");
+  await OnInitializedAsync();
 }
 }
 

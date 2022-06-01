@@ -51,6 +51,7 @@
 }
        
            <button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
+           <button class="btn btn-sm btn-primary" @onclick="@(()=>deleteFrivillig(@user.frivillig_id))">Slet mig</button>
 }else 
 if (user.role_id == 3){
 <h1>Velkommen</h1>
@@ -158,6 +159,7 @@ else{
  </table>
 }
 <button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
+<button class="btn btn-sm btn-primary" @onclick="@(()=>deleteFrivillig(@user.frivillig_id))">Slet mig</button>
 }
 
 
@@ -258,10 +260,18 @@ tempbinder.kompetence_id = kid;
 private async Task deleteKompetence(int uid,int kid){
   await Http.DeleteAsync($"api/remove/kompetence/{uid}/{kid}");
 }
+
+private async Task deleteFrivillig(int id){
+ 
+  await Http.DeleteAsync($"api/remove/frivillig/{id}");
+  LogOut(user);
+
+}
 private bool toggleUpdate(){
   if (isUpdate == true){
      return isUpdate = false;
   }
  return isUpdate = true;
 }
+
 }

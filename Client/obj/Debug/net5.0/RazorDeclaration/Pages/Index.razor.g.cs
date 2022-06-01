@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 171 "/Users/placeholder/Desktop/dapperapi/Client/Pages/Index.razor"
+#line 173 "/Users/placeholder/Desktop/dapperapi/Client/Pages/Index.razor"
       
 
 
@@ -189,12 +189,20 @@ tempbinder.kompetence_id = kid;
 private async Task deleteKompetence(int uid,int kid){
   await Http.DeleteAsync($"api/remove/kompetence/{uid}/{kid}");
 }
+
+private async Task deleteFrivillig(int id){
+ 
+  await Http.DeleteAsync($"api/remove/frivillig/{id}");
+  LogOut(user);
+
+}
 private bool toggleUpdate(){
   if (isUpdate == true){
      return isUpdate = false;
   }
  return isUpdate = true;
 }
+
 
 #line default
 #line hidden

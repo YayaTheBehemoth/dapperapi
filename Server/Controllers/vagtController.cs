@@ -197,6 +197,15 @@ namespace festivalbooking.Server.Controllers {
            return NoContent();
         }
 
+        [Route("api/remove/frivillig/{id}")]
+      [HttpDelete]
+          
+        public async Task<IActionResult> Deletefrivillig(int id)
+        {  //Console.WriteLine("api nået" + id);
+           await _service.deleteFrivillig(id);
+           return NoContent();
+        }
+
         [Route("api/test/{id}")]
         [HttpGet]
         public frivilligDTO getfrivilligbyid(int id){

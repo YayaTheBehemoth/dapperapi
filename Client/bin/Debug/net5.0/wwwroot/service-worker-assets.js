@@ -1,7 +1,7 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-KxZiCDD7w4Zlmxo+ROL1ZUZjLu53OXQmh2ecyHTzEYs=",
+      "hash": "sha256-uRpQU+64\/tP8HW4O7\/PMTIQZ7ITKebG2sQ1oILB9YMA=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -801,11 +801,11 @@
       "url": "_framework\/festivalbooking.Shared.pdb"
     },
     {
-      "hash": "sha256-CIV+LGfgxc5H3ADsuPq5WUVUEtsjBIEA+N+8Ylx935E=",
+      "hash": "sha256-smCTUxd6MWfjQNiqyre1yYhNiPTvAmtkgnn2poMFyio=",
       "url": "_framework\/festivalbooking.Client.dll"
     },
     {
-      "hash": "sha256-C3j9BgiIFasDx1IQrIuZKXumWiX+pdi9iU1PpHPhpFg=",
+      "hash": "sha256-yvhCDFI0+vIwotU6strQdnYGE1dQkDyd2iueWs9RYHo=",
       "url": "_framework\/festivalbooking.Client.pdb"
     },
     {
@@ -1677,5 +1677,5 @@
       "url": "festivalbooking.Client.bundle.scp.css"
     }
   ],
-  "version": "\/RFQqsu+"
+  "version": "oOGmB9p9"
 };

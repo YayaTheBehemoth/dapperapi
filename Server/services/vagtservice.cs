@@ -96,6 +96,21 @@ namespace festivalbooking.Server.Services{
            }
        }
 
+        public async Task deleteFrivillig(int id){
+           var parameters = new {ID = id};
+           var sql ="DELETE FROM frivillig WHERE frivillig_id = @ID";
+           var sql1 ="DELETE FROM frivillig_vagt_bridge WHERE frivillig_id = @ID";
+           var sql2 ="DELETE FROM frivillig_kompetence_bridge WHERE frivillig_id = @ID";
+           using (var connection = connecter.Connect()){
+               await connection.ExecuteAsync(sql1, parameters);
+               await connection.ExecuteAsync(sql2, parameters);
+               await connection.ExecuteAsync(sql, parameters);
+        
+                  
+               
+           }
+       }
+
         public async Task deleteOpgave(int id){
            var parameters = new {ID = id};
            var sql ="DELETE FROM opgaver WHERE opgave_id = @ID";
