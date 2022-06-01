@@ -1,7 +1,18 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
+    position: relative; 
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   
+}
+html, body::before{
+    background: #fff url(https://marylineg1.sg-host.com/blog/wp-content/uploads/2017/05/Best-music-festivals-love-saves-the-day.jpg) right center/cover no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
 }
 
 a, .btn-link {
@@ -48,3 +59,13 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+.div-login
+{
+ text-align: center;
+ border: 5px solid red;
+ border: 1px solid black;
+ margin: 10px 650px 10px 650px;
+ background-color: lightblue;
+ position: relative;
+}

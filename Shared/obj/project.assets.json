@@ -112,24 +112,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/placeholder/.nuget/packages/": {}
+    "C:\\Users\\oelle\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/placeholder/Desktop/dapperapi/Shared/festivalbooking.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\oelle\\Documents\\GitHub\\dapperapi\\Shared\\festivalbooking.Shared.csproj",
       "projectName": "festivalbooking.Shared",
-      "projectPath": "/Users/placeholder/Desktop/dapperapi/Shared/festivalbooking.Shared.csproj",
-      "packagesPath": "/Users/placeholder/.nuget/packages/",
-      "outputPath": "/Users/placeholder/Desktop/dapperapi/Shared/obj/",
+      "projectPath": "C:\\Users\\oelle\\Documents\\GitHub\\dapperapi\\Shared\\festivalbooking.Shared.csproj",
+      "packagesPath": "C:\\Users\\oelle\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\oelle\\Documents\\GitHub\\dapperapi\\Shared\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/placeholder/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\oelle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -172,7 +174,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.406/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

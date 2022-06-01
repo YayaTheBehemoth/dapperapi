@@ -9,14 +9,17 @@
   }
 }else{
 @if(user.role_id == null){
-
-<h1>Velkommen til vagtbooking.exe :D</h1>
+<div class="div-login">
+<h1>Velkommen til Milijø Festivals vagtbooking</h1>
+<p></p>
+<label>Navn</label>
 <input @bind-value="felt1" placeholder="string" />
-<label>Navn</label><br>
+<p></p>
+<label>Password</label>
 <input @bind-value="felt" placeholder="string" />
-<label>Password</label><br>
+<p></p>
 <button class="btn btn-sm btn-primary" @onclick="@(()=>login(@felt, @felt1))">Log in</button><br>
-<img src="https://pbs.twimg.com/media/E_dmJB6WEAE3BOD.jpg">
+</div>
 } else
 @if(user.role_id == 4) {
   <NavLink class="nav-link" href="/vagt" Match="NavLinkMatch.All">
