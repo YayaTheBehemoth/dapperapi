@@ -993,7 +993,7 @@
       "outputPath": "/Users/placeholder/Desktop/dapperapi/Server/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/placeholder/.config/NuGet/NuGet.Config"
+        "/Users/placeholder/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 173 "/Users/placeholder/Desktop/dapperapi/Client/Pages/Index.razor"
+#line 177 "/Users/placeholder/Desktop/dapperapi/Client/Pages/Index.razor"
       
 
 
@@ -155,8 +155,9 @@ protected override async Task OnInitializedAsync()
             }
 
                 private async Task<vagtDTO[]> getvagterbymyid (int id){
-            
+                    await OnInitializedAsync();
                 return vagt =  await Http.GetFromJsonAsync<vagtDTO[]>($"api/user/vagter/{id}");
+                
                    
             }
             private async Task<vagtDTO[]> getvagterbyOpgave (int id, int uid){
@@ -165,6 +166,7 @@ protected override async Task OnInitializedAsync()
                    
             }
                 private async Task<kompetenceDTO[]> getmykompetencer(int id){
+                    await OnInitializedAsync();
          
                 return mine_kompetencer =  await Http.GetFromJsonAsync<kompetenceDTO[]>($"api/kompetence/{id}");
                    
