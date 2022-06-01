@@ -7,16 +7,18 @@
   @if(kompetencer == null){
   <p>det er enten det her eller en null pointer :DDDDD</p>
   }
-}else{
+}
+else{
 @if(user.role_id == null){
-
-<h1>Velkommen til vagtbooking.exe :D</h1>
-<input @bind-value="felt1" placeholder="string" />
-<label>Navn</label><br>
-<input @bind-value="felt" placeholder="string" />
-<label>Password</label><br>
+<div class="div-login">
+<h1>Miljø Festival Vagtbooking</h1>
+<p></p>
+<input @bind-value="felt1" placeholder="Brugernavn" />
+<p></p>
+<input @bind-value="felt" placeholder="Password" />
+<p></p>
 <button class="btn btn-sm btn-primary" @onclick="@(()=>login(@felt, @felt1))">Log in</button><br>
-<img src="https://pbs.twimg.com/media/E_dmJB6WEAE3BOD.jpg">
+</div>
 } else
 @if(user.role_id == 4) {
   <NavLink class="nav-link" href="/vagt" Match="NavLinkMatch.All">
@@ -28,9 +30,10 @@
             <NavLink class="nav-link" href="/opgaver" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Opgaver
             </NavLink>
+<div class="div-layout">
 <h1>Velkommen</h1>
 <h2>Dine nuværende oplysninger:</h2>
-<p>Telefon: @user.frivillig_navn</p>
+<p>Brugernavn: @user.frivillig_navn</p>
 <p>Telefon: @user.frivillig_tlf</p>
 <h3>Opdater dine oplysninger</h3>
 @if(isUpdate == true){
@@ -39,21 +42,27 @@
    
   <button class="btn btn-sm btn-primary" @onclick="@(()=>updatenavn(@user.frivillig_id))">opdater</button>
    <p>Opdater telefon-nummer</p>
-   <p>(Bemærk!! skal være mindst 8 cifre)</p>
+   <p>(Bemærk skal være mindst 8 cifre)</p>
    <input @bind-value="user.frivillig_tlf" placeholder="string" />
   <button class="btn btn-sm btn-primary" @onclick="@(()=>updatetlf(@user.frivillig_id))">Opdater</button>
 <p>Opdater password</p>
-   <input @bind-value="user.pw" placeholder="string" />
+   <input @bind-value="user.pw" placeholder="Indtast dit nye password" />
     <button class="btn btn-sm btn-primary" @onclick="@(()=>updatepw(@user.frivillig_id))">Opdater</button>
+    <p></p>
   <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleUpdate())">Fold sammen</button><br>
 }else {
   <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleUpdate())">Fold ud</button><br>
-}
-       
+}    
+<p></p>
            <button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
+<<<<<<< HEAD
            <button class="btn btn-sm btn-primary" @onclick="@(()=>deleteFrivillig(@user.frivillig_id))">Slet mig</button>
+=======
+</div>
+>>>>>>> styling
 }else 
 if (user.role_id == 3){
+<div class="div-layout">
 <h1>Velkommen</h1>
 <h2>kompetencer:</h2>
 <p>vælg en kompetence ved at trykke på en af de tilgængelige kompetencer for nede, tryk herefter 'genindlæs'</p>
@@ -79,7 +88,7 @@ if (user.role_id == 3){
   </table>
 }
 <h2>Dine nuværende oplysninger:</h2>
-<p>Telefon: @user.frivillig_navn</p>
+<p>Brugernavn: @user.frivillig_navn</p>
 <p>Telefon: @user.frivillig_tlf</p>
 <h3>Opdater dine oplysninger</h3>
 @if(isUpdate == true){
@@ -88,7 +97,7 @@ if (user.role_id == 3){
    
             <button class="btn btn-sm btn-primary" @onclick="@(()=>updatenavn(@user.frivillig_id))">opdater</button>
    <p>Opdater telefon-nummer</p>
-   <p>(Bemærk!! skal være mindst 8 cifre)</p>
+   <p>(Bemærk skal være mindst 8 cifre)</p>
    <input @bind-value="user.frivillig_tlf" placeholder="string" />
   <button class="btn btn-sm btn-primary" @onclick="@(()=>updatetlf(@user.frivillig_id))">Opdater</button><br>
   <p>Opdater password</p><br>
@@ -125,7 +134,9 @@ else{
 </tbody>
 </table>
 }
-
+</div>
+<p></p>
+<div class="div-layout">
 <h3>Tilgængelige vagter:</h3>
 
          <select multiple>
@@ -161,14 +172,15 @@ else{
 }
 </tbody>
  </table>
+
 }
+</div>
 <button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
 <button class="btn btn-sm btn-primary" @onclick="@(()=>deleteFrivillig(@user.frivillig_id))">Slet mig</button>
 }
 
 
 }
-
 
 
 
@@ -279,5 +291,9 @@ private bool toggleUpdate(){
   }
  return isUpdate = true;
 }
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> styling

@@ -14,7 +14,7 @@
        
         else
         {
-                
+            <div class="div-nevlink">  
              <NavLink class="nav-link" href="/frivillig" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Frivillige
             </NavLink>
@@ -24,38 +24,45 @@
              <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Log ud
             </NavLink>
+            </div>
+
+            <div class="div-layout">
             <h2>Opret vagt</h2>
         
-        <input @bind-value="vagt.vagt_start" placeholder="string" />
         <label>Start tidspunkt</label><br>
-       
+        <input @bind-value="vagt.vagt_start" placeholder="string" />
+        <p></p>
+        <label>Slut tidspunkt</label><br>
         <input @bind-value="vagt.vagt_slut" placeholder="double" />  
-          <label>Slut tidspunkt</label><br>
-         
+        <p></p>
+        <label>Opgaver</label><br>
           <select multiple>
             @foreach (var item2 in områder)
             {
              
                     <option value="@item2.opgave_id" @onclick="@(()=>bindOid(@item2))"> @item2.opgave_navn</option>
                     }
-                </select> 
-                 <label>opgave</label><br>      
+                </select>
+                <p></p>      
         <button class="btn btn-sm btn-primary" @onclick="@(()=>postVagt(@vagt))">Opret</button>
+        </div>
+        <p></p>
+        <div class="div-layout">
         <h2>Vagt oversigt</h2>
-        <h3>Sortér</h3>
-                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByområde())">sorter efter opgave</button><br>
-                  
-                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByAntal())">sorter efter antal personer skrevet på</button>
-        <h3>Filtrér</h3>
+        <h4>Sortér:</h4>
+                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByområde())">Sorter efter opgave</button><br>
+                     <p></p>
+                     <button class="btn btn-sm btn-primary" @onclick="@(()=>sortVagterByAntal())">Sorter efter antal personer skrevet på</button>
+        <p></p>
+        <h3>Filtrér:</h3>
          
                     <select multiple>
              @foreach (var item2 in områder)
             {
-             
                     <option value="@item2.opgave_id" @onclick="@(()=>getVagterByOmråde(@item2.opgave_id))"> @item2.opgave_navn</option>
                     }
                     </select>
-       
+       <p></p>
             <table class="table table-responsive">
                 <thead>
                     <tr>
@@ -66,7 +73,7 @@
                         </th>
                    
                         <th>
-                            antal skrevet på
+                            Antal skrevet på vagt
                         </th>
                     </tr>
                 </thead>
@@ -91,20 +98,23 @@
 
                     
                         <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleEdit(@item.vagt_id))">EDIT DIS</button>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleEdit(@item.vagt_id))">
+                            <i Class="oi oi-pencil"></i></button>
+
                         </td>
                             }
-                            @foreach (var item2 in områder){
+                        <td>
+                        @foreach (var item2 in områder){
 
-                           @if(item2.opgave_id == item.opgave_id) {
+                            @if(item2.opgave_id == item.opgave_id) {
                                @if(item2.er_last == false){
-                        @if (!(item.er_last == true))
+                            @if (!(item.er_last == true))
                         {
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås</button>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås Vagt</button>
                         }
                         else 
                         {
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås op</button>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenVagt(@item))">Lås Vagt op</button>
                         }
                                }
                                else {
@@ -112,11 +122,12 @@
                                }
                         }
                          }
+                         </td>
                     </tr>
                     }
                 </tbody>
             </table>
-           
+       
             @if (isEdit == true){
                 <p>@vagt.vagt_id</p>
                      <label>Vagt Start</label><br>
@@ -131,20 +142,21 @@
                     <option value="@item1.opgave_id'" @onclick="@(()=>bindOid(@item1))"> @item1.opgave_navn</option>
                     }
                 </select><br>
-                <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@vagt.vagt_id))">DELET DIS</button><br>
+                <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@vagt.vagt_id))">Slet Vagt</button><br>
                 @if(vagt.vagt_start == default |vagt.vagt_slut == default){
                         <p>Husk at angive start og/eller slut tidspunkt</p>
                 }else if (vagt.opgave_id == 0){
                         <p>Husk at angive en opgave</p>
                 }
                 else{
-                  <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@vagt))">bekræft opdatering</button>  
+                  <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@vagt))">Bekræft opdatering</button>  
                 }
                 
-                
+            
             }
+             </div>    
             }
-
+            
         
 @code{
     private bool isEdit = false; 

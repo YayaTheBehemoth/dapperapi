@@ -1313,16 +1313,16 @@
     ]
   },
   "packageFolders": {
-    "/Users/placeholder/.nuget/packages/": {}
+    "C:\\Users\\oelle\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/placeholder/Desktop/dapperapi/Client/festivalbooking.Client.csproj",
+      "projectUniqueName": "C:\\Users\\oelle\\Documents\\GitHub\\dapperapi\\Client\\festivalbooking.Client.csproj",
       "projectName": "festivalbooking.Client",
-      "projectPath": "/Users/placeholder/Desktop/dapperapi/Client/festivalbooking.Client.csproj",
-      "packagesPath": "/Users/placeholder/.nuget/packages/",
-      "outputPath": "/Users/placeholder/Desktop/dapperapi/Client/obj/",
+      "projectPath": "C:\\Users\\oelle\\Documents\\GitHub\\dapperapi\\Client\\festivalbooking.Client.csproj",
+      "packagesPath": "C:\\Users\\oelle\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\oelle\\Documents\\GitHub\\dapperapi\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/placeholder/.config/NuGet/NuGet.Config"
@@ -1331,14 +1331,15 @@
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "/Users/placeholder/Desktop/dapperapi/Shared/festivalbooking.Shared.csproj": {
-              "projectPath": "/Users/placeholder/Desktop/dapperapi/Shared/festivalbooking.Shared.csproj"
+            "C:\\Users\\oelle\\Documents\\GitHub\\dapperapi\\Shared\\festivalbooking.Shared.csproj": {
+              "projectPath": "C:\\Users\\oelle\\Documents\\GitHub\\dapperapi\\Shared\\festivalbooking.Shared.csproj"
             }
           }
         }
@@ -1388,7 +1389,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.browser-wasm",
-            "version": "[5.0.15, 5.0.15]"
+            "version": "[5.0.13, 5.0.13]"
           }
         ],
         "frameworkReferences": {
@@ -1396,7 +1397,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.406/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
