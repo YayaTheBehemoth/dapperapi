@@ -15,7 +15,11 @@
             <Node name="festivalbooking.Client" expanded="True">
               <Node name="Dependencies" expanded="True" />
             </Node>
-            <Node name="festivalbooking.Server" expanded="True" />
+            <Node name="festivalbooking.Server" expanded="True">
+              <Node name="services" expanded="True">
+                <Node name="vagtservice.cs" selected="True" />
+              </Node>
+            </Node>
             <Node name="festivalbooking.Shared" expanded="True">
               <Node name="Dependencies" expanded="True" />
             </Node>

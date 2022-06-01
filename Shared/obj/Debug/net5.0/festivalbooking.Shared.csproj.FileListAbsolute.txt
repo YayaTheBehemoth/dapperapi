@@ -21,4 +21,3 @@
 /Users/placeholder/Desktop/dapperapi/Shared/obj/Debug/net5.0/festivalbooking.Shared.dll
 /Users/placeholder/Desktop/dapperapi/Shared/obj/Debug/net5.0/ref/festivalbooking.Shared.dll
 /Users/placeholder/Desktop/dapperapi/Shared/obj/Debug/net5.0/festivalbooking.Shared.pdb
-/Users/placeholder/Desktop/dapperapi/Shared/obj/Debug/net5.0/festivalbooking.Shared.csproj.AssemblyReference.cache
