@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.festivalbooking.Server PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Server/services/vagtservice.cs">
     <Files>
-      <File FileName="Server/services/vagtservice.cs" Line="87" Column="92" />
+      <File FileName="Server/services/vagtservice.cs" Line="87" Column="9" />
       <File FileName="Server/Controllers/vagtController.cs" />
       <File FileName="Server/Connecter/connecter.cs" />
       <File FileName="Client/Pages/Index.razor" />
@@ -13,16 +13,12 @@
         <State name="__root__">
           <Node name="festivalbooking" expanded="True">
             <Node name="festivalbooking.Client" expanded="True">
-              <Node name="Pages" expanded="True" />
+              <Node name="Dependencies" expanded="True" />
             </Node>
-            <Node name="festivalbooking.Server" expanded="True">
-              <Node name="Connecter" expanded="True" />
-              <Node name="Controllers" expanded="True" />
-              <Node name="services" expanded="True">
-                <Node name="vagtservice.cs" selected="True" />
-              </Node>
+            <Node name="festivalbooking.Server" expanded="True" />
+            <Node name="festivalbooking.Shared" expanded="True">
+              <Node name="Dependencies" expanded="True" />
             </Node>
-            <Node name="festivalbooking.Shared" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -32,10 +28,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/placeholder/Desktop/festivalbooking/Server/Connecter/connecter.cs" relfile="Server/Connecter/connecter.cs" line="10" column="1" />
-      <Breakpoint file="/Users/placeholder/Desktop/festivalbooking/Server/Controllers/vagtController.cs" relfile="Server/Controllers/vagtController.cs" line="23" column="1" />
-      <Breakpoint file="/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor" relfile="Client/Pages/Index.razor" line="55" column="1" />
-      <Breakpoint file="/Users/placeholder/Desktop/festivalbooking/Client/Pages/Index.razor" relfile="Client/Pages/Index.razor" line="54" column="1" />
+      <Breakpoint file="/Users/placeholder/Desktop/dapperapi/Server/Connecter/connecter.cs" relfile="Server/Connecter/connecter.cs" line="10" column="1" />
+      <Breakpoint file="/Users/placeholder/Desktop/dapperapi/Server/Controllers/vagtController.cs" relfile="Server/Controllers/vagtController.cs" line="23" column="1" />
+      <Breakpoint file="/Users/placeholder/Desktop/dapperapi/Client/Pages/Index.razor" relfile="Client/Pages/Index.razor" line="55" column="1" />
+      <Breakpoint file="/Users/placeholder/Desktop/dapperapi/Client/Pages/Index.razor" relfile="Client/Pages/Index.razor" line="54" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

@@ -60,6 +60,7 @@
 /Users/placeholder/Desktop/festivalbooking/Server/obj/Debug/net5.0/ref/festivalbooking.Server.dll
 /Users/placeholder/Desktop/festivalbooking/Server/obj/Debug/net5.0/festivalbooking.Server.pdb
 /Users/placeholder/Desktop/festivalbooking/Server/obj/Debug/net5.0/festivalbooking.Server.genruntimeconfig.cache
+/Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/festivalbooking.Client.StaticWebAssets.xml
 /Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/appsettings.Development.json
 /Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/appsettings.json
 /Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/BlazorDebugProxy/BrowserDebugHost.dll
@@ -71,7 +72,6 @@
 /Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/BlazorDebugProxy/Mono.Cecil.Pdb.dll
 /Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/BlazorDebugProxy/Mono.Cecil.Rocks.dll
 /Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/BlazorDebugProxy/Newtonsoft.Json.dll
-/Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/festivalbooking.Client.StaticWebAssets.xml
 /Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/festivalbooking.Server.StaticWebAssets.xml
 /Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/festivalbooking.Server.deps.json
 /Users/placeholder/Desktop/dapperapi/Server/bin/Debug/net5.0/festivalbooking.Server.runtimeconfig.json

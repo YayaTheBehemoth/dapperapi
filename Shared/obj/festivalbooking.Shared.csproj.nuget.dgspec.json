@@ -14,7 +14,7 @@
         "outputPath": "/Users/placeholder/Desktop/dapperapi/Shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/placeholder/.nuget/NuGet/NuGet.Config"
+          "/Users/placeholder/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
