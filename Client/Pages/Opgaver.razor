@@ -29,35 +29,37 @@
         </div>       
     <div class="div-layout">           
     <h3>Opret opgave</h3>
-    
-    <input @bind-value="opgave.opgave_navn" placeholder="string"/>
+
     <label>Opgave navn</label><br>
-    
+    <input @bind-value="opgave.opgave_navn" placeholder="Skriv her"/>
+    <p></p>
+    <label>Status på opgave</label><br>
      <select multiple>
                  @foreach(var status in status){
                        <option value="@status.status_id'" @onclick="@(()=>bindSid(@status))"> @status.status_navn</option>
                  }
              </select>
-             <label>status</label><br>
-             
-             <input @bind-value="opgave.opgave_beskrivelse" placeholder="string"/>
-             <label>Beskrivelse</label><br>
-             
-             <input type="checkbox" @bind="opgave.er_team_opgave">
-             <label>Teamvagt?</label><br>
+            <p></p>
+            <label>Beskrivelse</label><br>
+             <input @bind-value="opgave.opgave_beskrivelse" placeholder="Skriv her"/>
+             <p></p>
+             <input type="checkbox" @bind="opgave.er_team_opgave"><label>Team Opgave?</label><br>
+             <p></p>
              <button class="btn btn-sm btn-primary" @onclick="@(()=>postOpgave(@opgave))">Opret</button>
             </div>
             <p></p>
             <div class="div-layout">
              <h3>Opgave oversigt</h3>
-             <h3>Sortér</h3>
+             <h4>Sortér:</h4>
              <button class="btn btn-sm btn-primary" @onclick="@(()=>sortOpgaverByStatus())">sorter efter område</button>
-             <h3>filtrér</h3>
+             <p></p>
+             <h4>filtrér:</h4>
                <select multiple>
                  @foreach(var status1 in status){
                        <option value="@status1.status_id'" @onclick="@(()=>getOpgaverByStatus(@status1.status_id))"> @status1.status_navn</option>
                  }
              </select>
+             <p></p>
               
  <table class="table table-responsive"> 
     <thead>
@@ -92,12 +94,16 @@
                           
                 </td>
                 @if (@item.er_last == false){
+                    <td>
+                        <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleEdit(@item.opgave_id))"><i Class="oi oi-pencil"></i></button><br>
+                    </td>
                 <td>
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenOpgave(@item))">Lås</button><br>
-                              <button class="btn btn-sm btn-primary" @onclick="@(()=>toggleEdit(@item.opgave_id))">EDIT DIS</button>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenOpgave(@item))">Lås Opgave</button>
                 </td>
                 }else {
-                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenOpgave(@item))">Lås op</button>
+                    <td>
+                            <button class="btn btn-sm btn-primary" @onclick="@(()=>låsEllerÅbenOpgave(@item))">Lås Opgave op</button>
+                    </td>
                 }
                  
                  </tr>
@@ -108,21 +114,22 @@
  </table>
 
         @if(isEdit == true){
-           <p>id</p> <p>@opgave.opgave_id</p>
+           <p>Opgave ID: @opgave.opgave_id</p>
             <label>Opgave navn</label><br>
-             <input @bind-value="opgave.opgave_navn" placeholder="string" /><br>
+             <input @bind-value="opgave.opgave_navn" placeholder="Skriv her" /><br>
+             <p></p>
             <label>Opgave beskrivelse</label><br>
-             <input @bind-value="opgave.opgave_beskrivelse" placeholder="string" /><br>
+             <input @bind-value="opgave.opgave_beskrivelse" placeholder="Skriv her" /><br>
+             <p></p>
             <label>Opgave status</label><br>
                  <select multiple>
                  @foreach(var item1 in status){
                        <option value="@item1.status_id'" @onclick="@(()=>bindSid(@item1))"> @item1.status_navn</option>
                  }
              </select><br>
-            <label>Team opgave</label><br>
-            <input type="checkbox" @bind="opgave.er_team_opgave"><br>
-             <button class="btn btn-sm btn-primary" @onclick="@(()=>patchOpgave(@opgave.opgave_id))">EDIT DIS</button><br>
-             <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteOpgave(@opgave.opgave_id))">DELET DIS</button>
+             <input type="checkbox" @bind="opgave.er_team_opgave"><label>Team Opagave?</label><br>
+             <button class="btn btn-sm btn-primary" @onclick="@(()=>patchOpgave(@opgave.opgave_id))">Bekræft ændringer</button>
+             <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteOpgave(@opgave.opgave_id))" style="background-color: red;">Slet Opgave</button>
         }
         </div>
         }      

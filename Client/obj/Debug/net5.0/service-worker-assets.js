@@ -1,7 +1,7 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-V9W7kQaPN+jJq1fe5XEA\/a9Jc2nksMhI+ICFd6N3fYU=",
+      "hash": "sha256-jVlwPfuCrsOXMS9csCoxi5U2O8Zdhonj4vGJoHYp1Qc=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -801,11 +801,11 @@
       "url": "_framework\/festivalbooking.Shared.pdb"
     },
     {
-      "hash": "sha256-8KIVGKOWqfnKghRZNuxJBk2gusOSN0Z9CuR80leEiys=",
+      "hash": "sha256-meRxiByZI0mhJh\/OmiBV\/nZhMjBp40oCAaddTmAssEg=",
       "url": "_framework\/festivalbooking.Client.dll"
     },
     {
-      "hash": "sha256-DaM7fSMklSfgbuHu+QhO8LulOW6ekdpD0xdrIDok4vw=",
+      "hash": "sha256-tad5CdWHGFTOxdDsyf6VD4rFY2rv27EszjIx3Z5Xu48=",
       "url": "_framework\/festivalbooking.Client.pdb"
     },
     {
@@ -1605,7 +1605,7 @@
       "url": "_framework\/festivalbooking.Shared.dll.gz"
     },
     {
-      "hash": "sha256-CB1FHx1h1+6\/Pc6A92GN8mnFSf\/HHweU5eQVKMGannQ=",
+      "hash": "sha256-QP0L147rV9RUdlhJYUl+svGk\/9K5S8HBpxp8q8Fy91s=",
       "url": "css\/app.css"
     },
     {
@@ -1677,5 +1677,5 @@
       "url": "festivalbooking.Client.bundle.scp.css"
     }
   ],
-  "version": "HvaQATZS"
+  "version": "\/yy9mNzx"
 };

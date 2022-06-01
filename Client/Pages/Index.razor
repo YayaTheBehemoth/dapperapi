@@ -1,7 +1,6 @@
 ﻿@page "/"
 @inject frivilligDTO user
 @inject HttpClient Http
-@inherits MainLayout1
 
 @if(opgaver ==  null){
   @if(kompetencer == null){
@@ -21,17 +20,20 @@ else{
 </div>
 } else
 @if(user.role_id == 4) {
-  <NavLink class="nav-link" href="/vagt" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Vagter
-            </NavLink>
-             <NavLink class="nav-link" href="/frivillig" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Frivillige
-            </NavLink>
-            <NavLink class="nav-link" href="/opgaver" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Opgaver
-            </NavLink>
+    <div class="div-nevlink">
+    <NavLink class="nav-link" href="/vagt" Match="NavLinkMatch.All">
+          <span class="oi oi-home" aria-hidden="true"></span> Vagter
+    </NavLink>
+    <NavLink class="nav-link" href="/frivillig" Match="NavLinkMatch.All">
+          <span class="oi oi-home" aria-hidden="true"></span> Frivillige
+    </NavLink>
+    <NavLink class="nav-link" href="/opgaver" Match="NavLinkMatch.All">
+          <span class="oi oi-home" aria-hidden="true"></span> Opgaver
+    </NavLink>
+    </div>
+
 <div class="div-layout">
-<h1>Velkommen</h1>
+<h1>Velkommen Koordinator</h1>
 <h2>Dine nuværende oplysninger:</h2>
 <p>Brugernavn: @user.frivillig_navn</p>
 <p>Telefon: @user.frivillig_tlf</p>
@@ -60,15 +62,15 @@ else{
 if (user.role_id == 3){
 <div class="div-layout">
 <h1>Velkommen</h1>
-<h2>kompetencer:</h2>
+<h3>kompetencer:</h3>
 <select multiple>
 @foreach(var kompetence in kompetencer){
       <option value="@kompetence.kompetence_id" @onclick="@(()=>kompetencebind(@user.frivillig_id ,@kompetence.kompetence_id))" > @kompetence.kompetence_navn</option>  
 }
 </select>
-<h2>dine kompetencer:</h2>
+<h3>Mine kompetencer:</h3>
 @if(mine_kompetencer == null){
-  <button class="btn btn-sm btn-primary" @onclick="@(()=>getmykompetencer(@user.frivillig_id))">se mine kompetencer</button>
+  <button class="btn btn-sm btn-primary" @onclick="@(()=>getmykompetencer(@user.frivillig_id))">Se kompetencer</button>
 } else {
   <table>
   @foreach(var kompetence1 in mine_kompetencer){
@@ -81,6 +83,7 @@ if (user.role_id == 3){
   }
   </table>
 }
+<p></p>
 <h2>Dine nuværende oplysninger:</h2>
 <p>Brugernavn: @user.frivillig_navn</p>
 <p>Telefon: @user.frivillig_tlf</p>
@@ -103,9 +106,9 @@ if (user.role_id == 3){
 }
 
 <h3>Mine Vagter:</h3>
-<button class="btn btn-sm btn-primary" @onclick="@(()=>getvagterbymyid(@user.frivillig_id))">Mine vagter</button>
+<button class="btn btn-sm btn-primary" @onclick="@(()=>getvagterbymyid(@user.frivillig_id))">Se vagter</button>
 @if(vagt ==  null){
-  <p>det er enten det her eller en null pointer :DDDDD</p>
+  <p></p>
 }
 else{
   <table class="table table-responsive">
@@ -127,6 +130,7 @@ else{
 </tbody>
 </table>
 }
+<button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
 </div>
 <p></p>
 <div class="div-layout">
@@ -167,7 +171,6 @@ else{
 
 }
 </div>
-<button class="btn btn-sm btn-primary" @onclick="@(()=>LogOut(@user))">Log ud</button>
 }
 
 

@@ -8,6 +8,7 @@ html, body {
 html, body::before{
     background: #fff url(https://marylineg1.sg-host.com/blog/wp-content/uploads/2017/05/Best-music-festivals-love-saves-the-day.jpg) right center/cover no-repeat;
     background-size: cover;
+      background-attachment: fixed;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -52,6 +53,8 @@ a, .btn-link {
     position: fixed;
     width: 100%;
     z-index: 1000;
+    color: rgb(182, 0, 0);
+    text-align: center;
 }
 
     #blazor-error-ui .dismiss {
@@ -81,8 +84,15 @@ border-radius: 50px;
 margin-right: 50px;
 margin-left: 150px;
 margin-bottom: 10px;
-
 }
+
+
+ tr
+ {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+
 .div-nevlink{
     border: 3px solid rgb(0, 0, 0); 
     position: fixed;

@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 119 "C:\Users\oelle\Documents\GitHub\dapperapi\Client\Pages\Frivillig.razor"
+#line 123 "C:\Users\oelle\Documents\GitHub\dapperapi\Client\Pages\Frivillig.razor"
       
     private string felt1; 
     private int felt;
