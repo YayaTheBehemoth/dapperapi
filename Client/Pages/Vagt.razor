@@ -142,7 +142,6 @@
                     <option value="@item1.opgave_id'" @onclick="@(()=>bindOid(@item1))"> @item1.opgave_navn</option>
                     }
                 </select><br>
-                <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@vagt.vagt_id))">Slet Vagt</button><br>
                 @if(vagt.vagt_start == default |vagt.vagt_slut == default){
                         <p>Husk at angive start og/eller slut tidspunkt</p>
                 }else if (vagt.opgave_id == 0){
@@ -151,6 +150,7 @@
                 else{
                   <button class="btn btn-sm btn-primary" @onclick="@(()=>patchVagt(@vagt))">Bekræft opdatering</button>  
                 }
+                                <button class="btn btn-sm btn-primary" @onclick="@(()=>DeleteVagt(@vagt.vagt_id))" style="background-color: red;">Slet Vagt</button><br>
                 
             
             }

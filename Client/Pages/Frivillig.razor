@@ -47,7 +47,7 @@
             <p></p>
             <div class="div-layout">
 
-            <h2>Opret frivillig</h2>
+            <h2>Opret en frivillig eller en koordinator </h2>
             
             <input @bind-value="felt1" placeholder="Navn" />
             <p></p>
@@ -70,7 +70,7 @@
                }
                else{
               
-                   
+            <p></p>     
          <select multiple>
              @foreach (var rolle in roller)
             {
@@ -78,17 +78,21 @@
                     <option value="@rolle.id" @onclick="@(()=>bindRID(@rolle))"> @rolle.navn</option>
                     }
                     </select>
+                    <p></p>
                     <button class="btn btn-sm btn-primary" @onclick="@(()=>opret(@felt1, @felt, @felt2))">Opret</button>
                }
        
            }
               <h2>Frivillig oversigt</h2>
-               <table class="repsonsive">
+               <table class="table table-repsonsive">
                <thead>
                     <tr>
                     <th>Navn</th>
+                    <p></p>
                     <th>Telefon Nummer</th>
+                    <p></p>
                     <th>Kompetencer</th>
+                    <p></p>
                     </tr>
                 </thead>
          
@@ -105,7 +109,7 @@
                         </td>
                         <td>
                             @for (int i = 0; i < frivillig.kompetencer.Count();i++){
-                                <ul>@frivillig.kompetencer[i]</ul>
+                                <p>@frivillig.kompetencer[i]</p>
                             }
                         </td>
                             <td>

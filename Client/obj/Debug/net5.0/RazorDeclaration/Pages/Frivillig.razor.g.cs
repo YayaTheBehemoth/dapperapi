@@ -98,7 +98,7 @@ using festivalbooking.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 122 "/Users/placeholder/Desktop/dapperapi/Client/Pages/Frivillig.razor"
+#line 126 "/Users/placeholder/Desktop/dapperapi/Client/Pages/Frivillig.razor"
       
     private string felt1; 
     private int felt;
